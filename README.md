@@ -1,1 +1,1 @@
-# graphiql-app
+code-wizards-graphiql.netlify.app
