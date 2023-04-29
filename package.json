@@ -16,8 +16,6 @@
     "lint:fix": "eslint . --fix --ext .ts,.tsx"
   },
   "dependencies": {
-    "codemirror": "^6.0.1",
-    "codemirror-graphql": "^2.0.5",
     "graphql": "^16.6.0",
     "i18next": "^22.4.15",
     "i18next-browser-languagedetector": "^7.0.1",
@@ -30,12 +28,15 @@
     "react-router-dom": "^6.10.0"
   },
   "devDependencies": {
+    "@types/codemirror": "^5.60.7",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.14",
+    "codemirror": "^5.65.13",
+    "codemirror-graphql": "^2.0.5",
     "eslint": "^8.38.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
