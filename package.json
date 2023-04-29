@@ -16,6 +16,7 @@
     "lint:fix": "eslint . --fix --ext .ts,.tsx"
   },
   "dependencies": {
+    "codemirror": "^6.0.1",
     "codemirror-graphql": "^2.0.5",
     "graphql": "^16.6.0",
     "i18next": "^22.4.15",
