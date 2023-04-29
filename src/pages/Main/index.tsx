@@ -1,3 +1,5 @@
+import Editor from '../../components/Editor';
+
 export default function Main() {
-  return <h2>Main</h2>;
+  return <Editor />;
 }
