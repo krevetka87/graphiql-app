@@ -16,6 +16,7 @@
     "lint:fix": "eslint . --fix --ext .ts,.tsx"
   },
   "dependencies": {
+    "@mobx-devtools/tools": "^0.0.4",
     "axios": "^1.4.0",
     "graphql": "^16.6.0",
     "i18next": "^22.4.15",
