@@ -1,4 +1,4 @@
-import { TEditorOptions } from '../types/editorTypes';
+import { TEditorOptions } from '../types/editor';
 
 const editorOptions: TEditorOptions = {
   hover: {

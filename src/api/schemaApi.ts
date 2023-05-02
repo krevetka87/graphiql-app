@@ -2,7 +2,7 @@ import { getIntrospectionQuery, IntrospectionQuery } from 'graphql';
 import axios, { AxiosResponse } from 'axios';
 import { Endpoints, baseURL } from '../constants/url';
 
-const getApiSchema = async (): Promise<IntrospectionQuery | undefined> => {
+const getApiSchema = async (): Promise<IntrospectionQuery> => {
   try {
     const res: AxiosResponse = await axios.post(`${baseURL}${Endpoints.graphql}`, {
       headers: {

@@ -1,25 +1,20 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { Endpoints, baseURL } from '../constants/url';
+import { IGraphQLRequest } from '../types/api';
 
-interface IRequest {
-  query: string | undefined;
-  variables: { [key: string]: string | number };
-}
-
-const getQueryResult = async (requestData: IRequest): Promise<unknown> => {
+const getQueryResult = async (requestData: IGraphQLRequest): Promise<unknown> => {
   const { query, variables } = requestData;
-  try {
-    const res: AxiosResponse = await axios.post(`${baseURL}${Endpoints.graphql}`, {
+
+  return axios
+    .post(`${baseURL}${Endpoints.graphql}`, {
       headers: {
         'Content-Type': 'application/json',
       },
       query,
       variables,
-    });
-    return res.data;
-  } catch (err) {
-    throw new Error((err as Error).message);
-  }
+    })
+    .then((data: AxiosResponse) => data.data)
+    .catch((err: AxiosError) => err.response?.data);
 };
 
 export { getQueryResult };

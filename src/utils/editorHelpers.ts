@@ -1,7 +1,7 @@
 import { Uri, editor } from 'monaco-editor/esm/vs/editor/editor.api';
 import { Files } from '../constants/editor';
 import { getQueryResult } from '../api/queryApi';
-import { TEditor, TEditorModel, TEditorOptions } from '../types/editorTypes';
+import { TEditor, TEditorModel, TEditorOptions } from '../types/editor';
 
 const getEditorModel = (uri: string, value: string, language: string): TEditorModel => {
   return editor.getModel(Uri.file(uri)) ?? editor.createModel(value, language, Uri.file(uri));
@@ -33,6 +33,7 @@ const handleRequest = async () => {
     query: queryModelValue,
     variables: varModelValue ? JSON.parse(varModelValue) : {},
   });
+
   resultModel?.setValue(JSON.stringify(response, null, '\t'));
 };
 

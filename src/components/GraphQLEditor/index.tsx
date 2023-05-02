@@ -2,13 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Uri } from 'monaco-editor/esm/vs/editor/editor.api';
 import { initializeMode } from 'monaco-graphql/esm/initializeMode';
-import { IntrospectionQuery } from 'graphql';
-import { Endpoints, baseURL } from '../../constants/url';
+import { IntrospectionQuery, buildClientSchema } from 'graphql';
 import getApiSchema from '../../api/schemaApi';
 import { createEditor, getEditorModel, handleRequest } from '../../utils/editorHelpers';
 import { InitValues, editorOptions, Files } from '../../constants/editor';
 import editorsStore from '../../store/editorsStore';
-import { TEditor, TEditorModel } from '../../types/editorTypes';
+import { TEditor, TEditorModel } from '../../types/editor';
 
 const GraphQLEditor = observer(() => {
   const queryRef = useRef<HTMLDivElement>(null);
@@ -44,8 +43,8 @@ const GraphQLEditor = observer(() => {
 
         api.setSchemaConfig([
           {
-            introspectionJSON: data,
-            uri: `${baseURL}${Endpoints.graphql}`,
+            schema: buildClientSchema(data),
+            uri: 'schema.graphql',
           },
         ]);
 
