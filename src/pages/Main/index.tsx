@@ -1,5 +1,5 @@
-import Editor from '../../components/Editor';
+import GraphQLEditor from '../../components/GraphQLEditor';
 
 export default function Main() {
-  return <Editor />;
+  return <GraphQLEditor />;
 }
