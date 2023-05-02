@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Uri } from 'monaco-editor/esm/vs/editor/editor.api';
 import { initializeMode } from 'monaco-graphql/esm/initializeMode';
-import { IntrospectionQuery, parse } from 'graphql';
+import { IntrospectionQuery } from 'graphql';
 import { Endpoints, baseURL } from '../../constants/url';
 import getApiSchema from '../../api/schemaApi';
 import { createEditor, getEditorModel, handleRequest } from '../../utils/editorHelpers';

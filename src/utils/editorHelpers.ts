@@ -33,7 +33,7 @@ const handleRequest = async () => {
     query: queryModelValue,
     variables: varModelValue ? JSON.parse(varModelValue) : {},
   });
-  resultModel?.setValue(JSON.stringify(response));
+  resultModel?.setValue(JSON.stringify(response, null, '\t'));
 };
 
 export { getEditorModel, createEditor, handleRequest };
