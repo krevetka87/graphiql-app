@@ -17,50 +17,48 @@ const QueryEditor = observer(({ introspection }: IQueryEditorProps) => {
   const [editorInstance, setEditorInstance] = useState<TEditor | null>(null);
 
   useEffect(() => {
-    if (!introspection) {
-      return;
+    if (introspection) {
+      const api = initializeMode();
+
+      api.setDiagnosticSettings({
+        jsonDiagnosticSettings: {
+          validate: true,
+          schemaValidation: 'error',
+          allowComments: true,
+          trailingCommas: 'ignore',
+        },
+        validateVariablesJSON: {
+          [Uri.file(`${Files.query}`).toString()]: [Uri.file(`${Files.variables}`).toString()],
+        },
+      });
+
+      api.setSchemaConfig([
+        {
+          schema: buildClientSchema(introspection),
+          uri: 'schema.graphql',
+        },
+      ]);
+
+      api.setFormattingOptions({ prettierConfig: { useTabs: true, tabWidth: 2 } });
     }
-    const api = initializeMode();
-
-    api.setDiagnosticSettings({
-      jsonDiagnosticSettings: {
-        validate: true,
-        schemaValidation: 'error',
-        allowComments: true,
-        trailingCommas: 'ignore',
-      },
-      validateVariablesJSON: {
-        [Uri.file(`${Files.query}`).toString()]: [Uri.file(`${Files.variables}`).toString()],
-      },
-    });
-
-    api.setSchemaConfig([
-      {
-        schema: buildClientSchema(introspection),
-        uri: 'schema.graphql',
-      },
-    ]);
-
-    api.setFormattingOptions({ prettierConfig: { useTabs: true, tabWidth: 2 } });
   }, [introspection]);
 
   useEffect(() => {
-    if (editorInstance || !editorRef.current) {
-      return;
+    if (!editorInstance && editorRef.current) {
+      const queryModel: TEditorModel = getEditorModel(
+        Files.query,
+        editorsValueStore.queryValue,
+        'graphql'
+      );
+
+      const queryEditor: TEditor = createEditor(editorRef.current, queryModel, editorOptions);
+      setEditorInstance(queryEditor);
+
+      return () => {
+        editorsValueStore.setQueryValue(queryEditor.getValue());
+      };
     }
-
-    const queryModel: TEditorModel = getEditorModel(
-      Files.query,
-      editorsValueStore.queryValue,
-      'graphql'
-    );
-
-    const queryEditor: TEditor = createEditor(editorRef.current, queryModel, editorOptions);
-    setEditorInstance(queryEditor);
-
-    return () => {
-      editorsValueStore.setQueryValue(queryEditor.getValue());
-    };
+    return undefined;
   }, [editorInstance]);
 
   return <div ref={editorRef} className="h-80" />;

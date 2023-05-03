@@ -10,22 +10,21 @@ const VariablesEditor = observer(() => {
   const [editorInstance, setEditorInstance] = useState<TEditor | null>(null);
 
   useEffect(() => {
-    if (!editorRef.current || editorInstance) {
-      return;
+    if (editorRef.current && !editorInstance) {
+      const model: TEditorModel = getEditorModel(
+        Files.variables,
+        editorsValueStore.variablesValue,
+        'json'
+      );
+
+      const editor: TEditor = createEditor(editorRef.current, model, editorOptions);
+      setEditorInstance(editor);
+
+      return () => {
+        editorsValueStore.setVariablesValue(editor.getValue());
+      };
     }
-
-    const model: TEditorModel = getEditorModel(
-      Files.variables,
-      editorsValueStore.variablesValue,
-      'json'
-    );
-
-    const editor: TEditor = createEditor(editorRef.current, model, editorOptions);
-    setEditorInstance(editor);
-
-    return () => {
-      editorsValueStore.setVariablesValue(editor.getValue());
-    };
+    return () => {};
   }, [editorInstance]);
 
   return <div ref={editorRef} className="h-80" />;
