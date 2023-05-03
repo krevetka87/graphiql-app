@@ -29,15 +29,9 @@ const parseJSONtoObject = (json: string): TVariables | string => {
 };
 
 const handleRequest = async (): Promise<void> => {
-  const queryModelValue: string | undefined = editor
-    .getModel(Uri.file(`${Files.query}`))
-    ?.getValue();
-
-  const varModelValue: string | undefined = editor
-    .getModel(Uri.file(`${Files.variables}`))
-    ?.getValue();
-
-  const resultModel: TEditorModel | null = editor.getModel(Uri.file(`${Files.result}`));
+  const queryModelValue = editor.getModel(Uri.file(`${Files.query}`))?.getValue();
+  const varModelValue = editor.getModel(Uri.file(`${Files.variables}`))?.getValue();
+  const resultModel = editor.getModel(Uri.file(`${Files.result}`));
 
   let variables: TVariables | string | undefined;
 
