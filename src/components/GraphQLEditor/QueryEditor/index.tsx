@@ -58,7 +58,6 @@ const QueryEditor = observer(({ introspection }: IQueryEditorProps) => {
     const queryEditor: TEditor = createEditor(editorRef.current, queryModel, editorOptions);
     setEditorInstance(queryEditor);
 
-    // eslint-disable-next-line consistent-return
     return () => {
       editorsValueStore.setQueryValue(queryEditor.getValue());
     };

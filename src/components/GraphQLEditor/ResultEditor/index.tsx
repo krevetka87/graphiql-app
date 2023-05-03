@@ -19,10 +19,10 @@ const ResultEditor = observer(() => {
     const editor: TEditor = createEditor(editorRef.current, model, {
       ...editorOptions,
       readOnly: true,
+      lineNumbers: 'off',
     });
     setEditorInstance(editor);
 
-    // eslint-disable-next-line consistent-return
     return () => {
       editorsValueStore.setResultEditor(editor.getValue());
     };

@@ -23,7 +23,6 @@ const VariablesEditor = observer(() => {
     const editor: TEditor = createEditor(editorRef.current, model, editorOptions);
     setEditorInstance(editor);
 
-    // eslint-disable-next-line consistent-return
     return () => {
       editorsValueStore.setVariablesValue(editor.getValue());
     };

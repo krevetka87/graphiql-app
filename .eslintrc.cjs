@@ -29,6 +29,12 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     '@typescript-eslint/no-explicit-any': 2,
     'import/prefer-default-export': 0,
+    '@typescript-eslint/explicit-function-return-type': [
+      2,
+      {
+        allowExpressions: true,
+      },
+    ],
     'import/no-extraneous-dependencies': [
       2,
       {
