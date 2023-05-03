@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Welcome() {
-  return <h2>Welcome</h2>;
+  return <Link to="/main">Main</Link>;
 }

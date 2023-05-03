@@ -18,16 +18,10 @@ const editorOptions: TEditorOptions = {
   },
 };
 
-enum InitValues {
-  query = 'query { }',
-  variables = '{ }',
-  result = ' ',
-}
-
 enum Files {
   query = 'query.graphql',
   variables = 'variables.json',
   result = 'result.json',
 }
 
-export { editorOptions, InitValues, Files };
+export { editorOptions, Files };
