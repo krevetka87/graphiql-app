@@ -10,19 +10,33 @@ interface IEditorsValueStore {
 }
 
 const editorsValueStore: IEditorsValueStore = {
-  queryValue: 'query { }',
+  queryValue: `# Welcome to GraphiQL
+#
+# It is an in-browser tool for writing, validating, and
+# testing GraphQL queries.
+#
+# Query example:
+#
+# query {
+#   characters {
+#     results {
+#       name
+#     }
+#   }
+# }
+`,
   variablesValue: '{ }',
   resultValue: '',
 
-  setQueryValue(value: string) {
+  setQueryValue(value) {
     this.queryValue = value;
   },
 
-  setVariablesValue(value: string) {
+  setVariablesValue(value) {
     this.variablesValue = value;
   },
 
-  setResultEditor(value: string) {
+  setResultEditor(value) {
     this.resultValue = value;
   },
 };

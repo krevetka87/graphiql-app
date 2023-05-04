@@ -19,6 +19,16 @@ const createEditor = (
   });
 };
 
+const resizeEditor = (currentEditor: TEditor, parent: HTMLDivElement | null) => {
+  currentEditor.layout({ width: 0, height: 0 });
+  window.requestAnimationFrame(() => {
+    if (parent) {
+      const rect = parent.getBoundingClientRect();
+      currentEditor.layout({ width: rect.width, height: rect.height });
+    }
+  });
+};
+
 const parseJSONtoObject = (json: string): TVariables | string => {
   try {
     const str: TVariables = JSON.parse(json);
@@ -52,4 +62,4 @@ const handleRequest = async (): Promise<void> => {
   resultModel?.setValue(JSON.stringify(response, null, '\t'));
 };
 
-export { getEditorModel, createEditor, handleRequest };
+export { getEditorModel, createEditor, handleRequest, resizeEditor };

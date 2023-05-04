@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef, useState } from 'react';
 import { TEditor, TEditorModel } from '../../../types/editor';
-import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
+import { createEditor, getEditorModel, resizeEditor } from '../../../utils/editorHelpers';
 import { Files, editorOptions } from '../../../constants/editor';
 import editorsValueStore from '../../../store/editorsValueStore';
 
@@ -24,14 +24,18 @@ const ResultEditor = observer(() => {
       });
       setEditorInstance(editor);
 
+      const handleResize = (): void => resizeEditor(editor, editorRef.current);
+      window.addEventListener('resize', handleResize);
+
       return () => {
         editorsValueStore.setResultEditor(editor.getValue());
+        window.removeEventListener('resize', handleResize);
       };
     }
-    return undefined;
+    return () => {};
   }, [editorInstance]);
 
-  return <div ref={editorRef} className="basis-2/4 shrink-1 grow-0" />;
+  return <div ref={editorRef} className="basis-2/4 grow-0 shrink-1" />;
 });
 
 export default ResultEditor;

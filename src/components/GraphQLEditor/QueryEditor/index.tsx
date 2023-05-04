@@ -6,7 +6,7 @@ import { IntrospectionQuery, buildClientSchema } from 'graphql';
 import { Files, editorOptions } from '../../../constants/editor';
 import { TEditor, TEditorModel } from '../../../types/editor';
 import editorsValueStore from '../../../store/editorsValueStore';
-import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
+import { createEditor, getEditorModel, resizeEditor } from '../../../utils/editorHelpers';
 
 interface IQueryEditorProps {
   introspection: IntrospectionQuery | undefined;
@@ -36,29 +36,39 @@ const QueryEditor = observer(({ introspection }: IQueryEditorProps) => {
         {
           schema: buildClientSchema(introspection),
           uri: 'schema.graphql',
+          fileMatch: [Files.query],
         },
       ]);
 
-      api.setFormattingOptions({ prettierConfig: { useTabs: true, tabWidth: 2 } });
+      api.setFormattingOptions({
+        prettierConfig: { useTabs: true, tabWidth: 2, bracketSameLine: false },
+      });
     }
   }, [introspection]);
 
   useEffect(() => {
     if (!editorInstance && editorRef.current) {
-      const queryModel: TEditorModel = getEditorModel(
+      const model: TEditorModel = getEditorModel(
         Files.query,
         editorsValueStore.queryValue,
         'graphql'
       );
 
-      const queryEditor: TEditor = createEditor(editorRef.current, queryModel, editorOptions);
-      setEditorInstance(queryEditor);
+      const editor: TEditor = createEditor(editorRef.current, model, {
+        ...editorOptions,
+        hover: { enabled: false },
+      });
+      setEditorInstance(editor);
+
+      const handleResize = () => resizeEditor(editor, editorRef.current);
+      window.addEventListener('resize', handleResize);
 
       return () => {
-        editorsValueStore.setQueryValue(queryEditor.getValue());
+        editorsValueStore.setQueryValue(editor.getValue());
+        window.removeEventListener('resize', handleResize);
       };
     }
-    return undefined;
+    return () => {};
   }, [editorInstance]);
 
   return <div ref={editorRef} className="h-80" />;
