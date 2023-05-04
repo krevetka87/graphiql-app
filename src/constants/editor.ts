@@ -3,9 +3,10 @@ import { TEditorOptions } from '../types/editor';
 const editorOptions: TEditorOptions = {
   formatOnPaste: true,
   formatOnType: true,
-  theme: 'vs-dark',
+  theme: 'vs-light',
   tabSize: 2,
   fixedOverflowWidgets: true,
+  automaticLayout: true,
   minimap: {
     enabled: false,
   },

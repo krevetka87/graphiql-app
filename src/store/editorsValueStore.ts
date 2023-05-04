@@ -17,13 +17,12 @@ const editorsValueStore: IEditorsValueStore = {
 #
 # Query example:
 #
-# query {
-#   characters {
-#     results {
-#       name
-#     }
-#   }
-# }
+query($id: ID!) {
+  character(id: $id){
+    name
+    gender
+  }
+}
 `,
   variablesValue: '{ }',
   resultValue: '',

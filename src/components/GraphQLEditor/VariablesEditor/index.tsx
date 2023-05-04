@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useEffect, useRef, useState } from 'react';
 import { TEditor, TEditorModel } from '../../../types/editor';
 import editorsValueStore from '../../../store/editorsValueStore';
-import { createEditor, getEditorModel, resizeEditor } from '../../../utils/editorHelpers';
+import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
 import { Files, editorOptions } from '../../../constants/editor';
 
 const VariablesEditor = observer(() => {
@@ -20,9 +20,6 @@ const VariablesEditor = observer(() => {
       const editor: TEditor = createEditor(editorRef.current, model, editorOptions);
       setEditorInstance(editor);
 
-      const handleResize = (): void => resizeEditor(editor, editorRef.current);
-      window.addEventListener('resize', handleResize);
-
       return () => {
         editorsValueStore.setVariablesValue(editor.getValue());
       };
@@ -30,7 +27,12 @@ const VariablesEditor = observer(() => {
     return () => {};
   }, [editorInstance]);
 
-  return <div ref={editorRef} className="h-80" />;
+  return (
+    <div className="shrink-1 grow-1">
+      <button type="button">Variables</button>
+      <div ref={editorRef} className="h-80" />
+    </div>
+  );
 });
 
 export default VariablesEditor;

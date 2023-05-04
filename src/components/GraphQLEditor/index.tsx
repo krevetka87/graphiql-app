@@ -28,11 +28,11 @@ const GraphQLEditor = observer(() => {
 
   return (
     <div className="flex">
-      <div className="flex basis-2/4 grow-0 shrink-1">
+      <div className="flex flex-1 min-w-0">
         <div>
           <PlayButton onClick={handleRequest} />
         </div>
-        <div className="flex-col flex-1">
+        <div className="flex-col flex-1 min-w-0">
           <QueryEditor introspection={schema} />
           <VariablesEditor />
         </div>
