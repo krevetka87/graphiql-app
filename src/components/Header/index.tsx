@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, logout } from '../../firebase';
+import { auth, logout } from 'src/firebase';
 
 export default function Header() {
   const { t } = useTranslation();

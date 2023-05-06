@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { RoutePath } from '../../constants/common';
-import { auth } from '../../firebase';
+import { RoutePath } from 'src/constants/common';
+import { auth } from 'src/firebase';
 
 interface PrivateRouteProps {
   type: 'auth' | 'nonAuth';

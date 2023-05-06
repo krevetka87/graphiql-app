@@ -2,9 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { observer } from 'mobx-react-lite';
-import { RoutePath } from '../../constants/common';
-import { auth } from '../../firebase';
-import { formsStore } from '../../store/formsStore';
+import { RoutePath } from 'src/constants/common';
+import { auth } from 'src/firebase';
+import { formsStore } from 'src/store/formsStore';
 
 const Welcome = observer(() => {
   const { t } = useTranslation();

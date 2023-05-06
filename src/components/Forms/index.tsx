@@ -1,8 +1,8 @@
 import { SubmitHandler } from 'react-hook-form';
 import { observer } from 'mobx-react-lite';
-import { FormValues } from '../../types/forms.types';
-import { loginWithEmailAndPassword, registerWithEmailAndPassword } from '../../firebase';
-import { formsStore } from '../../store/formsStore';
+import { FormValues } from 'src/types/forms.types';
+import { loginWithEmailAndPassword, registerWithEmailAndPassword } from 'src/firebase';
+import { formsStore } from 'src/store/formsStore';
 import AuthForm from './AuthForm';
 
 const Forms = observer(() => {

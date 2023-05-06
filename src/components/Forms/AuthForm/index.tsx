@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-import { FormValues } from '../../../types/forms.types';
-import { FormFields, FIELDS_OPTIONS } from '../../../constants/forms';
-import { formsStore } from '../../../store/formsStore';
+import { FormValues } from 'src/types/forms.types';
+import { FIELDS_OPTIONS, FormFields } from 'src/constants/forms';
+import { formsStore } from 'src/store/formsStore';
+import eye from 'src/assets/eye-outline.svg';
+import eyeOff from 'src/assets/eye-off-outline.svg';
 import InputWrapper from '../InputWrapper';
-import eye from '../../../assets/eye-outline.svg';
-import eyeOff from '../../../assets/eye-off-outline.svg';
 
 interface AuthFormProps {
   onSubmit: SubmitHandler<FormValues>;
@@ -73,7 +73,7 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
             type="button"
             onClick={toggleType}
           >
-            <img className="w-5 h-5" src={type === 'password' ? eye : eyeOff} alt="" />
+            <img className="w-5 h-5" src={type === 'password' ? eyeOff : eye} alt="" />
           </button>
         </div>
       </InputWrapper>
