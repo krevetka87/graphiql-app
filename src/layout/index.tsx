@@ -4,7 +4,7 @@ export default function Layout() {
   return (
     <>
       <header />
-      <main className="flex-auto max-w-full">
+      <main className="flex-auto m-5 flex flex-col">
         <Outlet />
       </main>
       <footer />

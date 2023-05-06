@@ -1,16 +1,14 @@
 import { observable } from 'mobx';
+import { IEditorTypes } from '../types/editor';
 
 interface IEditorsValueStore {
-  queryValue: string;
-  variablesValue: string;
-  resultValue: string;
-  setQueryValue: (value: string) => void;
-  setVariablesValue: (value: string) => void;
-  setResultEditor: (value: string) => void;
+  values: IEditorTypes;
+  setValue: (value: string, type: keyof IEditorTypes) => void;
 }
 
 const editorsValueStore: IEditorsValueStore = {
-  queryValue: `# Welcome to GraphiQL
+  values: {
+    query: `# Welcome to GraphiQL
 #
 # It is an in-browser tool for writing, validating, and
 # testing GraphQL queries.
@@ -24,19 +22,13 @@ query($id: ID!) {
   }
 }
 `,
-  variablesValue: '{ }',
-  resultValue: '',
-
-  setQueryValue(value) {
-    this.queryValue = value;
+    variables: '{ }',
+    headers: '',
+    result: '',
   },
 
-  setVariablesValue(value) {
-    this.variablesValue = value;
-  },
-
-  setResultEditor(value) {
-    this.resultValue = value;
+  setValue(value, type) {
+    this.values[type] = value;
   },
 };
 

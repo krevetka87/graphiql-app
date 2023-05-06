@@ -3,7 +3,7 @@ interface IPlayButtonProps {
 }
 function PlayButton({ onClick }: IPlayButtonProps) {
   return (
-    <button type="button" className="p-2 rounded-lg bg-slate-400" onClick={onClick}>
+    <button type="button" className="p-2 rounded-full bg-slate-400" onClick={onClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
