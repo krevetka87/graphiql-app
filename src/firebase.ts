@@ -1,7 +1,11 @@
 import { initializeApp, FirebaseError } from 'firebase/app';
 import {
+  createUserWithEmailAndPassword,
   getAuth,
+  signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -19,3 +23,36 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+
+const errorHandling = (error: unknown) => {
+  if (error instanceof FirebaseError) {
+    const { code, message } = error;
+    toast.error(`message: ${message} code: ${code}`);
+  }
+};
+
+const loginWithEmailAndPassword = async (email: string, password: string) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    errorHandling(error);
+  }
+};
+
+const registerWithEmailAndPassword = async (email: string, password: string) => {
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    errorHandling(error);
+  }
+};
+
+const logout = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    errorHandling(error);
+  }
+};
+
+export { app, auth, loginWithEmailAndPassword, registerWithEmailAndPassword, logout };

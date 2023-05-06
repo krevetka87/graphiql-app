@@ -1,0 +1,54 @@
+{
+  "forms": {
+    "errors": {
+      "email": {
+        "required": "Email is required",
+        "pattern": "Please enter correct email",
+        "validation": {
+          "letter": "Email at least one letter",
+          "digit": "Email at least one digit",
+          "special": "Email at least one special character"
+        }
+      },
+      "password": {
+        "required": "Password is required",
+        "minLength": "Password must have at least 8 characters",
+        "validation": {
+          "letter": "Password at least one letter",
+          "digit": "Password at least one digit",
+          "special": "Password at least one special character"
+        }
+      },
+      "common": "Error"
+    },
+    "buttons": {
+      "login": "Sign In",
+      "register": "Sign Up"
+    },
+    "fields": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "label": {
+      "noAccount": "Don't have an account?",
+      "haveAccount": "Already have an account?"
+    },
+    "title": {
+      "login": "Login",
+      "register": "Register"
+    }
+  },
+  "header": {
+    "buttons": {
+      "logout": "logout"
+    }
+  },
+  "welcome": {
+    "title": "Welcome",
+    "buttons": {
+      "login": "Login",
+      "register": "Register",
+      "main": "Main"
+    }
+  }
+}

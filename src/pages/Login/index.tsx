@@ -1,3 +1,5 @@
+import Forms from '../../components/Forms';
+
 export default function Login() {
-  return <h2>Login</h2>;
+  return <Forms />;
 }
