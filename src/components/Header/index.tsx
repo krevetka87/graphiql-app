@@ -12,7 +12,7 @@ export default function Header() {
   };
 
   return (
-    <header>
+    <header className="flex">
       {user && (
         <button type="button" onClick={handleLogoutClick}>
           {t('header.buttons.logout')}

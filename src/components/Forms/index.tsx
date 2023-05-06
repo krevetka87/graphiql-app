@@ -8,17 +8,18 @@ import AuthForm from './AuthForm';
 const Forms = observer(() => {
   const { isSignUp } = formsStore;
 
-  const handleLoginSubmit: SubmitHandler<FormValues> = async (data) => {
+  const handleSubmit: SubmitHandler<FormValues> = async (data) => {
     const { email, password } = data;
-    await loginWithEmailAndPassword(email, password);
+    formsStore.toggleIsLoading();
+    if (!isSignUp) {
+      await loginWithEmailAndPassword(email, password);
+    } else {
+      await registerWithEmailAndPassword(email, password);
+    }
+    formsStore.toggleIsLoading();
   };
 
-  const handleRegisterSubmit: SubmitHandler<FormValues> = async (data) => {
-    const { email, password } = data;
-    await registerWithEmailAndPassword(email, password);
-  };
-
-  return <AuthForm onSubmit={!isSignUp ? handleLoginSubmit : handleRegisterSubmit} />;
+  return <AuthForm onSubmit={handleSubmit} />;
 });
 
 export default Forms;
