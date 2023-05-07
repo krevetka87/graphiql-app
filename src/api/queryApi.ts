@@ -3,13 +3,15 @@ import { Endpoints, baseURL } from '../constants/url';
 import { IGraphQLRequest } from '../types/api';
 
 const getQueryResult = async (requestData: IGraphQLRequest): Promise<unknown> => {
-  const { query, variables } = requestData;
+  const { query, variables, headers } = requestData;
 
   return axios
     .post(`${baseURL}${Endpoints.graphql}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      // headers: {
+      //   'Content-Type': 'application/json',
+      //   ...headers,
+      // },
+      headers,
       query,
       variables,
     })

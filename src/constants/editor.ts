@@ -6,7 +6,7 @@ const editorOptions: TEditorOptions = {
   theme: 'vs-light',
   tabSize: 2,
   fixedOverflowWidgets: true,
-  // automaticLayout: true,
+  automaticLayout: true,
   scrollBeyondLastLine: false,
   padding: {
     bottom: 10,

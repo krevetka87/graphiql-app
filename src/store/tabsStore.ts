@@ -6,7 +6,7 @@ interface ITabsStore {
 }
 
 const tabsStore: ITabsStore = {
-  activeTab: 'variables',
+  activeTab: '',
 
   setActiveTab(value) {
     this.activeTab = value;

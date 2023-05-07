@@ -23,6 +23,7 @@ function Accordeon({ children }: IAccordeonProps) {
         setOpen(true);
       }
     } else {
+      tabsStore.setActiveTab('variables');
       setOpen((prev) => !prev);
     }
   };

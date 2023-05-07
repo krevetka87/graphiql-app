@@ -6,7 +6,7 @@ import { IntrospectionQuery, buildClientSchema } from 'graphql';
 import { Files, queryEditorOptions } from '../../../constants/editor';
 import { TEditor, TEditorModel } from '../../../types/editor';
 import editorsValueStore from '../../../store/editorsValueStore';
-import { createEditor, getEditorModel, resizeEditor } from '../../../utils/editorHelpers';
+import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
 
 interface IQueryEditorProps {
   introspection: IntrospectionQuery | undefined;
@@ -57,19 +57,14 @@ const QueryEditor = observer(({ introspection }: IQueryEditorProps) => {
       const editor: TEditor = createEditor(editorRef.current, model, queryEditorOptions);
       setEditorInstance(editor);
 
-      const handleResize = () => resizeEditor(editor, editorRef.current);
-
-      window.addEventListener('resize', handleResize);
-
       return () => {
         editorsValueStore.setValue(editor.getValue(), 'query');
-        window.removeEventListener('resize', handleResize);
       };
     }
     return () => {};
   }, [editorInstance]);
 
-  return <div ref={editorRef} className="h-full min-w-0" />;
+  return <div ref={editorRef} className="h-4/5 min-w-0 w-full" />;
 });
 
 export default QueryEditor;

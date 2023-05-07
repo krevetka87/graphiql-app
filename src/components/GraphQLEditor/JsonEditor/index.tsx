@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef, useState } from 'react';
 import { IEditorTypes, TEditor, TEditorModel, TEditorOptions } from '../../../types/editor';
-import { createEditor, getEditorModel, resizeEditor } from '../../../utils/editorHelpers';
+import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
 import { Files } from '../../../constants/editor';
 import editorsValueStore from '../../../store/editorsValueStore';
 
@@ -23,12 +23,8 @@ const JsonEditor = observer(({ type, fileName, options, className }: IJsonEditor
       const editor: TEditor = createEditor(editorRef.current, model, options);
       setEditorInstance(editor);
 
-      const handleResize = () => resizeEditor(editor, editorRef.current);
-      window.addEventListener('resize', handleResize);
-
       return () => {
         editorsValueStore.setValue(editor.getValue(), type);
-        window.removeEventListener('resize', handleResize);
       };
     }
     return () => {};

@@ -39,11 +39,13 @@ const parseJSONtoObject = (json: string): TVariables | string => {
 };
 
 const handleRequest = async (): Promise<void> => {
-  const queryModelValue = editor.getModel(Uri.file(`${Files.query}`))?.getValue();
-  const varModelValue = editor.getModel(Uri.file(`${Files.variables}`))?.getValue();
+  const queryModelValue = editor.getModel(Uri.file(Files.query))?.getValue();
+  const varModelValue = editor.getModel(Uri.file(Files.variables))?.getValue();
+  const headersModelValue = editor.getModel(Uri.file(Files.headers))?.getValue();
   const resultModel = editor.getModel(Uri.file(`${Files.result}`));
 
   let variables: TVariables | string | undefined;
+  let headers: TVariables | string | undefined;
 
   if (varModelValue) {
     variables = parseJSONtoObject(varModelValue);
@@ -54,9 +56,19 @@ const handleRequest = async (): Promise<void> => {
     }
   }
 
+  if (headersModelValue) {
+    headers = parseJSONtoObject(headersModelValue);
+
+    if (typeof headers === 'string') {
+      resultModel?.setValue(headers);
+      return;
+    }
+  }
+
   const response = await getQueryResult({
     query: queryModelValue,
     variables,
+    headers,
   });
 
   resultModel?.setValue(JSON.stringify(response, null, '\t'));
