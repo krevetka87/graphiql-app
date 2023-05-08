@@ -1,9 +1,9 @@
-type TVariables = { [key: string]: string | number };
+type TParsedJson = { [key: string]: string };
 
 interface IGraphQLRequest {
   query: string | undefined;
-  variables?: TVariables | string;
-  headers?: TVariables | string;
+  variables?: TParsedJson | string;
+  headers?: TParsedJson | string;
 }
 
-export type { IGraphQLRequest, TVariables };
+export type { IGraphQLRequest, TParsedJson };

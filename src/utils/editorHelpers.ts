@@ -2,7 +2,7 @@ import { Uri, editor } from 'monaco-editor/esm/vs/editor/editor.api';
 import { Files } from '../constants/editor';
 import { getQueryResult } from '../api/queryApi';
 import { TEditor, TEditorModel, TEditorOptions } from '../types/editor';
-import { TVariables } from '../types/api';
+import { TParsedJson } from '../types/api';
 
 const getEditorModel = (uri: string, value: string, language: string): TEditorModel => {
   return editor.getModel(Uri.file(uri)) ?? editor.createModel(value, language, Uri.file(uri));
@@ -19,19 +19,19 @@ const createEditor = (
   });
 };
 
-const resizeEditor = (currentEditor: TEditor, parent: HTMLDivElement | null) => {
-  currentEditor.layout({ width: 0, height: 0 });
-  window.requestAnimationFrame(() => {
-    if (parent) {
-      const rect = parent.getBoundingClientRect();
-      currentEditor.layout({ width: rect.width, height: rect.height });
-    }
-  });
-};
+// const resizeEditor = (currentEditor: TEditor, parent: HTMLDivElement | null) => {
+//   currentEditor.layout({ width: 0, height: 0 });
+//   window.requestAnimationFrame(() => {
+//     if (parent) {
+//       const rect = parent.getBoundingClientRect();
+//       currentEditor.layout({ width: rect.width, height: rect.height });
+//     }
+//   });
+// };
 
-const parseJSONtoObject = (json: string): TVariables | string => {
+const parseJSONtoObject = (json: string): TParsedJson | string => {
   try {
-    const str: TVariables = JSON.parse(json);
+    const str: TParsedJson = JSON.parse(json);
     return str;
   } catch (err) {
     return (err as Error).message;
@@ -44,8 +44,8 @@ const handleRequest = async (): Promise<void> => {
   const headersModelValue = editor.getModel(Uri.file(Files.headers))?.getValue();
   const resultModel = editor.getModel(Uri.file(`${Files.result}`));
 
-  let variables: TVariables | string | undefined;
-  let headers: TVariables | string | undefined;
+  let variables: TParsedJson | string | undefined;
+  let headers: TParsedJson | string | undefined;
 
   if (varModelValue) {
     variables = parseJSONtoObject(varModelValue);
@@ -69,9 +69,13 @@ const handleRequest = async (): Promise<void> => {
     query: queryModelValue,
     variables,
     headers,
+  }).catch((err: Error) => {
+    return {
+      error: err.message,
+    };
   });
 
   resultModel?.setValue(JSON.stringify(response, null, '\t'));
 };
 
-export { getEditorModel, createEditor, handleRequest, resizeEditor };
+export { getEditorModel, createEditor, handleRequest };

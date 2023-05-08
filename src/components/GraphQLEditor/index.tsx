@@ -35,7 +35,7 @@ const GraphQLEditor = observer(() => {
       </section>
       <section className="flex flex-1">
         <div className="flex-1 border-r-4 border-indigo-50 min-w-0 flex flex-col">
-          <div className="flex-1 overflow-hidden pb-3 min-h-0 min-w-0">
+          <div className="flex-1 overflow-hidden min-h-0 min-w-0">
             <QueryEditor introspection={schema} />
           </div>
           <Accordeon>
