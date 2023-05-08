@@ -3,12 +3,12 @@ interface IPlayButtonProps {
 }
 function PlayButton({ onClick }: IPlayButtonProps) {
   return (
-    <button type="button" className="p-2 rounded-full bg-slate-400" onClick={onClick}>
+    <button type="button" className="p-2 rounded-lg bg-indigo-500" onClick={onClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        className="w-6 h-6"
+        className="w-5 h-5"
       >
         <path
           fillRule="evenodd"

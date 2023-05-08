@@ -25,6 +25,7 @@ module.exports = {
   },
   plugins: ['react-refresh', '@typescript-eslint', 'react', 'prettier', 'react-hooks'],
   rules: {
+    'react/function-component-definition': 0,
     'react-refresh/only-export-components': 1,
     'react/react-in-jsx-scope': 0,
     '@typescript-eslint/no-explicit-any': 2,

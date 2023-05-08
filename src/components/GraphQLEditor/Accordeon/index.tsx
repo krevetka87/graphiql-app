@@ -36,8 +36,8 @@ function Accordeon({ children }: IAccordeonProps) {
             type="button"
             data-name="variables"
             onClick={handleClick}
-            className={`p-2 hover:bg-indigo-50 rounded-md transition-all duration-500 ease-in-out mr-2 ${
-              isOpen && tabsStore.activeTab === 'variables' ? 'bg-indigo-50' : ''
+            className={`p-2 hover:text-indigo-600 rounded-md transition-all duration-500 ease-in-out mr-2 ${
+              isOpen && tabsStore.activeTab === 'variables' ? 'bg-indigo-50 text-indigo-600' : ''
             }`}
           >
             Variables
@@ -46,8 +46,8 @@ function Accordeon({ children }: IAccordeonProps) {
             type="button"
             data-name="headers"
             onClick={handleClick}
-            className={`p-2 hover:bg-indigo-50 rounded-md transition-all duration-500 ease-in-out ${
-              isOpen && tabsStore.activeTab === 'headers' ? 'bg-indigo-50' : ''
+            className={`p-2 hover:text-indigo-600 rounded-md transition-all duration-500 ease-in-out ${
+              isOpen && tabsStore.activeTab === 'headers' ? 'bg-indigo-50 text-indigo-600' : ''
             }`}
           >
             Headers
