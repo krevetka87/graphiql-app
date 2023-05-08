@@ -13,12 +13,16 @@ export default function InputWrapper({ id, label, error, children }: InputProps)
   const { t } = useTranslation();
 
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col relative pb-7">
       <label className="flex flex-col text-gray-700" htmlFor={id}>
         {label}
         {children}
       </label>
-      {error && <span className="text-red-600">{error.message || t('forms.errors.common')}</span>}
+      {error && (
+        <span className="text-red-600 absolute bottom-0">
+          {error.message || t('forms.errors.common')}
+        </span>
+      )}
     </section>
   );
 }

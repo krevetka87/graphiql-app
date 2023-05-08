@@ -43,15 +43,20 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
 
   return (
     <form
-      className="px-6 flex flex-col min-h-full justify-center gap-4 w-6/12 ml-auto"
+      className={`bg-white px-6 flex flex-col min-h-full justify-center gap-4 w-6/12 ml-auto transition-all duration-300 shadow-xl ${
+        isSignUp ? '-translate-x-0' : '-translate-x-full'
+      }`}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h2 className="text-lg">{!isSignUp ? t('forms.title.login') : t('forms.title.register')}</h2>
+      <h1 className="font-semibold mb-6">
+        {!isSignUp ? t('forms.title.login') : t('forms.title.register')}
+      </h1>
       <InputWrapper id={FormFields.email} label={t('forms.fields.email')} error={errors?.email}>
         <input
           className="border-2 rounded-md px-4 py-2 text-gray-700 focus:outline-none"
           type="email"
           id={FormFields.email}
+          placeholder="example1@gmail.com"
           {...register(FormFields.email, FIELDS_OPTIONS.email)}
         />
       </InputWrapper>
@@ -66,6 +71,7 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
             className="w-full focus:outline-none"
             id={FormFields.password}
             autoComplete="on"
+            placeholder="*********"
             {...register(FormFields.password, FIELDS_OPTIONS.password)}
           />
           <button
