@@ -1,6 +1,7 @@
 import { MouseEventHandler, useState } from 'react';
 import CloseButton from './CloseButton';
 import tabsStore from '../../../store/tabsStore';
+import TabButton from './TabButton';
 
 interface IAccordeonProps {
   children: JSX.Element;
@@ -23,35 +24,16 @@ function Accordeon({ children }: IAccordeonProps) {
         setOpen(true);
       }
     } else {
-      tabsStore.setActiveTab('variables');
       setOpen((prev) => !prev);
     }
   };
 
   return (
-    <div className="border-indigo-50 border-t-2 py-3">
+    <div className="border-indigo-50 border-t-2 py-3 min-h-1/5">
       <div className="px-6 text-left items-center flex justify-between">
         <div className="flex">
-          <button
-            type="button"
-            data-name="variables"
-            onClick={handleClick}
-            className={`p-2 hover:text-indigo-600 rounded-md transition-all duration-500 ease-in-out mr-2 ${
-              isOpen && tabsStore.activeTab === 'variables' ? 'bg-indigo-50 text-indigo-600' : ''
-            }`}
-          >
-            Variables
-          </button>
-          <button
-            type="button"
-            data-name="headers"
-            onClick={handleClick}
-            className={`p-2 hover:text-indigo-600 rounded-md transition-all duration-500 ease-in-out ${
-              isOpen && tabsStore.activeTab === 'headers' ? 'bg-indigo-50 text-indigo-600' : ''
-            }`}
-          >
-            Headers
-          </button>
+          <TabButton onClick={handleClick} isOpen={isOpen} name="variables" />
+          <TabButton onClick={handleClick} isOpen={isOpen} name="headers" />
         </div>
         <CloseButton isOpen={isOpen} onClick={handleClick} />
       </div>

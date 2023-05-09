@@ -4,7 +4,7 @@ import { IntrospectionQuery } from 'graphql';
 import getApiSchema from '../../api/schemaApi';
 import { handleRequest } from '../../utils/editorHelpers';
 import QueryEditor from './QueryEditor';
-import PlayButton from '../UI/PlayButton';
+import PlayButton from './QueryEditor/PlayButton';
 import Accordeon from './Accordeon';
 import tabsStore from '../../store/tabsStore';
 import JsonEditor from './JsonEditor';
@@ -15,9 +15,10 @@ const GraphQLEditor = observer(() => {
   const [schema, setSchema] = useState<IntrospectionQuery | undefined>();
   const [isLoading, setLoading] = useState<boolean>(false);
 
-  const sendRequest = (): void => {
+  const sendRequest = async (): Promise<void> => {
     setLoading(true);
-    handleRequest().then(() => setLoading(false));
+    await handleRequest();
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -30,13 +31,13 @@ const GraphQLEditor = observer(() => {
   }, [schema]);
 
   return (
-    <div className="flex-auto shadow-md flex flex-col">
+    <div className="shadow-md flex flex-col mx-5 flex-auto">
       <section className="bg-indigo-50 p-2">
         <PlayButton onClick={sendRequest} />
       </section>
       <section className="flex flex-1">
         <div className="flex-1 border-r-4 border-indigo-50 min-w-0 flex flex-col">
-          <div className="flex-1 overflow-hidden min-h-0 min-w-0">
+          <div className="flex-1 min-h-0 min-w-0">
             <QueryEditor introspection={schema} />
           </div>
           <Accordeon>
@@ -56,13 +57,13 @@ const GraphQLEditor = observer(() => {
             </>
           </Accordeon>
         </div>
-        <div className="flex-1 min-w-0 min-h-0 pb-3">
+        <div className="flex-1 min-w-0 min-h-0 py-3 px-3">
           {!isLoading ? (
             <JsonEditor
               type="result"
               options={resultEditorOptions}
               fileName={Files.result}
-              className="h-full"
+              className="h-[98%]"
             />
           ) : (
             <div className="h-full flex items-center justify-center">

@@ -1,13 +1,14 @@
 import { Outlet } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 export default function Layout() {
   return (
     <>
-      <header />
-      <main className="flex-auto m-5 flex flex-col">
+      <header className="flex-initial" />
+      <main className="flex-auto flex flex-col">
         <Outlet />
       </main>
-      <footer />
+      <Footer />
     </>
   );
 }

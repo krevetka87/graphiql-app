@@ -4,12 +4,17 @@ import { Endpoints, baseURL } from '../constants/url';
 
 const getApiSchema = async (): Promise<IntrospectionQuery> => {
   try {
-    const res: AxiosResponse = await axios.post(`${baseURL}${Endpoints.graphql}`, {
-      headers: {
-        'Content-Type': 'application/json',
+    const res: AxiosResponse = await axios.post(
+      `${baseURL}${Endpoints.graphql}`,
+      {
+        query: getIntrospectionQuery(),
       },
-      query: getIntrospectionQuery(),
-    });
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
     const { data } = res.data;
     return data;
   } catch (err) {

@@ -16,9 +16,12 @@ const editorOptions: TEditorOptions = {
     enabled: false,
   },
   scrollbar: {
-    verticalScrollbarSize: 5,
-    horizontalScrollbarSize: 5,
+    verticalScrollbarSize: 0,
+    horizontalScrollbarSize: 0,
+    verticalSliderSize: 5,
+    horizontalSliderSize: 5,
     alwaysConsumeMouseWheel: true,
+    useShadows: false,
   },
   renderLineHighlight: 'none',
 };

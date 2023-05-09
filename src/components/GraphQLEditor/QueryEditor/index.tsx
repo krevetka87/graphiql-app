@@ -64,7 +64,7 @@ const QueryEditor = observer(({ introspection }: IQueryEditorProps) => {
     return () => {};
   }, [editorInstance]);
 
-  return <div ref={editorRef} className="h-5/6 min-w-0 w-full" />;
+  return <div ref={editorRef} className="h-[98%] py-3" />;
 });
 
 export default QueryEditor;
