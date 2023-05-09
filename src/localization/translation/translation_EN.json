@@ -40,14 +40,16 @@
   },
   "header": {
     "buttons": {
-      "logout": "logout"
+      "logout": "Logout",
+      "language": "Change language",
+      "login": "Login",
+      "register": "Register",
+      "welcome": "Welcome"
     }
   },
   "welcome": {
-    "title": "Welcome",
+    "title": "GraphiQL is a playground/IDE for graphQL requests",
     "buttons": {
-      "login": "Login",
-      "register": "Register",
       "main": "Main"
     }
   }

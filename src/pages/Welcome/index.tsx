@@ -1,50 +1,30 @@
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { observer } from 'mobx-react-lite';
 import { RoutePath } from 'src/constants/common';
 import { auth } from 'src/firebase';
-import { formsStore } from 'src/store/formsStore';
+import spinner from 'src/assets/spinner.svg';
 
-const Welcome = observer(() => {
+export default function Welcome() {
   const { t } = useTranslation();
 
   const [user, loading] = useAuthState(auth);
   const navigation = useNavigate();
 
-  const handleClickLogin = () => {
-    formsStore.setIsSignUp(false);
-    navigation(RoutePath.login);
-  };
-
-  const handleClickRegister = () => {
-    formsStore.setIsSignUp(true);
-    navigation(RoutePath.login);
-  };
-
   const handleClickMain = () => navigation(RoutePath.main);
 
+  if (loading) {
+    return <img className="m-auto" src={spinner} alt="spinner" />;
+  }
+
   return (
-    <>
-      <h2>{t('welcome.title')}</h2>
-      {loading && <h3>Loading...</h3>}
-      {!loading && !user && (
-        <div>
-          <button type="button" onClick={handleClickLogin}>
-            {t('welcome.buttons.login')}
-          </button>
-          <button type="button" onClick={handleClickRegister}>
-            {t('welcome.buttons.register')}
-          </button>
-        </div>
-      )}
+    <div className="px-6">
+      <h1>{t('welcome.title')}</h1>
       {!loading && user && (
         <button type="button" onClick={handleClickMain}>
           {t('welcome.buttons.main')}
         </button>
       )}
-    </>
+    </div>
   );
-});
-
-export default Welcome;
+}

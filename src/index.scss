@@ -2,10 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-body,
 html,
+body {
+  @apply min-h-full;
+  @apply flex;
+}
+
+body,
 #root {
-  @apply h-full;
+  flex: 1;
 }
 
 #root {

@@ -40,14 +40,16 @@
   },
   "header": {
     "buttons": {
-      "logout": "Выйти"
+      "logout": "Выйти",
+      "language": "Сменить язык",
+      "login": "Вход",
+      "register": "Зарегистрироваться",
+      "welcome": "Добро пожаловать"
     }
   },
   "welcome": {
-    "title": "Добро пожаловать",
+    "title": "GraphiQL — это игровая площадка/IDE для запросов GraphQL",
     "buttons": {
-      "login": "Вход",
-      "register": "Зарегистрироваться",
       "main": "Главная"
     }
   }

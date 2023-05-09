@@ -5,4 +5,9 @@ enum RoutePath {
   notFound = '/not-found',
 }
 
-export { RoutePath };
+enum Languages {
+  en = 'en',
+  ru = 'ru',
+}
+
+export { RoutePath, Languages };

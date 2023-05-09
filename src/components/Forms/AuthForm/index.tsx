@@ -5,8 +5,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import { FormValues } from 'src/types/forms.types';
-import { FIELDS_OPTIONS, FormFields } from 'src/constants/forms';
+import { FormFields } from 'src/constants/forms';
 import { formsStore } from 'src/store/formsStore';
+import { getFieldsOptions } from 'src/utils/forms';
 import eye from 'src/assets/eye-outline.svg';
 import eyeOff from 'src/assets/eye-off-outline.svg';
 import loader from 'src/assets/loader.svg';
@@ -28,11 +29,8 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
     handleSubmit,
     formState: { errors },
     reset,
+    trigger,
   } = useForm<FormValues>({ mode: 'onBlur' });
-
-  useEffect(() => {
-    reset();
-  }, [isSignUp, reset]);
 
   const handleSwitchButton = () => {
     formsStore.toggleIsSignUp();
@@ -42,11 +40,21 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
     setType(type === 'password' ? 'text' : 'password');
   };
 
+  useEffect(() => {
+    reset();
+  }, [isSignUp, reset]);
+
+  useEffect(() => {
+    if (errors.email || errors.password) {
+      trigger();
+    }
+  }, [t, trigger, errors]);
+
   return (
     <form
-      className={`bg-white px-6 flex flex-col min-h-full justify-center gap-4 w-6/12 ml-auto transition-all duration-300 shadow-xl ${
+      className={`bg-white p-6 flex flex-col min-h-full justify-center gap-4 w-6/12 ml-auto transition-all duration-300 shadow-xl ${
         isSignUp ? '-translate-x-0' : '-translate-x-full'
-      }`}
+      } max-md:w-full max-md:-translate-x-0`}
       onSubmit={handleSubmit(onSubmit)}
     >
       <h1 className="font-semibold mb-6">
@@ -58,7 +66,7 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
           type="email"
           id={FormFields.email}
           placeholder="example1@gmail.com"
-          {...register(FormFields.email, FIELDS_OPTIONS.email)}
+          {...register(FormFields.email, getFieldsOptions().email)}
         />
       </InputWrapper>
       <InputWrapper
@@ -73,7 +81,7 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
             id={FormFields.password}
             autoComplete="on"
             placeholder="*********"
-            {...register(FormFields.password, FIELDS_OPTIONS.password)}
+            {...register(FormFields.password, getFieldsOptions().password)}
           />
           <button
             className="absolute right-2 flex top-1/2 -translate-y-1/2"
@@ -94,7 +102,11 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
       </button>
       <div className="flex gap-1">
         <span>{!isSignUp ? t('forms.label.noAccount') : t('forms.label.haveAccount')}</span>
-        <button className="border-b border-b-black" type="button" onClick={handleSwitchButton}>
+        <button
+          className="border-b border-b-black transition-all  hover:font-semibold"
+          type="button"
+          onClick={handleSwitchButton}
+        >
           {!isSignUp ? t('forms.buttons.register') : t('forms.buttons.login')}
         </button>
       </div>

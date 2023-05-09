@@ -14,14 +14,16 @@ export default function InputWrapper({ id, label, error, children }: InputProps)
 
   return (
     <section className="flex flex-col relative pb-7">
-      <label className="flex flex-col text-gray-700" htmlFor={id}>
+      <label className="flex flex-col text-gray-700 font-semibold" htmlFor={id}>
         {label}
         {children}
       </label>
       {error && (
-        <span className="text-red-600 absolute bottom-0">
-          {error.message || t('forms.errors.common')}
-        </span>
+        <div className="absolute bottom-0 overflow-auto max-w-full">
+          <span className="text-red-600 block whitespace-nowrap">
+            {error.message || t('forms.errors.common')}
+          </span>
+        </div>
       )}
     </section>
   );

@@ -1,23 +1,42 @@
-import { useTranslation } from 'react-i18next';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, logout } from 'src/firebase';
+import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react-lite';
+import { burgerMenuStore } from 'src/store/burgerMenuStore';
+import BurgerButton from '../UI/BurgerButton';
+import MenuContent from '../MenuContent';
 
-export default function Header() {
-  const { t } = useTranslation();
+const Header = observer(() => {
+  const [isSticky, setIsSticky] = useState(false);
 
-  const [user] = useAuthState(auth);
+  const { isOpenBurgerMenu } = burgerMenuStore;
 
-  const handleLogoutClick = async () => {
-    await logout();
+  const handleScroll = () => {
+    if (window.scrollY > 1) {
+      setIsSticky(true);
+    } else {
+      setIsSticky(false);
+    }
   };
 
+  const handleClickBurgerMenu = () => {
+    burgerMenuStore.toggleIsOpenBurgerMenu();
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="flex">
-      {user && (
-        <button type="button" onClick={handleLogoutClick}>
-          {t('header.buttons.logout')}
-        </button>
-      )}
+    <header
+      className={`flex px-6 w-full justify-between top-0 z-30 transition-all duration-300 ${
+        isSticky ? 'sticky py-3 shadow-xl bg-white' : ' py-7'
+      } max-md:justify-end`}
+    >
+      <MenuContent type="header" />
+      <BurgerButton isOpen={isOpenBurgerMenu} onClick={handleClickBurgerMenu} />
     </header>
   );
-}
+});
+
+export default Header;
