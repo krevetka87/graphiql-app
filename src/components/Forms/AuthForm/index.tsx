@@ -9,6 +9,7 @@ import { FIELDS_OPTIONS, FormFields } from 'src/constants/forms';
 import { formsStore } from 'src/store/formsStore';
 import eye from 'src/assets/eye-outline.svg';
 import eyeOff from 'src/assets/eye-off-outline.svg';
+import loader from 'src/assets/loader.svg';
 import InputWrapper from '../InputWrapper';
 
 interface AuthFormProps {
@@ -83,9 +84,13 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
           </button>
         </div>
       </InputWrapper>
-      <button className="bg-gray-300 rounded-full py-3" type="submit">
-        {!isSignUp ? t('forms.buttons.login') : t('forms.buttons.register')}
-        {isLoading && 'Loading...'}
+      <button
+        className="flex justify-center items-center text-lg font-semibold bg-gray-300 rounded-full py-3 transition-all hover:bg-gray-400"
+        type="submit"
+      >
+        {!isLoading && !isSignUp && t('forms.buttons.login')}
+        {!isLoading && isSignUp && t('forms.buttons.register')}
+        {isLoading && <img className="h-7" src={loader} alt="loader" />}
       </button>
       <div className="flex gap-1">
         <span>{!isSignUp ? t('forms.label.noAccount') : t('forms.label.haveAccount')}</span>
