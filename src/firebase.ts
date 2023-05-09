@@ -26,8 +26,8 @@ const auth = getAuth();
 
 const errorHandling = (error: unknown) => {
   if (error instanceof FirebaseError) {
-    const { code, message } = error;
-    toast.error(`message: ${message} code: ${code}`);
+    const { message } = error;
+    toast.error(message);
   }
 };
 
