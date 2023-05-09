@@ -4,7 +4,7 @@ import RSLink from './RSLink';
 
 const Footer = () => {
   return (
-    <footer className="p-5 flex justify-between items-center flex-initial">
+    <footer className="p-5 flex flex-col md:flex-row justify-between items-center flex-initial gap-5">
       <ProfileLinkList />
       <Copyright />
       <RSLink />
