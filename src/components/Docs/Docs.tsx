@@ -6,6 +6,7 @@ import Queries from './Queries/Queries';
 import Root from './Root/Root';
 import ScalarType from './ScalarType/ScalarType';
 import Spinner from './Spinner/Spinner';
+import Types from './Types/Types';
 
 const Docs = observer(() => {
   useEffect(() => {
@@ -26,6 +27,7 @@ const Docs = observer(() => {
       {schemaStore.opened.queryFields && <Queries />}
       {schemaStore.opened.queryField && <QueryTools />}
       {schemaStore.opened.scalarType && <ScalarType />}
+      {schemaStore.opened.typeName && <Types />}
     </div>
   );
 });

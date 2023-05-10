@@ -3,4 +3,5 @@ export enum OpenState {
   queryFields = 'queryFields',
   queryField = 'queryField',
   scalarType = 'scalarType',
+  typeName = 'typeName',
 }

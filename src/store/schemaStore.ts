@@ -14,6 +14,7 @@ interface OpenState {
   queryFields: boolean;
   queryField: boolean;
   scalarType: boolean;
+  typeName: boolean;
 }
 
 class SchemaStore {
@@ -24,6 +25,7 @@ class SchemaStore {
     queryFields: false,
     queryField: false,
     scalarType: false,
+    typeName: false,
   };
 
   queryFields: GraphQLFieldMap<unknown, unknown> | GraphQLInputFieldMap | null = null;
@@ -31,6 +33,8 @@ class SchemaStore {
   queryField: GraphQLField<unknown, unknown> | null = null;
 
   scalarType: GraphQLScalarType<unknown, unknown> | null = null;
+
+  typeName = '';
 
   headerText = 'Docs';
 
@@ -43,7 +47,7 @@ class SchemaStore {
       queryFields: observable,
       queryField: observable,
       scalarType: observable,
-
+      typeName: observable,
       headerText: observable,
 
       opened: observable,
@@ -53,6 +57,7 @@ class SchemaStore {
       setQueryFields: action,
       setSelectedQueryField: action,
       setSelectedScalarType: action,
+      setSelectedTypeName: action,
 
       setHeaderText: action,
     });
@@ -73,6 +78,10 @@ class SchemaStore {
 
   setSelectedScalarType(type: GraphQLScalarType<unknown, unknown> | null) {
     this.scalarType = type;
+  }
+
+  setSelectedTypeName(typeName: string) {
+    this.typeName = typeName;
   }
 
   setOpenState(key: string) {

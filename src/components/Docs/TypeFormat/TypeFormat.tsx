@@ -1,4 +1,4 @@
-import { GraphQLScalarType } from 'graphql';
+import { GraphQLInputObjectType, GraphQLObjectType, GraphQLScalarType } from 'graphql';
 import { OpenState } from '../../../constants/docs';
 import { schemaStore } from '../../../store';
 
@@ -16,11 +16,21 @@ function TypeFormat({ arg }: TypeFormatProps) {
 
   const { schema } = schemaStore;
 
-  const handleClick = () => {
+  const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const { target } = event;
+    const text = (target as HTMLSpanElement).textContent || '';
     const type = schema?.getType(secondPart);
     if (schema && type && type instanceof GraphQLScalarType) {
       schemaStore.setSelectedScalarType(type);
       schemaStore.setOpenState(OpenState.scalarType);
+    }
+    if (
+      (schema && type && type instanceof GraphQLObjectType) ||
+      (schema && type && type instanceof GraphQLInputObjectType)
+    ) {
+      schemaStore.setQueryFields(type.getFields());
+      schemaStore.setSelectedTypeName(text);
+      schemaStore.setOpenState(OpenState.typeName);
     }
   };
 
