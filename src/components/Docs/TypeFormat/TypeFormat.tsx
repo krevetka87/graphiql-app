@@ -19,16 +19,25 @@ function TypeFormat({ arg }: TypeFormatProps) {
   const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const { target } = event;
     const text = (target as HTMLSpanElement).textContent || '';
+
+    schemaStore.saveStateToHistory();
+
+    schemaStore.setBackText(schemaStore.headerText);
+    schemaStore.setHeaderText(text);
+
     const type = schema?.getType(secondPart);
+
     if (schema && type && type instanceof GraphQLScalarType) {
       schemaStore.setSelectedScalarType(type);
       schemaStore.setOpenState(OpenState.scalarType);
     }
+
     if (
       (schema && type && type instanceof GraphQLObjectType) ||
       (schema && type && type instanceof GraphQLInputObjectType)
     ) {
       schemaStore.setQueryFields(type.getFields());
+
       schemaStore.setSelectedTypeName(text);
       schemaStore.setOpenState(OpenState.typeName);
     }

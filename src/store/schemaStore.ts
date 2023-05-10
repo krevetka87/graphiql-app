@@ -9,6 +9,16 @@ import {
 import { action, makeObservable, observable } from 'mobx';
 import { getGraphQLSchema } from '../api/api';
 
+interface HistoryState {
+  queryFields: GraphQLFieldMap<unknown, unknown> | GraphQLInputFieldMap | null;
+  queryField: GraphQLField<unknown, unknown> | null;
+  scalarType: GraphQLScalarType<unknown, unknown> | null;
+  typeName: string;
+  headerText: string;
+  backText: string;
+  opened: OpenState;
+}
+
 interface OpenState {
   query: boolean;
   queryFields: boolean;
@@ -38,7 +48,11 @@ class SchemaStore {
 
   headerText = 'Docs';
 
+  backText = 'Docs';
+
   opened: OpenState = { ...this.defaultOpened, query: true };
+
+  history: HistoryState[] = [];
 
   constructor() {
     makeObservable(this, {
@@ -49,23 +63,37 @@ class SchemaStore {
       scalarType: observable,
       typeName: observable,
       headerText: observable,
-
+      backText: observable,
       opened: observable,
+      history: observable,
 
       loadSchema: action,
-
+      loadPreviousState: action,
       setQueryFields: action,
       setSelectedQueryField: action,
       setSelectedScalarType: action,
       setSelectedTypeName: action,
-
+      setOpenState: action,
       setHeaderText: action,
+      setBackText: action,
+      saveStateToHistory: action,
+      removeLastStateFromHistory: action,
     });
   }
 
   async loadSchema() {
     const schema = await getGraphQLSchema();
     this.schema = schema || null;
+  }
+
+  loadPreviousState(lastAction: HistoryState) {
+    this.queryFields = lastAction.queryFields;
+    this.scalarType = lastAction.scalarType;
+    this.typeName = lastAction.typeName;
+    this.queryField = lastAction.queryField;
+    this.opened = lastAction.opened;
+    this.headerText = lastAction.headerText;
+    this.backText = lastAction.backText;
   }
 
   setQueryFields(fields: GraphQLFieldMap<unknown, unknown> | GraphQLInputFieldMap | null) {
@@ -90,6 +118,26 @@ class SchemaStore {
 
   setHeaderText(text: string) {
     this.headerText = text;
+  }
+
+  setBackText(text: string) {
+    this.backText = text;
+  }
+
+  saveStateToHistory() {
+    this.history.push({
+      queryFields: this.queryFields,
+      scalarType: this.scalarType,
+      typeName: this.typeName,
+      queryField: this.queryField,
+      opened: this.opened,
+      headerText: this.headerText,
+      backText: this.backText,
+    });
+  }
+
+  removeLastStateFromHistory() {
+    this.history.pop();
   }
 }
 

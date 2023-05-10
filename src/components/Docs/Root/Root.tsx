@@ -13,6 +13,9 @@ function Root() {
     const { target } = event;
     const text = (target as HTMLSpanElement).textContent || '';
 
+    schemaStore.saveStateToHistory();
+
+    schemaStore.setBackText(schemaStore.headerText);
     schemaStore.setHeaderText(text);
 
     schemaStore.setQueryFields(fields);

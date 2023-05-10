@@ -4,12 +4,23 @@ import { ReactComponent as ArgumentsIcon } from '../../../assets/arguments.svg';
 import { ReactComponent as TypeIcon } from '../../../assets/type.svg';
 import Arguments from '../Arguments/Arguments';
 import TypeFormat from '../TypeFormat/TypeFormat';
+import BackLink from '../BackLink/BackLink';
 
 function QueryTools() {
   const field = schemaStore.queryField;
 
+  const handleBackHistory = () => {
+    const { history } = schemaStore;
+    const lastAction = history[history.length - 1];
+
+    schemaStore.loadPreviousState(lastAction);
+    schemaStore.removeLastStateFromHistory();
+  };
+
   return (
     <div>
+      <BackLink handleBackHistory={handleBackHistory} />
+
       {field ? (
         <>
           <h2 className="text-2xl  mt-3">{schemaStore.headerText}</h2>

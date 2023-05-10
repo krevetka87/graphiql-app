@@ -1,4 +1,5 @@
 import { GraphQLField } from 'graphql';
+import React from 'react';
 import { OpenState } from '../../../constants/docs';
 import { schemaStore } from '../../../store';
 import Arguments from '../Arguments/Arguments';
@@ -9,7 +10,15 @@ interface QueryProps {
 }
 
 function Query({ field }: QueryProps) {
-  const handleClick = () => {
+  const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const { target } = event;
+    const text = (target as HTMLSpanElement).textContent || '';
+
+    schemaStore.saveStateToHistory();
+
+    schemaStore.setBackText(schemaStore.headerText);
+    schemaStore.setHeaderText(text);
+
     schemaStore.setSelectedQueryField(field);
     schemaStore.setOpenState(OpenState.queryField);
   };
