@@ -1,4 +1,4 @@
-import { GraphQLFieldMap, GraphQLInputFieldMap, GraphQLSchema } from 'graphql';
+import { GraphQLField, GraphQLFieldMap, GraphQLInputFieldMap, GraphQLSchema } from 'graphql';
 
 import { action, makeObservable, observable } from 'mobx';
 import { getGraphQLSchema } from '../api/api';
@@ -6,6 +6,7 @@ import { getGraphQLSchema } from '../api/api';
 interface OpenState {
   query: boolean;
   queryFields: boolean;
+  queryField: boolean;
 }
 
 class SchemaStore {
@@ -14,9 +15,12 @@ class SchemaStore {
   defaultOpened: OpenState = {
     query: false,
     queryFields: false,
+    queryField: false,
   };
 
   queryFields: GraphQLFieldMap<unknown, unknown> | GraphQLInputFieldMap | null = null;
+
+  queryField: GraphQLField<unknown, unknown> | null = null;
 
   headerText = 'Docs';
 
@@ -27,6 +31,7 @@ class SchemaStore {
       schema: observable,
       defaultOpened: observable,
       queryFields: observable,
+      queryField: observable,
 
       headerText: observable,
 
@@ -47,6 +52,10 @@ class SchemaStore {
 
   setQueryFields(fields: GraphQLFieldMap<unknown, unknown> | GraphQLInputFieldMap | null) {
     this.queryFields = fields;
+  }
+
+  setSelectedQueryField(field: GraphQLField<unknown, unknown> | null) {
+    this.queryField = field;
   }
 
   setOpenState(key: string) {

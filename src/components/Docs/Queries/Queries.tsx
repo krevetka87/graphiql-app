@@ -1,5 +1,6 @@
 import { ReactComponent as FieldsIcon } from '../../../assets/fields.svg';
 import { schemaStore } from '../../../store';
+import Query from '../Query/Query';
 
 function Queries() {
   const fields = schemaStore.queryFields;
@@ -7,7 +8,7 @@ function Queries() {
   const fieldElements = fields
     ? Object.entries(fields).map(([fieldName, field]) => (
         <div className="mt-5" key={fieldName}>
-          {field.name}
+          <Query field={field} />
         </div>
       ))
     : null;
