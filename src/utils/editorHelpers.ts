@@ -19,15 +19,20 @@ const createEditor = (
   });
 };
 
-// const resizeEditor = (currentEditor: TEditor, parent: HTMLDivElement | null) => {
-//   currentEditor.layout({ width: 0, height: 0 });
-//   window.requestAnimationFrame(() => {
-//     if (parent) {
-//       const rect = parent.getBoundingClientRect();
-//       currentEditor.layout({ width: rect.width, height: rect.height });
-//     }
-//   });
-// };
+const prettifyQuery = (): void => {
+  editor.getEditors().forEach((currentEditor) => {
+    const action = currentEditor.getAction('editor.action.formatDocument');
+    action?.run();
+  });
+};
+
+const copyQuery = (): void => {
+  const queryModelValue = editor.getModel(Uri.file(Files.query))?.getValue();
+
+  if (queryModelValue) {
+    navigator.clipboard.writeText(queryModelValue);
+  }
+};
 
 const parseJSONtoObject = (json: string): TParsedJson | string => {
   try {
@@ -78,4 +83,4 @@ const handleRequest = async (): Promise<void> => {
   resultModel?.setValue(JSON.stringify(response, null, '\t'));
 };
 
-export { getEditorModel, createEditor, handleRequest };
+export { getEditorModel, createEditor, handleRequest, prettifyQuery, copyQuery };

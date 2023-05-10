@@ -8,7 +8,7 @@ const RSLink = () => {
       rel="noreferrer"
       className="hover:scale-95 ease-in-out duration-500"
     >
-      <img src={RSLogo} alt="RSSchool" />
+      <img src={RSLogo} alt="RSSchool" className="h-8 w-auto" />
     </a>
   );
 };
