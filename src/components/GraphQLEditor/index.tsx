@@ -93,7 +93,7 @@ const GraphQLEditor = observer(() => {
             />
           ) : (
             <div className="h-full flex items-center justify-center">
-              <Spinner bgColor="indigo-100" fillColor="indigo-500" width="12" height="12" />
+              <Spinner />
             </div>
           )}
         </div>

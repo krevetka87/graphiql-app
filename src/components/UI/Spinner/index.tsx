@@ -1,15 +1,8 @@
-interface TSpinnerProps {
-  bgColor: string;
-  fillColor: string;
-  width: string;
-  height: string;
-}
-
-const Spinner = ({ bgColor, fillColor, width, height }: TSpinnerProps) => {
+const Spinner = () => {
   return (
     <svg
       aria-hidden="true"
-      className={`w-${width} h-${height} mr-2 text-${bgColor} animate-spin dark:text-gray-600 fill-${fillColor}`}
+      className="w-12 h-12 mr-2 text-indigo-50 animate-spin dark:text-gray-600 fill-indigo-600"
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
