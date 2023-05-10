@@ -1,12 +1,13 @@
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
-import QueryTools from './QueryTools/QueryTools';
+import { lazy, useEffect } from 'react';
 import { schemaStore } from '../../store';
-import Queries from './Queries/Queries';
-import Root from './Root/Root';
-import ScalarType from './ScalarType/ScalarType';
 import Spinner from './Spinner/Spinner';
-import Types from './Types/Types';
+
+const Root = lazy(() => import('./Root/Root'));
+const ScalarType = lazy(() => import('./ScalarType/ScalarType'));
+const Queries = lazy(() => import('./Queries/Queries'));
+const QueryTools = lazy(() => import('./QueryTools/QueryTools'));
+const Types = lazy(() => import('./Types/Types'));
 
 const Docs = observer(() => {
   useEffect(() => {
