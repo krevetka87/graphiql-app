@@ -2,9 +2,9 @@ import { schemaStore } from '../../../store';
 
 import { ReactComponent as ArgumentsIcon } from '../../../assets/arguments.svg';
 import { ReactComponent as TypeIcon } from '../../../assets/type.svg';
-import Arguments from '../Arguments/Arguments';
-import TypeFormat from '../TypeFormat/TypeFormat';
-import BackLink from '../BackLink/BackLink';
+import Arguments from '../Arguments';
+import TypeFormat from '../TypeFormat';
+import BackLink from '../BackLink';
 
 function QueryTools() {
   const field = schemaStore.queryField;

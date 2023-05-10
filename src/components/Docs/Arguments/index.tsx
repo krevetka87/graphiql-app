@@ -1,6 +1,6 @@
 import React from 'react';
 import { GraphQLArgument } from 'graphql';
-import TypeFormat from '../TypeFormat/TypeFormat';
+import TypeFormat from '../TypeFormat';
 
 interface ArgumentsProps {
   args: readonly GraphQLArgument[];

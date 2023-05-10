@@ -1,6 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import { schemaStore } from '../../../store';
-import BackLink from '../BackLink/BackLink';
+import BackLink from '../BackLink';
 
 function ScalarType() {
   const type = schemaStore.scalarType;

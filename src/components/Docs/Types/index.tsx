@@ -1,6 +1,6 @@
 import { GraphQLInputObjectType, GraphQLObjectType } from 'graphql';
 import { schemaStore } from '../../../store';
-import Queries from '../Queries/Queries';
+import Queries from '../Queries';
 
 function Types() {
   const { typeName } = schemaStore;

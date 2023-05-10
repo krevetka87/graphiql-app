@@ -1,9 +1,9 @@
 import { useState, Suspense } from 'react';
-import Spinner from '../../components/Docs/Spinner/Spinner';
+import Spinner from '../../components/Docs/Spinner';
 import { ReactComponent as DocActiveIcon } from '../../assets/doc-active.svg';
 import { ReactComponent as DocIcon } from '../../assets/doc.svg';
 
-import Docs from '../../components/Docs/Docs';
+import Docs from '../../components/Docs';
 
 export default function Main() {
   const [showDoc, setShowDoc] = useState(false);
@@ -13,7 +13,7 @@ export default function Main() {
   };
 
   return (
-    <section className="flex overflow-auto font-medium text-base h-full">
+    <section className="flex font-medium text-base h-full">
       <div className="flex flex-col justify-between py-3 px-2 w-14">
         <button
           type="button"

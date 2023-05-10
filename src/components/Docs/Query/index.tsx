@@ -2,8 +2,8 @@ import { GraphQLField } from 'graphql';
 import React from 'react';
 import { OpenState } from '../../../constants/docs';
 import { schemaStore } from '../../../store';
-import Arguments from '../Arguments/Arguments';
-import TypeFormat from '../TypeFormat/TypeFormat';
+import Arguments from '../Arguments';
+import TypeFormat from '../TypeFormat';
 
 interface QueryProps {
   field: GraphQLField<unknown, unknown>;

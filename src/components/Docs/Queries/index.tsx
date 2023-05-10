@@ -1,7 +1,7 @@
 import { ReactComponent as FieldsIcon } from '../../../assets/fields.svg';
 import { schemaStore } from '../../../store';
-import BackLink from '../BackLink/BackLink';
-import Query from '../Query/Query';
+import BackLink from '../BackLink';
+import Query from '../Query';
 
 function Queries() {
   const fields = schemaStore.queryFields;
