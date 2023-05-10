@@ -19,8 +19,8 @@ function ScalarType() {
 
       {type ? (
         <>
-          <h1 className="text-2xl mt-3 ">{schemaStore.headerText}</h1>
-          <div className="mt-5">
+          <h3 className="text-2xl mt-3 ">{schemaStore.headerText}</h3>
+          <div className="mt-4">
             <ReactMarkdown>{String(type.description)}</ReactMarkdown>
           </div>
         </>

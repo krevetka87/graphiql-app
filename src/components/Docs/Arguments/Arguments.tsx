@@ -11,16 +11,11 @@ function Arguments({ args }: ArgumentsProps) {
 
   return (
     <>
-      {copyArgs.map((arg, index, arr) => (
+      {copyArgs.map((arg, _index, arr) => (
         <React.Fragment key={arg.name}>
-          {arr.length > 1 && <br />}
-          <div className="font-normal ml-2">
-            <span className="text-red-500">{arg.name}</span>:{' '}
-            <span>
-              <TypeFormat arg={arg.type.toString()} />
-            </span>
+          <div className={`font-normal ${arr.length > 1 ? 'ml-2' : ''}`}>
+            <span className="text-red-500">{arg.name}</span>: <TypeFormat arg={String(arg.type)} />
           </div>
-          {arr.length > 1 && index === arr.length - 1 && <br />}
         </React.Fragment>
       ))}
     </>

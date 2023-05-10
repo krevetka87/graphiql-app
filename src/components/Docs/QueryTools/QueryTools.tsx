@@ -23,7 +23,7 @@ function QueryTools() {
 
       {field ? (
         <>
-          <h2 className="text-2xl  mt-3">{schemaStore.headerText}</h2>
+          <h3 className="text-2xl  mt-3">{schemaStore.headerText}</h3>
           <div className="mt-6">{field.description}</div>
 
           {field.args && field.args.length ? (
@@ -32,7 +32,9 @@ function QueryTools() {
                 <ArgumentsIcon className="mr-2" />
                 <p className="text-sm">Arguments</p>
               </div>
-              <Arguments args={field.args} />
+              <div className="mt-3 ml-2">
+                <Arguments args={field.args} />
+              </div>
             </>
           ) : (
             ''
@@ -43,7 +45,7 @@ function QueryTools() {
             <p className="text-sm">Type</p>
           </div>
           <div className="ml-2 mt-3">
-            <TypeFormat arg={field.type.toString()} />
+            <TypeFormat arg={String(field.type)} />
           </div>
         </>
       ) : (

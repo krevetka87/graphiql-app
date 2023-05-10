@@ -24,21 +24,23 @@ function Query({ field }: QueryProps) {
   };
 
   return (
-    <div>
-      <h2>
-        <strong
-          className="text-blue-500 hover:underline cursor-pointer font-normal"
-          onClick={handleClick}
-        >
+    <>
+      <div className={field && field.args && field.args.length < 2 ? 'flex items-center' : ''}>
+        <strong className="text-blue-500 hover:underline cursor-pointer" onClick={handleClick}>
           {field.name}
         </strong>
-        {field && field.args && field.args.length ? <Arguments args={field.args} /> : ''}:{' '}
-        <span>
-          <TypeFormat arg={String(field.type)} />
-        </span>
-      </h2>
+        {field && field.args && field.args.length ? (
+          <>
+            (<Arguments args={field.args} />)
+          </>
+        ) : (
+          ''
+        )}
+        :&nbsp;
+        <TypeFormat arg={String(field.type)} />
+      </div>
       {field.args && <p className="mt-2">{field.description}</p>}
-    </div>
+    </>
   );
 }
 

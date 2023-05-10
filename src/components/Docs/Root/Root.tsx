@@ -24,13 +24,13 @@ function Root() {
 
   return (
     <div className="max-w-md">
-      <h2 className="text-3xl">{schemaStore.headerText}</h2>
-      <p className="mt-5">A GraphQL schema provides a root type for each kind of operation.</p>
-      <div className="flex items-center mt-5">
+      <h3 className="text-3xl">{schemaStore.headerText}</h3>
+      <p className="mt-4">A GraphQL schema provides a root type for each kind of operation.</p>
+      <div className="flex items-center mt-4">
         <RootIcon className="mr-2" />
         <p className="text-sm">Root Types</p>
       </div>
-      <p className="font-normal mt-5 text-blue-500">
+      <p className="font-normal mt-4 text-blue-500">
         query:{' '}
         {queryType ? (
           <span
