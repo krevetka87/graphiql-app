@@ -1,10 +1,23 @@
 import { ReactComponent as RootIcon } from '../../../assets/root.svg';
 import { schemaStore } from '../../../store';
+import { OpenState } from '../../../constants/docs';
 
 function Root() {
   const { schema } = schemaStore;
 
   const queryType = schema ? schema.getQueryType() : null;
+
+  const fields = queryType ? queryType.getFields() : null;
+
+  const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const { target } = event;
+    const text = (target as HTMLSpanElement).textContent || '';
+
+    schemaStore.setHeaderText(text);
+
+    schemaStore.setQueryFields(fields);
+    schemaStore.setOpenState(OpenState.queryFields);
+  };
 
   return (
     <div className="max-w-md">
@@ -17,7 +30,10 @@ function Root() {
       <p className="font-normal mt-5 text-blue-500">
         query:{' '}
         {queryType ? (
-          <span className="text-orange-500 hover:underline cursor-pointer font-normal">
+          <span
+            className="text-orange-500 hover:underline cursor-pointer font-normal"
+            onClick={handleClick}
+          >
             {queryType.name}
           </span>
         ) : (

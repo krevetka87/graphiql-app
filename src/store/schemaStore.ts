@@ -1,10 +1,11 @@
-import { GraphQLSchema } from 'graphql';
+import { GraphQLFieldMap, GraphQLInputFieldMap, GraphQLSchema } from 'graphql';
 
 import { action, makeObservable, observable } from 'mobx';
 import { getGraphQLSchema } from '../api/api';
 
 interface OpenState {
   query: boolean;
+  queryFields: boolean;
 }
 
 class SchemaStore {
@@ -12,7 +13,10 @@ class SchemaStore {
 
   defaultOpened: OpenState = {
     query: false,
+    queryFields: false,
   };
+
+  queryFields: GraphQLFieldMap<unknown, unknown> | GraphQLInputFieldMap | null = null;
 
   headerText = 'Docs';
 
@@ -22,18 +26,35 @@ class SchemaStore {
     makeObservable(this, {
       schema: observable,
       defaultOpened: observable,
+      queryFields: observable,
 
       headerText: observable,
 
       opened: observable,
 
       loadSchema: action,
+
+      setQueryFields: action,
+
+      setHeaderText: action,
     });
   }
 
   async loadSchema() {
     const schema = await getGraphQLSchema();
     this.schema = schema || null;
+  }
+
+  setQueryFields(fields: GraphQLFieldMap<unknown, unknown> | GraphQLInputFieldMap | null) {
+    this.queryFields = fields;
+  }
+
+  setOpenState(key: string) {
+    this.opened = { ...this.defaultOpened, [key]: true };
+  }
+
+  setHeaderText(text: string) {
+    this.headerText = text;
   }
 }
 
