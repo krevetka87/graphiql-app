@@ -1,3 +1,7 @@
+import { GraphQLScalarType } from 'graphql';
+import { OpenState } from '../../../constants/docs';
+import { schemaStore } from '../../../store';
+
 interface TypeFormatProps {
   arg: string;
 }
@@ -10,7 +14,15 @@ function TypeFormat({ arg }: TypeFormatProps) {
   const secondPart = arg.slice(firstLetterIndex, lastLetterIndex);
   const thirdPart = arg.slice(lastLetterIndex);
 
-  const handleClick = () => {};
+  const { schema } = schemaStore;
+
+  const handleClick = () => {
+    const type = schema?.getType(secondPart);
+    if (schema && type && type instanceof GraphQLScalarType) {
+      schemaStore.setSelectedScalarType(type);
+      schemaStore.setOpenState(OpenState.scalarType);
+    }
+  };
 
   return (
     <span>

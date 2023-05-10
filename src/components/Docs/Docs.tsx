@@ -4,6 +4,7 @@ import QueryTools from './QueryTools/QueryTools';
 import { schemaStore } from '../../store';
 import Queries from './Queries/Queries';
 import Root from './Root/Root';
+import ScalarType from './ScalarType/ScalarType';
 import Spinner from './Spinner/Spinner';
 
 const Docs = observer(() => {
@@ -24,6 +25,7 @@ const Docs = observer(() => {
       {schemaStore.opened.query && <Root />}
       {schemaStore.opened.queryFields && <Queries />}
       {schemaStore.opened.queryField && <QueryTools />}
+      {schemaStore.opened.scalarType && <ScalarType />}
     </div>
   );
 });

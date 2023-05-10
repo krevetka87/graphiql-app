@@ -1,4 +1,10 @@
-import { GraphQLField, GraphQLFieldMap, GraphQLInputFieldMap, GraphQLSchema } from 'graphql';
+import {
+  GraphQLField,
+  GraphQLFieldMap,
+  GraphQLInputFieldMap,
+  GraphQLScalarType,
+  GraphQLSchema,
+} from 'graphql';
 
 import { action, makeObservable, observable } from 'mobx';
 import { getGraphQLSchema } from '../api/api';
@@ -7,6 +13,7 @@ interface OpenState {
   query: boolean;
   queryFields: boolean;
   queryField: boolean;
+  scalarType: boolean;
 }
 
 class SchemaStore {
@@ -16,11 +23,14 @@ class SchemaStore {
     query: false,
     queryFields: false,
     queryField: false,
+    scalarType: false,
   };
 
   queryFields: GraphQLFieldMap<unknown, unknown> | GraphQLInputFieldMap | null = null;
 
   queryField: GraphQLField<unknown, unknown> | null = null;
+
+  scalarType: GraphQLScalarType<unknown, unknown> | null = null;
 
   headerText = 'Docs';
 
@@ -32,6 +42,7 @@ class SchemaStore {
       defaultOpened: observable,
       queryFields: observable,
       queryField: observable,
+      scalarType: observable,
 
       headerText: observable,
 
@@ -40,6 +51,8 @@ class SchemaStore {
       loadSchema: action,
 
       setQueryFields: action,
+      setSelectedQueryField: action,
+      setSelectedScalarType: action,
 
       setHeaderText: action,
     });
@@ -56,6 +69,10 @@ class SchemaStore {
 
   setSelectedQueryField(field: GraphQLField<unknown, unknown> | null) {
     this.queryField = field;
+  }
+
+  setSelectedScalarType(type: GraphQLScalarType<unknown, unknown> | null) {
+    this.scalarType = type;
   }
 
   setOpenState(key: string) {
