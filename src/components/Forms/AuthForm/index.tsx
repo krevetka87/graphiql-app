@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-import { FormValues } from 'src/types/forms.types';
+import { FormValues, InputPasswordType } from 'src/types/forms.types';
 import { FormFields } from 'src/constants/forms';
 import { formsStore } from 'src/store/formsStore';
 import { getFieldsOptions } from 'src/utils/forms';
+
 import eye from 'src/assets/eye-outline.svg';
 import eyeOff from 'src/assets/eye-off-outline.svg';
 import loader from 'src/assets/loader.svg';
@@ -18,7 +19,7 @@ interface AuthFormProps {
 const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
   const { t } = useTranslation();
 
-  const [type, setType] = useState('password');
+  const [typePasswordInput, setTypePasswordInput] = useState<InputPasswordType>('password');
 
   const { isSignUp, isLoading } = formsStore;
 
@@ -35,7 +36,7 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
   };
 
   const toggleType = () => {
-    setType(type === 'password' ? 'text' : 'password');
+    setTypePasswordInput(typePasswordInput === 'password' ? 'text' : 'password');
   };
 
   useEffect(() => {
@@ -74,7 +75,7 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
       >
         <div className="flex border-2 rounded-md px-4 py-2 pr-9 text-gray-700 relative">
           <input
-            type={type}
+            type={typePasswordInput}
             className="w-full focus:outline-none"
             id={FormFields.password}
             autoComplete="on"
@@ -86,7 +87,11 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
             type="button"
             onClick={toggleType}
           >
-            <img className="w-5 h-5" src={type === 'password' ? eyeOff : eye} alt="" />
+            <img
+              className="w-5 h-5"
+              src={typePasswordInput === 'password' ? eyeOff : eye}
+              alt="show/hide password"
+            />
           </button>
         </div>
       </InputWrapper>

@@ -3,4 +3,6 @@ interface FormValues {
   password: string;
 }
 
-export type { FormValues };
+type InputPasswordType = 'password' | 'text';
+
+export type { FormValues, InputPasswordType };
