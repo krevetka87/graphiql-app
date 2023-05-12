@@ -79,16 +79,11 @@ const handleRequest = async (): Promise<void> => {
       resultModel?.setValue(JSON.stringify(res.data, null, '\t'));
     })
     .catch((err: AxiosError) => {
-      if (!err.response?.status) {
-        const error = {
-          error: err.message,
-        };
-        resultModel?.setValue(JSON.stringify(error, null, '\t'));
-      } else if (err.response.status === 500) {
+      if (err.response?.status === 400) {
+        resultModel?.setValue(JSON.stringify(err.response?.data, null, '\t'));
+      } else {
         resultModel?.setValue('');
         throw new Error(err.message);
-      } else {
-        resultModel?.setValue(JSON.stringify(err.response?.data, null, '\t'));
       }
     });
 };

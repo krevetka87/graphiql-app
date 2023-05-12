@@ -2,19 +2,16 @@ import { observer } from 'mobx-react-lite';
 import { useEffect, useRef, useState } from 'react';
 import { initializeMode } from 'monaco-graphql/esm/initializeMode';
 import { Uri } from 'monaco-editor';
-import { IntrospectionQuery, buildClientSchema } from 'graphql';
+import { buildClientSchema } from 'graphql';
 import { Files, queryEditorOptions } from '../../../constants/editor';
-import { TEditor, TEditorModel } from '../../../types/editor';
-import editorsValueStore from '../../../store/editorsValueStore';
+import { TEditor } from '../../../types/editor';
+import editorStore from '../../../store/editorStore';
 import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
 
-interface IQueryEditorProps {
-  schema: IntrospectionQuery | undefined;
-}
-
-const QueryEditor = observer(({ schema }: IQueryEditorProps) => {
+const QueryEditor = observer(() => {
   const editorRef = useRef<HTMLDivElement>(null);
   const [editorInstance, setEditorInstance] = useState<TEditor | null>(null);
+  const { values, schema } = editorStore;
 
   useEffect(() => {
     if (schema) {
@@ -48,21 +45,17 @@ const QueryEditor = observer(({ schema }: IQueryEditorProps) => {
 
   useEffect(() => {
     if (!editorInstance && editorRef.current) {
-      const model: TEditorModel = getEditorModel(
-        Files.query,
-        editorsValueStore.values.query,
-        'graphql'
-      );
+      const model = getEditorModel(Files.query, values.query, 'graphql');
 
-      const editor: TEditor = createEditor(editorRef.current, model, queryEditorOptions);
+      const editor = createEditor(editorRef.current, model, queryEditorOptions);
       setEditorInstance(editor);
 
       return () => {
-        editorsValueStore.setValue(editor.getValue(), 'query');
+        editorStore.setValue(editor.getValue(), 'query');
       };
     }
     return () => {};
-  }, [editorInstance]);
+  }, [editorInstance, values]);
 
   return <div ref={editorRef} className="h-[98%] py-3" />;
 });

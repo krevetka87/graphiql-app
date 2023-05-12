@@ -1,4 +1,4 @@
-import { TEditorOptions } from '../types/editor';
+import { IEditorTypes, TEditorOptions } from '../types/editor';
 
 const editorOptions: TEditorOptions = {
   formatOnPaste: true,
@@ -40,6 +40,21 @@ const resultEditorOptions: TEditorOptions = {
   },
 };
 
+const initValues: IEditorTypes = {
+  query: `# Query example:
+#
+query($id: ID!) {
+  character(id: $id){
+    name
+    gender
+  }
+}
+`,
+  variables: '{ }',
+  headers: '',
+  result: '',
+};
+
 enum Files {
   query = 'query.graphql',
   variables = 'variables.json',
@@ -47,4 +62,23 @@ enum Files {
   result = 'result.json',
 }
 
-export { editorOptions, Files, queryEditorOptions, resultEditorOptions };
+enum TooltipNames {
+  execute = 'execute',
+  format = 'format',
+  copy = 'copy',
+}
+
+enum Tabs {
+  headers = 'headers',
+  variables = 'variables',
+}
+
+export {
+  editorOptions,
+  Files,
+  queryEditorOptions,
+  resultEditorOptions,
+  initValues,
+  TooltipNames,
+  Tabs,
+};

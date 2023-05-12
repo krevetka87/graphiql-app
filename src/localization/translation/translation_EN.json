@@ -1,0 +1,14 @@
+{
+  "editor": {
+    "tooltips": {
+      "copy": "copy query",
+      "format": "format query",
+      "execute": "execute query",
+      "copied": "copied"
+    },
+    "tabs": {
+      "variables": "variables",
+      "headers": "headers"
+    }
+  }
+}

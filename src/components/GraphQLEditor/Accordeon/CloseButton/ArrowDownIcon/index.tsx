@@ -1,4 +1,4 @@
-function ArrowDownIcon() {
+const ArrowDownIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,6 +11,6 @@ function ArrowDownIcon() {
       <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
     </svg>
   );
-}
+};
 
 export default ArrowDownIcon;

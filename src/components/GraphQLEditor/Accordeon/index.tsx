@@ -1,15 +1,14 @@
 import { MouseEventHandler, useState } from 'react';
 import CloseButton from './CloseButton';
-import tabsStore from '../../../store/tabsStore';
+import editorStore from '../../../store/editorStore';
 import TabButton from './TabButton';
 
 interface IAccordeonProps {
   children: JSX.Element;
 }
 
-function Accordeon({ children }: IAccordeonProps) {
-  const [isOpen, setOpen] = useState<boolean>(false);
-  const { setActiveTab } = tabsStore;
+const Accordeon = ({ children }: IAccordeonProps) => {
+  const [isOpen, setOpen] = useState(false);
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     if (!(e.currentTarget instanceof HTMLButtonElement)) {
@@ -19,7 +18,7 @@ function Accordeon({ children }: IAccordeonProps) {
     const { name } = e.currentTarget.dataset;
 
     if (name) {
-      setActiveTab(name);
+      editorStore.setActiveTab(name);
 
       if (!isOpen) {
         setOpen(true);
@@ -30,7 +29,7 @@ function Accordeon({ children }: IAccordeonProps) {
   };
 
   return (
-    <div className="border-gray-100 border-t-2 py-3 min-h-1/5">
+    <div className="border-[#ECF3FA] border-t-2 py-3 min-h-1/5">
       <div className="px-6 text-left items-center flex justify-between">
         <div className="flex">
           <TabButton onClick={handleClick} isOpen={isOpen} name="variables" />
@@ -47,6 +46,6 @@ function Accordeon({ children }: IAccordeonProps) {
       </div>
     </div>
   );
-}
+};
 
 export default Accordeon;

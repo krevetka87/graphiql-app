@@ -1,32 +1,36 @@
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { IntrospectionQuery } from 'graphql';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import getApiSchema from '../../api/schemaApi';
 import { copyQuery, handleRequest, prettifyQuery } from '../../utils/editorHelpers';
 import QueryEditor from './QueryEditor';
 import Accordeon from './Accordeon';
-import tabsStore from '../../store/tabsStore';
 import JsonEditor from './JsonEditor';
-import { Files, editorOptions, resultEditorOptions } from '../../constants/editor';
+import {
+  Files,
+  Tabs,
+  TooltipNames,
+  editorOptions,
+  resultEditorOptions,
+} from '../../constants/editor';
 import Spinner from '../UI/Spinner';
 import EditorButton from './EditorButton';
 import PlayIcon from './EditorButton/PlayIcon';
 import PrettifyIcon from './EditorButton/PrettifyIcon';
 import CopyIcon from './EditorButton/CopyIcon';
+import editorStore from '../../store/editorStore';
 
 const GraphQLEditor = observer(() => {
-  const [schema, setSchema] = useState<IntrospectionQuery | undefined>();
-  const [isSchemaLoading, setSchemaLoading] = useState<boolean>(false);
-  const [schemaError, setSchemaError] = useState<string>('');
-  const [isDataLoading, setDataLoading] = useState<boolean>(false);
-
-  const { activeTab } = tabsStore;
+  const { t } = useTranslation();
+  const [isDataLoading, setDataLoading] = useState(false);
+  const { schema, activeTab } = editorStore;
 
   const sendRequest = (): void => {
     setDataLoading(true);
 
     handleRequest()
-      .catch((err: Error) => console.log(err.message))
+      .catch((err: Error) => toast.error(err.message))
       .finally(() => setDataLoading(false));
   };
 
@@ -34,50 +38,59 @@ const GraphQLEditor = observer(() => {
     if (schema) {
       return;
     }
-    setSchemaLoading(true);
 
     getApiSchema()
       .then((data) => {
-        setSchema(data);
+        editorStore.setSchema(data);
       })
-      .catch((err: Error) => setSchemaError(err.message))
-      .finally(() => setSchemaLoading(false));
+      .catch((err: Error) => toast.error(err.message));
   }, [schema]);
 
   return (
     <div className="shadow-lg flex flex-col mx-5 flex-auto mt-10">
-      <section className="p-2 flex justify-between bg-gray-100">
+      <section className="p-2 flex justify-between border-b-2 border-[#ECF3FA]">
         <div className="flex gap-3">
-          <EditorButton onClick={sendRequest} tooltip="execute query" name="execute">
+          <EditorButton
+            onClick={sendRequest}
+            tooltip={t('editor.tooltips.execute')}
+            name={TooltipNames.execute}
+          >
             <PlayIcon />
           </EditorButton>
-          <EditorButton onClick={prettifyQuery} tooltip="prettify query" name="prettify">
+          <EditorButton
+            onClick={prettifyQuery}
+            tooltip={t('editor.tooltips.format')}
+            name={TooltipNames.format}
+          >
             <PrettifyIcon />
           </EditorButton>
-          <EditorButton onClick={copyQuery} tooltip="copy query" name="copy">
+          <EditorButton
+            onClick={copyQuery}
+            tooltip={t('editor.tooltips.copy')}
+            name={TooltipNames.copy}
+          >
             <CopyIcon />
           </EditorButton>
         </div>
-        <div className="" />
       </section>
       <section className="flex flex-1">
-        <div className="flex-1 border-r-2 border-gray-100 min-w-0 flex flex-col">
+        <div className="flex-1 border-r-4 border-[#ECF3FA] min-w-0 flex flex-col">
           <div className="flex-1 min-h-0 min-w-0">
-            <QueryEditor schema={schema} />
+            <QueryEditor />
           </div>
           <Accordeon>
             <>
               <JsonEditor
-                type="variables"
+                type={Tabs.variables}
                 fileName={Files.variables}
                 options={editorOptions}
-                className={`h-40 ${activeTab === 'variables' ? 'block' : 'hidden'}`}
+                className={`h-40 ${activeTab === Tabs.variables ? 'block' : 'hidden'}`}
               />
               <JsonEditor
-                type="headers"
+                type={Tabs.headers}
                 fileName={Files.headers}
                 options={editorOptions}
-                className={`h-40 ${activeTab === 'headers' ? 'block' : 'hidden'}`}
+                className={`h-40 ${activeTab === Tabs.headers ? 'block' : 'hidden'}`}
               />
             </>
           </Accordeon>

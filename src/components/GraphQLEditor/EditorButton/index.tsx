@@ -1,13 +1,16 @@
 import { ReactNode, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { TooltipNames } from '../../../constants/editor';
 
 interface IEditorButtonProps {
   onClick: () => void;
   children: ReactNode;
-  tooltip: string;
+  tooltip: TooltipNames;
   name: string;
 }
 const EditorButton = ({ onClick, children, tooltip, name }: IEditorButtonProps) => {
-  const [copied, setCopied] = useState<boolean>(false);
+  const { t } = useTranslation();
+  const [copied, setCopied] = useState(false);
 
   const handleClick = (): void => {
     onClick();
@@ -25,14 +28,14 @@ const EditorButton = ({ onClick, children, tooltip, name }: IEditorButtonProps) 
     <div className="group relative" data-name={name}>
       <button
         type="button"
-        className="p-2 rounded-lg hover:bg-gray-400 duration-500 ease-in-out"
+        className="p-2 rounded-lg bg-gray-100 hover:bg-gray-400 duration-500 ease-in-out"
         onClick={handleClick}
       >
         {children}
       </button>
       <div className="text-xs invisible opacity-0 duration-500 group-hover:visible group-hover:opacity-100 absolute -bottom-7 left-0 bg-white rounded-sm py-1 px-2 shadow-sm z-10 whitespace-nowrap">
         {name === 'copy' && copied ? (
-          <span className="text-indigo-600">Copied!</span>
+          <span className="text-[#40327A] capitalize">{t('editor.tooltips.copied')}</span>
         ) : (
           <span className="capitalize">{tooltip}</span>
         )}

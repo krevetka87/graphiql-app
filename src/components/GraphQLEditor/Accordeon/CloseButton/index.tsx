@@ -7,12 +7,12 @@ interface ICloseButtonProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-function CloseButton({ isOpen, onClick }: ICloseButtonProps) {
+const CloseButton = ({ isOpen, onClick }: ICloseButtonProps) => {
   return (
     <button type="button" onClick={onClick}>
       {isOpen ? <ArrowDownIcon /> : <ArrowUpIcon />}
     </button>
   );
-}
+};
 
 export default CloseButton;
