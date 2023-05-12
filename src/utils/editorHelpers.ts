@@ -1,4 +1,5 @@
 import { Uri, editor } from 'monaco-editor/esm/vs/editor/editor.api';
+import { AxiosError, AxiosResponse } from 'axios';
 import { Files } from '../constants/editor';
 import { getQueryResult } from '../api/queryApi';
 import { TEditor, TEditorModel, TEditorOptions } from '../types/editor';
@@ -36,8 +37,8 @@ const copyQuery = (): void => {
 
 const parseJSONtoObject = (json: string): TParsedJson | string => {
   try {
-    const str: TParsedJson = JSON.parse(json);
-    return str;
+    const parsed: TParsedJson = JSON.parse(json);
+    return parsed;
   } catch (err) {
     return (err as Error).message;
   }
@@ -56,7 +57,7 @@ const handleRequest = async (): Promise<void> => {
     variables = parseJSONtoObject(varModelValue);
 
     if (typeof variables === 'string') {
-      resultModel?.setValue(variables);
+      resultModel?.setValue(`Variables are invalid JSON: ${variables}`);
       return;
     }
   }
@@ -65,22 +66,31 @@ const handleRequest = async (): Promise<void> => {
     headers = parseJSONtoObject(headersModelValue);
 
     if (typeof headers === 'string') {
-      resultModel?.setValue(headers);
+      resultModel?.setValue(`Headers are invalid JSON: ${headers}`);
       return;
     }
   }
-
-  const response = await getQueryResult({
+  await getQueryResult({
     query: queryModelValue,
     variables,
     headers,
-  }).catch((err: Error) => {
-    return {
-      error: err.message,
-    };
-  });
-
-  resultModel?.setValue(JSON.stringify(response, null, '\t'));
+  })
+    .then((res: AxiosResponse) => {
+      resultModel?.setValue(JSON.stringify(res.data, null, '\t'));
+    })
+    .catch((err: AxiosError) => {
+      if (!err.response?.status) {
+        const error = {
+          error: err.message,
+        };
+        resultModel?.setValue(JSON.stringify(error, null, '\t'));
+      } else if (err.response.status === 500) {
+        resultModel?.setValue('');
+        throw new Error(err.message);
+      } else {
+        resultModel?.setValue(JSON.stringify(err.response?.data, null, '\t'));
+      }
+    });
 };
 
 export { getEditorModel, createEditor, handleRequest, prettifyQuery, copyQuery };

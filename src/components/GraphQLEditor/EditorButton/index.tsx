@@ -3,11 +3,10 @@ import { ReactNode, useState } from 'react';
 interface IEditorButtonProps {
   onClick: () => void;
   children: ReactNode;
-  className: string;
   tooltip: string;
   name: string;
 }
-const EditorButton = ({ onClick, children, className, tooltip, name }: IEditorButtonProps) => {
+const EditorButton = ({ onClick, children, tooltip, name }: IEditorButtonProps) => {
   const [copied, setCopied] = useState<boolean>(false);
 
   const handleClick = (): void => {
@@ -24,7 +23,11 @@ const EditorButton = ({ onClick, children, className, tooltip, name }: IEditorBu
 
   return (
     <div className="group relative" data-name={name}>
-      <button type="button" className={`p-2 rounded-lg ${className}`} onClick={handleClick}>
+      <button
+        type="button"
+        className="p-2 rounded-lg hover:bg-gray-400 duration-500 ease-in-out"
+        onClick={handleClick}
+      >
         {children}
       </button>
       <div className="text-xs invisible opacity-0 duration-500 group-hover:visible group-hover:opacity-100 absolute -bottom-7 left-0 bg-white rounded-sm py-1 px-2 shadow-sm z-10 whitespace-nowrap">

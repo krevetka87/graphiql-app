@@ -9,6 +9,7 @@ interface IAccordeonProps {
 
 function Accordeon({ children }: IAccordeonProps) {
   const [isOpen, setOpen] = useState<boolean>(false);
+  const { setActiveTab } = tabsStore;
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     if (!(e.currentTarget instanceof HTMLButtonElement)) {
@@ -18,7 +19,7 @@ function Accordeon({ children }: IAccordeonProps) {
     const { name } = e.currentTarget.dataset;
 
     if (name) {
-      tabsStore.setActiveTab(name);
+      setActiveTab(name);
 
       if (!isOpen) {
         setOpen(true);
@@ -29,7 +30,7 @@ function Accordeon({ children }: IAccordeonProps) {
   };
 
   return (
-    <div className="border-indigo-50 border-t-2 py-3 min-h-1/5">
+    <div className="border-gray-100 border-t-2 py-3 min-h-1/5">
       <div className="px-6 text-left items-center flex justify-between">
         <div className="flex">
           <TabButton onClick={handleClick} isOpen={isOpen} name="variables" />

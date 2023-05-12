@@ -16,55 +16,54 @@ import CopyIcon from './EditorButton/CopyIcon';
 
 const GraphQLEditor = observer(() => {
   const [schema, setSchema] = useState<IntrospectionQuery | undefined>();
-  const [isLoading, setLoading] = useState<boolean>(false);
+  const [isSchemaLoading, setSchemaLoading] = useState<boolean>(false);
+  const [schemaError, setSchemaError] = useState<string>('');
+  const [isDataLoading, setDataLoading] = useState<boolean>(false);
 
-  const sendRequest = async (): Promise<void> => {
-    setLoading(true);
-    await handleRequest();
-    setLoading(false);
+  const { activeTab } = tabsStore;
+
+  const sendRequest = (): void => {
+    setDataLoading(true);
+
+    handleRequest()
+      .catch((err: Error) => console.log(err.message))
+      .finally(() => setDataLoading(false));
   };
 
   useEffect(() => {
     if (schema) {
       return;
     }
-    getApiSchema().then((data) => {
-      setSchema(data);
-    });
+    setSchemaLoading(true);
+
+    getApiSchema()
+      .then((data) => {
+        setSchema(data);
+      })
+      .catch((err: Error) => setSchemaError(err.message))
+      .finally(() => setSchemaLoading(false));
   }, [schema]);
 
   return (
-    <div className="shadow-md flex flex-col mx-5 flex-auto">
-      <section className="bg-indigo-50 p-2 flex gap-3">
-        <EditorButton
-          onClick={sendRequest}
-          tooltip="execute query"
-          className="bg-indigo-600"
-          name="execute"
-        >
-          <PlayIcon />
-        </EditorButton>
-        <EditorButton
-          onClick={prettifyQuery}
-          tooltip="prettify query"
-          className="hover:bg-slate-200 duration-500 ease-in-out"
-          name="prettify"
-        >
-          <PrettifyIcon />
-        </EditorButton>
-        <EditorButton
-          onClick={copyQuery}
-          tooltip="copy query"
-          className="hover:bg-slate-200 duration-500 ease-in-out"
-          name="copy"
-        >
-          <CopyIcon />
-        </EditorButton>
+    <div className="shadow-lg flex flex-col mx-5 flex-auto mt-10">
+      <section className="p-2 flex justify-between bg-gray-100">
+        <div className="flex gap-3">
+          <EditorButton onClick={sendRequest} tooltip="execute query" name="execute">
+            <PlayIcon />
+          </EditorButton>
+          <EditorButton onClick={prettifyQuery} tooltip="prettify query" name="prettify">
+            <PrettifyIcon />
+          </EditorButton>
+          <EditorButton onClick={copyQuery} tooltip="copy query" name="copy">
+            <CopyIcon />
+          </EditorButton>
+        </div>
+        <div className="" />
       </section>
       <section className="flex flex-1">
-        <div className="flex-1 border-r-4 border-indigo-50 min-w-0 flex flex-col">
+        <div className="flex-1 border-r-2 border-gray-100 min-w-0 flex flex-col">
           <div className="flex-1 min-h-0 min-w-0">
-            <QueryEditor introspection={schema} />
+            <QueryEditor schema={schema} />
           </div>
           <Accordeon>
             <>
@@ -72,19 +71,19 @@ const GraphQLEditor = observer(() => {
                 type="variables"
                 fileName={Files.variables}
                 options={editorOptions}
-                className={`h-40 ${tabsStore.activeTab === 'variables' ? 'block' : 'hidden'}`}
+                className={`h-40 ${activeTab === 'variables' ? 'block' : 'hidden'}`}
               />
               <JsonEditor
                 type="headers"
                 fileName={Files.headers}
                 options={editorOptions}
-                className={`h-40 ${tabsStore.activeTab === 'headers' ? 'block' : 'hidden'}`}
+                className={`h-40 ${activeTab === 'headers' ? 'block' : 'hidden'}`}
               />
             </>
           </Accordeon>
         </div>
         <div className="flex-1 min-w-0 min-h-0 py-3 px-3">
-          {!isLoading ? (
+          {!isDataLoading ? (
             <JsonEditor
               type="result"
               options={resultEditorOptions}

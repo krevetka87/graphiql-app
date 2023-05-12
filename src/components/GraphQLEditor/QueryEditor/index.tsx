@@ -9,15 +9,15 @@ import editorsValueStore from '../../../store/editorsValueStore';
 import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
 
 interface IQueryEditorProps {
-  introspection: IntrospectionQuery | undefined;
+  schema: IntrospectionQuery | undefined;
 }
 
-const QueryEditor = observer(({ introspection }: IQueryEditorProps) => {
+const QueryEditor = observer(({ schema }: IQueryEditorProps) => {
   const editorRef = useRef<HTMLDivElement>(null);
   const [editorInstance, setEditorInstance] = useState<TEditor | null>(null);
 
   useEffect(() => {
-    if (introspection) {
+    if (schema) {
       const api = initializeMode();
 
       api.setDiagnosticSettings({
@@ -34,7 +34,7 @@ const QueryEditor = observer(({ introspection }: IQueryEditorProps) => {
 
       api.setSchemaConfig([
         {
-          schema: buildClientSchema(introspection),
+          schema: buildClientSchema(schema),
           uri: 'schema.graphql',
           fileMatch: [Files.query],
         },
@@ -44,7 +44,7 @@ const QueryEditor = observer(({ introspection }: IQueryEditorProps) => {
         prettierConfig: { useTabs: true, tabWidth: 2, bracketSameLine: false },
       });
     }
-  }, [introspection]);
+  }, [schema]);
 
   useEffect(() => {
     if (!editorInstance && editorRef.current) {
