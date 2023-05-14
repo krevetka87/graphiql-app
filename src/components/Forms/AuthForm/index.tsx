@@ -87,9 +87,9 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
             onClick={toggleType}
           >
             {typePasswordInput === 'password' ? (
-              <EyeIcon className="w-5 h-5" />
-            ) : (
               <EyeOffIcon className="w-5 h-5" />
+            ) : (
+              <EyeIcon className="w-5 h-5" />
             )}
           </button>
         </div>

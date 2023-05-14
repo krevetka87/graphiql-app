@@ -30,8 +30,8 @@ const Header = observer(() => {
   return (
     <header
       className={`flex px-6 w-full justify-between top-0 z-30 transition-all duration-300 ${
-        isSticky ? 'sticky py-3 shadow-xl bg-white' : ' py-7'
-      } max-md:justify-end`}
+        isSticky ? 'sticky py-3 bg-white' : 'py-7'
+      } ${isSticky && !isOpenBurgerMenu && 'shadow-xl'} max-md:justify-end`}
     >
       <MenuContent type="header" />
       <BurgerButton isOpen={isOpenBurgerMenu} onClick={handleClickBurgerMenu} />

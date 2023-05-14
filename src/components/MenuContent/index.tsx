@@ -55,7 +55,7 @@ const MenuContent = observer(({ type }: MenuContentProps) => {
         }`}
       >
         <LinkWithBorder to={RoutePath.welcome} onClick={handleClickWelcome}>
-          {t('header.buttons.welcome')}
+          GraphiQL
         </LinkWithBorder>
       </ul>
 

@@ -39,8 +39,7 @@
       "logout": "Logout",
       "language": "Change language",
       "login": "Login",
-      "register": "Register",
-      "welcome": "Welcome"
+      "register": "Register"
     }
   },
   "welcome": {
