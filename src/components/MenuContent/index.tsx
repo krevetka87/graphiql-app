@@ -57,6 +57,13 @@ const MenuContent = observer(({ type }: MenuContentProps) => {
         <LinkWithBorder to={RoutePath.welcome} onClick={handleClickWelcome}>
           {t('header.buttons.welcome')}
         </LinkWithBorder>
+      </ul>
+
+      <ul
+        className={`flex gap-6 ${type === 'header' && 'max-md:hidden'} ${
+          type === 'burger' && 'flex-col'
+        }`}
+      >
         {!loading && !user && (
           <>
             <LinkWithBorder to={RoutePath.login} onClick={handleClickLogin}>
@@ -67,13 +74,6 @@ const MenuContent = observer(({ type }: MenuContentProps) => {
             </LinkWithBorder>
           </>
         )}
-      </ul>
-
-      <ul
-        className={`flex gap-6 ${type === 'header' && 'max-md:hidden'} ${
-          type === 'burger' && 'flex-col'
-        }`}
-      >
         <ButtonWithBorder onClick={handleToggleLanguage}>
           {t('header.buttons.language')}
         </ButtonWithBorder>
