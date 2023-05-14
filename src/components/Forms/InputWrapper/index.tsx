@@ -8,8 +8,7 @@ interface InputProps {
   children: ReactNode;
   error: FieldError | undefined;
 }
-
-export default function InputWrapper({ id, label, error, children }: InputProps) {
+const InputWrapper = ({ id, label, error, children }: InputProps) => {
   const { t } = useTranslation();
 
   return (
@@ -27,4 +26,6 @@ export default function InputWrapper({ id, label, error, children }: InputProps)
       )}
     </section>
   );
-}
+};
+
+export default InputWrapper;

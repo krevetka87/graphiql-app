@@ -9,7 +9,7 @@ interface PrivateRouteProps {
   type: 'auth' | 'nonAuth';
 }
 
-export default function RestrictedRoute({ type }: PrivateRouteProps) {
+const RestrictedRoute = ({ type }: PrivateRouteProps) => {
   const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
 
@@ -30,4 +30,6 @@ export default function RestrictedRoute({ type }: PrivateRouteProps) {
       {type === 'nonAuth' && !loading && !user && <Outlet />}
     </>
   );
-}
+};
+
+export default RestrictedRoute;

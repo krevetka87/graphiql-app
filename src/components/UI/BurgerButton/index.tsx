@@ -3,7 +3,7 @@ interface BurgerButtonProps {
   onClick: () => void;
 }
 
-export default function BurgerButton({ isOpen, onClick }: BurgerButtonProps) {
+const BurgerButton = ({ isOpen, onClick }: BurgerButtonProps) => {
   return (
     <button
       type="button"
@@ -15,4 +15,6 @@ export default function BurgerButton({ isOpen, onClick }: BurgerButtonProps) {
       <div className={`w-full h-1 bg-black transition-all ${isOpen && 'opacity-0'}`} />
     </button>
   );
-}
+};
+
+export default BurgerButton;

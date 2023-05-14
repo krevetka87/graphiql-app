@@ -45,6 +45,7 @@ module.exports = {
     ],
     'prettier/prettier': 2,
     'react/jsx-props-no-spreading': 'off',
+    'react/function-component-definition': 0,
   },
   settings: {
     react: {

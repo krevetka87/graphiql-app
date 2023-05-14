@@ -5,7 +5,7 @@ import { RoutePath } from 'src/constants/common';
 import { auth } from 'src/firebase';
 import spinner from 'src/assets/spinner.svg';
 
-export default function Welcome() {
+const Welcome = () => {
   const { t } = useTranslation();
 
   const [user, loading] = useAuthState(auth);
@@ -27,4 +27,6 @@ export default function Welcome() {
       )}
     </div>
   );
-}
+};
+
+export default Welcome;

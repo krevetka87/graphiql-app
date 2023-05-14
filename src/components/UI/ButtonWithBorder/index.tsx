@@ -6,7 +6,7 @@ interface ButtonWithBorderProps {
   onClick?: () => void;
 }
 
-export default function ButtonWithBorder({ children, className, onClick }: ButtonWithBorderProps) {
+const ButtonWithBorder = ({ children, className, onClick }: ButtonWithBorderProps) => {
   return (
     <button
       className={`text-xl font-semibold after:transition-all after:content-[''] after:block after:border-b-black after:border-b after:scale-x-0 hover:after:scale-100 ${className}`}
@@ -16,9 +16,11 @@ export default function ButtonWithBorder({ children, className, onClick }: Butto
       {children}
     </button>
   );
-}
+};
 
 ButtonWithBorder.defaultProps = {
   className: '',
   onClick: () => {},
 };
+
+export default ButtonWithBorder;
