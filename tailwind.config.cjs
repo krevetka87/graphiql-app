@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        login: "url('./assets/graphql-reference.svg')",
+        login: "url('./assets/background-auth.svg')",
       },
     },
   },
