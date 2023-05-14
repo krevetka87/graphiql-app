@@ -83,7 +83,7 @@ const handleRequest = async (): Promise<void> => {
         resultModel?.setValue(JSON.stringify(err.response?.data, null, '\t'));
       } else {
         resultModel?.setValue('');
-        throw new Error(err.message);
+        throw new Error(`${err.message}${err.response?.data ? `: ${err.response?.data}` : ''}`);
       }
     });
 };
