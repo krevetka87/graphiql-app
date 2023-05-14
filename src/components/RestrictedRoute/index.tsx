@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { RoutePath } from 'src/constants/common';
 import { auth } from 'src/firebase';
-import spinner from 'src/assets/spinner.svg';
+import { ReactComponent as SpinnerIcon } from 'src/assets/spinner.svg';
 
 interface PrivateRouteProps {
   type: 'auth' | 'nonAuth';
@@ -25,7 +25,7 @@ const RestrictedRoute = ({ type }: PrivateRouteProps) => {
 
   return (
     <>
-      {loading && <img className="m-auto" src={spinner} alt="spinner" />}
+      {loading && <SpinnerIcon className="m-auto" />}
       {type === 'auth' && !loading && user && <Outlet />}
       {type === 'nonAuth' && !loading && !user && <Outlet />}
     </>

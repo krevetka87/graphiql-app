@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { Languages, RoutePath } from 'src/constants/common';
 import { auth, logout } from 'src/firebase';
 import { formsStore } from 'src/store/formsStore';
+import { burgerMenuStore } from 'src/store/burgerMenuStore';
 import ButtonWithBorder from 'src/components/UI/ButtonWithBorder';
 import LinkWithBorder from 'src/components/UI/LinkWithBorder';
-import { burgerMenuStore } from 'src/store/burgerMenuStore';
 
 interface MenuContentProps {
   type: 'header' | 'burger';

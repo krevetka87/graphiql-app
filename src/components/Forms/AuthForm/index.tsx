@@ -6,10 +6,9 @@ import { FormValues, InputPasswordType } from 'src/types/forms.types';
 import { FormFields } from 'src/constants/forms';
 import { formsStore } from 'src/store/formsStore';
 import { getFieldsOptions } from 'src/utils/forms';
-
-import eye from 'src/assets/eye-outline.svg';
-import eyeOff from 'src/assets/eye-off-outline.svg';
-import loader from 'src/assets/loader.svg';
+import { ReactComponent as EyeIcon } from 'src/assets/eye-outline.svg';
+import { ReactComponent as EyeOffIcon } from 'src/assets/eye-off-outline.svg';
+import { ReactComponent as SpinnerIcon } from 'src/assets/spinner.svg';
 import InputWrapper from '../InputWrapper';
 
 interface AuthFormProps {
@@ -87,11 +86,11 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
             type="button"
             onClick={toggleType}
           >
-            <img
-              className="w-5 h-5"
-              src={typePasswordInput === 'password' ? eyeOff : eye}
-              alt="show/hide password"
-            />
+            {typePasswordInput === 'password' ? (
+              <EyeIcon className="w-5 h-5" />
+            ) : (
+              <EyeOffIcon className="w-5 h-5" />
+            )}
           </button>
         </div>
       </InputWrapper>
@@ -101,7 +100,7 @@ const AuthForm = observer(({ onSubmit }: AuthFormProps) => {
       >
         {!isLoading && !isSignUp && t('forms.buttons.login')}
         {!isLoading && isSignUp && t('forms.buttons.register')}
-        {isLoading && <img className="h-7" src={loader} alt="loader" />}
+        {isLoading && <SpinnerIcon className="h-7" />}
       </button>
       <div className="flex gap-1">
         <span>{!isSignUp ? t('forms.label.noAccount') : t('forms.label.haveAccount')}</span>

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { RoutePath } from 'src/constants/common';
 import { auth } from 'src/firebase';
-import spinner from 'src/assets/spinner.svg';
+import { ReactComponent as SpinnerIcon } from 'src/assets/spinner.svg';
 
 const Welcome = () => {
   const { t } = useTranslation();
@@ -14,7 +14,7 @@ const Welcome = () => {
   const handleClickMain = () => navigation(RoutePath.main);
 
   if (loading) {
-    return <img className="m-auto" src={spinner} alt="spinner" />;
+    return <SpinnerIcon />;
   }
 
   return (
