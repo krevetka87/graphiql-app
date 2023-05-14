@@ -1,18 +1,17 @@
-import { observable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
-interface BurgerMenuStore {
-  isOpenBurgerMenu: boolean;
-  toggleIsOpenBurgerMenu: () => void;
-}
+class BurgerMenu {
+  isOpenBurgerMenu = false;
 
-const burgerMenu: BurgerMenuStore = {
-  isOpenBurgerMenu: false,
+  constructor() {
+    makeAutoObservable(this);
+  }
 
   toggleIsOpenBurgerMenu() {
     this.isOpenBurgerMenu = !this.isOpenBurgerMenu;
-  },
-};
+  }
+}
 
-const burgerMenuStore = observable(burgerMenu);
+const burgerMenuStore = new BurgerMenu();
 
 export { burgerMenuStore };

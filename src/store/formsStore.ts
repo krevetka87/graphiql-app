@@ -1,27 +1,27 @@
-import { observable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
-interface FormsStore {
-  isSignUp: boolean;
-  isLoading: boolean;
-  toggleIsSignUp: () => void;
-  setIsSignUp: (value: boolean) => void;
-  toggleIsLoading: () => void;
-}
+class Forms {
+  isSignUp = false;
 
-const forms: FormsStore = {
-  isSignUp: false,
-  isLoading: false,
+  isLoading = false;
+
+  constructor() {
+    makeAutoObservable(this);
+  }
+
   toggleIsSignUp() {
     this.isSignUp = !this.isSignUp;
-  },
-  setIsSignUp(value) {
+  }
+
+  setIsSignUp(value: boolean) {
     this.isSignUp = value;
-  },
+  }
+
   toggleIsLoading() {
     this.isLoading = !this.isLoading;
-  },
-};
+  }
+}
 
-const formsStore = observable(forms);
+const formsStore = new Forms();
 
 export { formsStore };
