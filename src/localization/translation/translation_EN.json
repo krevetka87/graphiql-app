@@ -3,12 +3,7 @@
     "errors": {
       "email": {
         "required": "Email is required",
-        "pattern": "Please enter correct email",
-        "validation": {
-          "letter": "Email at least one letter",
-          "digit": "Email at least one digit",
-          "special": "Email at least one special character"
-        }
+        "pattern": "Please enter correct email"
       },
       "password": {
         "required": "Password is required",
@@ -16,7 +11,8 @@
         "validation": {
           "letter": "Password at least one letter",
           "digit": "Password at least one digit",
-          "special": "Password at least one special character"
+          "special": "Password at least one special character",
+          "notCyrillic": "Password mustn't contain Cyrillic"
         }
       },
       "common": "Error"
