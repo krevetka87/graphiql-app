@@ -9,14 +9,16 @@ interface QueryProps {
   field: GraphQLField<unknown, unknown>;
 }
 
-function Query({ field }: QueryProps) {
+const Query = ({ field }: QueryProps) => {
+  const { headerText } = schemaStore;
+
   const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const { target } = event;
     const text = (target as HTMLSpanElement).textContent || '';
 
     schemaStore.saveStateToHistory();
 
-    schemaStore.setBackText(schemaStore.headerText);
+    schemaStore.setBackText(headerText);
     schemaStore.setHeaderText(text);
 
     schemaStore.setSelectedQueryField(field);
@@ -42,6 +44,6 @@ function Query({ field }: QueryProps) {
       {field.args && <p className="mt-2">{field.description}</p>}
     </>
   );
-}
+};
 
 export default Query;

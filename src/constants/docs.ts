@@ -1,3 +1,5 @@
+export const URL = 'https://rickandmortyapi.com/graphql';
+
 export enum OpenState {
   query = 'query',
   queryFields = 'queryFields',

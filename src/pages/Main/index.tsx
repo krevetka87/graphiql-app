@@ -5,7 +5,7 @@ import { ReactComponent as DocIcon } from '../../assets/doc.svg';
 
 import Docs from '../../components/Docs';
 
-export default function Main() {
+const Main = () => {
   const [showDoc, setShowDoc] = useState(false);
 
   const docButtonOnClick = async () => {
@@ -36,4 +36,6 @@ export default function Main() {
       )}
     </section>
   );
-}
+};
+
+export default Main;

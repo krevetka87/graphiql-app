@@ -1,0 +1,11 @@
+{
+  "docs": {
+    "title": "Docs",
+    "tools": {
+      "root": "Root Types",
+      "fields": "Fields",
+      "arguments": "Arguments",
+      "type": "Type"
+    }
+  }
+}

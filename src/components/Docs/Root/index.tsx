@@ -2,8 +2,8 @@ import { ReactComponent as RootIcon } from '../../../assets/root.svg';
 import { schemaStore } from '../../../store';
 import { OpenState } from '../../../constants/docs';
 
-function Root() {
-  const { schema } = schemaStore;
+const Root = () => {
+  const { schema, headerText } = schemaStore;
 
   const queryType = schema ? schema.getQueryType() : null;
 
@@ -15,7 +15,7 @@ function Root() {
 
     schemaStore.saveStateToHistory();
 
-    schemaStore.setBackText(schemaStore.headerText);
+    schemaStore.setBackText(headerText);
     schemaStore.setHeaderText(text);
 
     schemaStore.setQueryFields(fields);
@@ -24,13 +24,13 @@ function Root() {
 
   return (
     <div className="max-w-md">
-      <h3 className="text-3xl">{schemaStore.headerText}</h3>
+      <h3 className="text-3xl">{headerText}</h3>
       <p className="mt-4">A GraphQL schema provides a root type for each kind of operation.</p>
       <div className="flex items-center mt-4">
         <RootIcon className="mr-2" />
         <p className="text-sm">Root Types</p>
       </div>
-      <p className="font-normal mt-4 text-blue-500">
+      <strong className="mt-4 text-blue-500">
         query:{' '}
         {queryType ? (
           <span
@@ -42,9 +42,9 @@ function Root() {
         ) : (
           ''
         )}
-      </p>
+      </strong>
     </div>
   );
-}
+};
 
 export default Root;

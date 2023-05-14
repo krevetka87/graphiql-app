@@ -10,11 +10,13 @@ const QueryTools = lazy(() => import('./QueryTools'));
 const Types = lazy(() => import('./Types'));
 
 const Docs = observer(() => {
+  const { opened, schema } = schemaStore;
+
   useEffect(() => {
     schemaStore.loadSchema();
   }, []);
 
-  if (!schemaStore.schema) {
+  if (!schema) {
     return (
       <div className="border-l border-gray-700 p-4">
         <Spinner />
@@ -24,11 +26,11 @@ const Docs = observer(() => {
 
   return (
     <div className="border-l border-gray-700 p-4 overflow-auto">
-      {schemaStore.opened.query && <Root />}
-      {schemaStore.opened.queryFields && <Queries />}
-      {schemaStore.opened.queryField && <QueryTools />}
-      {schemaStore.opened.scalarType && <ScalarType />}
-      {schemaStore.opened.typeName && <Types />}
+      {opened.query && <Root />}
+      {opened.queryFields && <Queries />}
+      {opened.queryField && <QueryTools />}
+      {opened.scalarType && <ScalarType />}
+      {opened.typeName && <Types />}
     </div>
   );
 });

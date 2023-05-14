@@ -6,7 +6,7 @@ interface TypeFormatProps {
   arg: string;
 }
 
-function TypeFormat({ arg }: TypeFormatProps) {
+const TypeFormat = ({ arg }: TypeFormatProps) => {
   const firstLetterIndex = arg.search(/[a-zA-Z]/);
   const lastLetterIndex = arg.search(/[A-Za-z](?=[^A-Za-z]*$)/) + 1;
 
@@ -14,7 +14,7 @@ function TypeFormat({ arg }: TypeFormatProps) {
   const secondPart = arg.slice(firstLetterIndex, lastLetterIndex);
   const thirdPart = arg.slice(lastLetterIndex);
 
-  const { schema } = schemaStore;
+  const { schema, headerText } = schemaStore;
 
   const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const { target } = event;
@@ -22,7 +22,7 @@ function TypeFormat({ arg }: TypeFormatProps) {
 
     schemaStore.saveStateToHistory();
 
-    schemaStore.setBackText(schemaStore.headerText);
+    schemaStore.setBackText(headerText);
     schemaStore.setHeaderText(text);
 
     const type = schema?.getType(secondPart);
@@ -55,6 +55,6 @@ function TypeFormat({ arg }: TypeFormatProps) {
       {thirdPart}
     </span>
   );
-}
+};
 
 export default TypeFormat;

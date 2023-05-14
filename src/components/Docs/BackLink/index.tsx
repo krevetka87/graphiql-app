@@ -5,15 +5,17 @@ interface BackLinkProps {
   handleBackHistory: () => void;
 }
 
-function BackLink({ handleBackHistory }: BackLinkProps) {
+const BackLink = ({ handleBackHistory }: BackLinkProps) => {
+  const { backText } = schemaStore;
+
   return (
     <div className="flex items-center">
       <BackArrowIcon className="mr-1 w-arrow h-arrow " />
       <span className="hover:underline cursor-pointer" onClick={handleBackHistory}>
-        {schemaStore.backText}
+        {backText}
       </span>
     </div>
   );
-}
+};
 
 export default BackLink;

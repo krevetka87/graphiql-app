@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function Welcome() {
+const Welcome = () => {
   return (
     <div className="flex flex-col gap-4 items-start justify-start">
       <h2>Welcome</h2>
@@ -12,4 +12,6 @@ export default function Welcome() {
       </Link>
     </div>
   );
-}
+};
+
+export default Welcome;
