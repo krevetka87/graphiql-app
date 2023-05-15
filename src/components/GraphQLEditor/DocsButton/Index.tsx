@@ -1,9 +1,11 @@
 import { observer } from 'mobx-react-lite';
+import { useTranslation } from 'react-i18next';
 import { ReactComponent as DocActiveIcon } from '../../../assets/doc-active.svg';
 import { ReactComponent as DocIcon } from '../../../assets/doc.svg';
 import { editorStore } from '../../../store';
 
 const DocsButton = observer(() => {
+  const { t } = useTranslation();
   const { isDocsVisible } = editorStore;
 
   const showDocs = (): void => {
@@ -11,13 +13,18 @@ const DocsButton = observer(() => {
   };
 
   return (
-    <button
-      type="button"
-      onClick={showDocs}
-      className=" hover:bg-gray-300 font-bold rounded-lg p-2 [&>*:first-child]:w-6 [&>*:first-child]:h-6 flex justify-center"
-    >
-      {isDocsVisible ? <DocActiveIcon /> : <DocIcon />}
-    </button>
+    <div className="group relative">
+      <button
+        type="button"
+        onClick={showDocs}
+        className=" hover:bg-gray-300 font-bold rounded-lg p-2 [&>*:first-child]:w-6 [&>*:first-child]:h-6 flex justify-center"
+      >
+        {isDocsVisible ? <DocActiveIcon /> : <DocIcon />}
+      </button>
+      <div className="text-xs capitalize invisible opacity-0 duration-500 group-hover:visible group-hover:opacity-100 absolute -bottom-7 right-0 bg-white rounded-sm py-1 px-2 shadow-sm z-10 whitespace-nowrap">
+        {isDocsVisible ? t('editor.tooltips.docs.hide') : t('editor.tooltips.docs.show')}
+      </div>
+    </div>
   );
 });
 

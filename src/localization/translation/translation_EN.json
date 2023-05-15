@@ -4,7 +4,11 @@
       "copy": "copy query",
       "format": "format query",
       "execute": "execute query",
-      "copied": "copied"
+      "copied": "copied",
+      "docs": {
+        "hide": "hide documentation",
+        "show": "show documentation"
+      }
     },
     "tabs": {
       "variables": "variables",
