@@ -1,4 +1,5 @@
 import { MouseEventHandler, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import CloseButton from './CloseButton';
 import { editorStore } from '../../../store';
 import TabButton from './TabButton';
@@ -8,6 +9,7 @@ interface AccordeonProps {
 }
 
 const Accordeon = ({ children }: AccordeonProps) => {
+  const { t } = useTranslation();
   const [isOpen, setOpen] = useState(false);
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -32,8 +34,18 @@ const Accordeon = ({ children }: AccordeonProps) => {
     <div className="border-[#ECF3FA] border-t-2 py-3">
       <div className="px-6 text-left items-center flex justify-between">
         <div className="flex">
-          <TabButton onClick={handleClick} isOpen={isOpen} name="variables" />
-          <TabButton onClick={handleClick} isOpen={isOpen} name="headers" />
+          <TabButton
+            onClick={handleClick}
+            isOpen={isOpen}
+            title={t('editor.tabs.variables')}
+            name="variables"
+          />
+          <TabButton
+            onClick={handleClick}
+            isOpen={isOpen}
+            title={t('editor.tabs.headers')}
+            name="headers"
+          />
         </div>
         <CloseButton isOpen={isOpen} onClick={handleClick} />
       </div>

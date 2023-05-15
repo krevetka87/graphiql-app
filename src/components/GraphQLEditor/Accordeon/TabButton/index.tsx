@@ -4,10 +4,11 @@ import { editorStore } from '../../../../store';
 
 interface TabButtonProps {
   name: string;
+  title: string;
   onClick: MouseEventHandler<HTMLButtonElement>;
   isOpen: boolean;
 }
-const TabButton = observer(({ name, onClick, isOpen }: TabButtonProps) => {
+const TabButton = observer(({ name, onClick, isOpen, title }: TabButtonProps) => {
   const { activeTab } = editorStore;
 
   return (
@@ -19,7 +20,7 @@ const TabButton = observer(({ name, onClick, isOpen }: TabButtonProps) => {
         isOpen && activeTab === name ? 'bg-[#ECF3FA] cursor-default text-[#4A3A8A]' : ''
       }`}
     >
-      <span className="capitalize">{name}</span>
+      <span className="capitalize">{title}</span>
     </button>
   );
 });
