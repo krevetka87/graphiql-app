@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 import { Endpoints, baseURL } from '../constants/url';
-import { IGraphQLRequest } from '../types/api';
+import { GraphQLRequest } from '../types/api';
 
-const getQueryResult = async (requestData: IGraphQLRequest): Promise<AxiosResponse> => {
+const getQueryResult = async (requestData: GraphQLRequest): Promise<AxiosResponse> => {
   const { query, variables } = requestData;
   let { headers } = requestData;
 

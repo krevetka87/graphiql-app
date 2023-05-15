@@ -10,6 +10,10 @@ class EditorStore {
 
   activeTab = 'variables';
 
+  isDocsVisible = false;
+
+  isDataLoading = false;
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -24,6 +28,14 @@ class EditorStore {
 
   setActiveTab(tab: string) {
     this.activeTab = tab;
+  }
+
+  setDocsVisible(value: boolean) {
+    this.isDocsVisible = value;
+  }
+
+  setDataLoading(value: boolean) {
+    this.isDataLoading = value;
   }
 }
 

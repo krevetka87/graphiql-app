@@ -8,7 +8,7 @@ interface EditorButtonProps {
   tooltip: TooltipNames;
   name: string;
 }
-const EditorButton = ({ onClick, children, tooltip, name }: EditorButtonProps) => {
+const ActionButton = ({ onClick, children, tooltip, name }: EditorButtonProps) => {
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
 
@@ -28,12 +28,12 @@ const EditorButton = ({ onClick, children, tooltip, name }: EditorButtonProps) =
     <div className="group relative" data-name={name}>
       <button
         type="button"
-        className="p-2 rounded-lg bg-gray-100 hover:bg-gray-400 duration-500 ease-in-out"
+        className="p-2 rounded-lg bg-gray-100 hover:bg-gray-400 duration-500 ease-in-out [&>*:first-child]:w-6 [&>*:first-child]:h-6"
         onClick={handleClick}
       >
         {children}
       </button>
-      <div className="text-xs invisible opacity-0 duration-500 group-hover:visible group-hover:opacity-100 absolute -bottom-7 right-0 bg-white rounded-sm py-1 px-2 shadow-sm z-10 whitespace-nowrap">
+      <div className="text-xs invisible opacity-0 duration-500 group-hover:visible group-hover:opacity-100 absolute -bottom-7 left-0 bg-white rounded-sm py-1 px-2 shadow-sm z-10 whitespace-nowrap">
         {name === 'copy' && copied ? (
           <span className="text-[#40327A] capitalize">{t('editor.tooltips.copied')}</span>
         ) : (
@@ -44,4 +44,4 @@ const EditorButton = ({ onClick, children, tooltip, name }: EditorButtonProps) =
   );
 };
 
-export default EditorButton;
+export default ActionButton;
