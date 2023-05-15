@@ -24,9 +24,9 @@ const GraphQLEditor = observer(() => {
   }, [schema]);
 
   return (
-    <div className="shadow-lg flex flex-col flex-auto min-w-0">
+    <div className="shadow-lg flex flex-col flex-auto min-w-0 h-full mx-6">
       <EditorHeader />
-      <div className="flex flex-1">
+      <div className="flex flex-1 min-w-0 min-h-0">
         <RequestSection />
         <ResponseSection />
         <DocsSection />

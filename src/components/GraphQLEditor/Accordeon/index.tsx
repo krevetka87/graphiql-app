@@ -29,7 +29,7 @@ const Accordeon = ({ children }: AccordeonProps) => {
   };
 
   return (
-    <div className="border-[#ECF3FA] border-t-2 py-3 min-h-1/5">
+    <div className="border-[#ECF3FA] border-t-2 py-3">
       <div className="px-6 text-left items-center flex justify-between">
         <div className="flex">
           <TabButton onClick={handleClick} isOpen={isOpen} name="variables" />

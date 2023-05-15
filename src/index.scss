@@ -4,7 +4,6 @@
 
 html,
 body {
-  @apply min-h-full;
   @apply flex;
 }
 
@@ -14,8 +13,13 @@ body,
 }
 
 #root {
-  @apply flex;
-  @apply flex-col;
+  @apply flex flex-col;
+}
+
+html,
+body,
+#root {
+  @apply min-w-0 min-h-full;
 }
 
 h1 {
