@@ -1,13 +1,13 @@
 import { MouseEventHandler, useState } from 'react';
 import CloseButton from './CloseButton';
-import editorStore from '../../../store/editorStore';
+import { editorStore } from '../../../store';
 import TabButton from './TabButton';
 
-interface IAccordeonProps {
+interface AccordeonProps {
   children: JSX.Element;
 }
 
-const Accordeon = ({ children }: IAccordeonProps) => {
+const Accordeon = ({ children }: AccordeonProps) => {
   const [isOpen, setOpen] = useState(false);
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {

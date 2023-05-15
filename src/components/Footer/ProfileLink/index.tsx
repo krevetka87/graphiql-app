@@ -1,12 +1,12 @@
-import ghLogo from '../../../assets/icons/github-logo.svg';
+import ghLogo from '../../../assets/github-logo.svg';
 
-interface IProfileLinkProps {
+interface ProfileLinkProps {
   avatar: string;
   href: string;
   name: string;
 }
 
-const ProfileLink = ({ avatar, href, name }: IProfileLinkProps) => {
+const ProfileLink = ({ avatar, href, name }: ProfileLinkProps) => {
   const handleImgError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.onerror = null;
     e.currentTarget.src = ghLogo;

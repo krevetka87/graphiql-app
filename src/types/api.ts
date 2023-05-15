@@ -1,9 +1,9 @@
-type TParsedJson = { [key: string]: string };
+type ParsedJson = { [key: string]: string };
 
-interface IGraphQLRequest {
+interface GraphQLRequest {
   query: string | undefined;
-  variables?: TParsedJson | string;
-  headers?: TParsedJson | string;
+  variables?: ParsedJson | string;
+  headers?: ParsedJson | string;
 }
 
-export type { IGraphQLRequest, TParsedJson };
+export type { GraphQLRequest, ParsedJson };

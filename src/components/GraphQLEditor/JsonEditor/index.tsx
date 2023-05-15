@@ -1,21 +1,21 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef, useState } from 'react';
-import { IEditorTypes, TEditor, TEditorOptions } from '../../../types/editor';
+import { EditorTypes, Editor, EditorOptions } from '../../../types/editor';
 import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
 import { Files } from '../../../constants/editor';
-import editorsStore from '../../../store/editorStore';
+import { editorStore } from '../../../store';
 
-interface IJsonEditorProps {
-  type: keyof IEditorTypes;
+interface JsonEditorProps {
+  type: keyof EditorTypes;
   fileName: Files;
-  options: TEditorOptions;
+  options: EditorOptions;
   className: string;
 }
 
-const JsonEditor = observer(({ type, fileName, options, className }: IJsonEditorProps) => {
+const JsonEditor = observer(({ type, fileName, options, className }: JsonEditorProps) => {
   const editorRef = useRef<HTMLDivElement>(null);
-  const [editorInstance, setEditorInstance] = useState<TEditor | null>(null);
-  const { values } = editorsStore;
+  const [editorInstance, setEditorInstance] = useState<Editor | null>(null);
+  const { values } = editorStore;
 
   useEffect(() => {
     if (editorRef.current && !editorInstance) {
@@ -25,7 +25,7 @@ const JsonEditor = observer(({ type, fileName, options, className }: IJsonEditor
       setEditorInstance(editor);
 
       return () => {
-        editorsStore.setValue(editor.getValue(), type);
+        editorStore.setValue(editor.getValue(), type);
       };
     }
     return () => {};

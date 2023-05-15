@@ -1,4 +1,4 @@
-import RSLogo from '../../../assets/icons/rs-logo.svg';
+import RSLogo from '../../../assets/rs-logo.svg';
 
 const RSLink = () => {
   return (

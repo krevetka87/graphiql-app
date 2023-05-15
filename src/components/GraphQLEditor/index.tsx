@@ -16,10 +16,10 @@ import {
 } from '../../constants/editor';
 import Spinner from '../UI/Spinner';
 import EditorButton from './EditorButton';
-import PlayIcon from './EditorButton/PlayIcon';
-import PrettifyIcon from './EditorButton/PrettifyIcon';
-import CopyIcon from './EditorButton/CopyIcon';
-import editorStore from '../../store/editorStore';
+import { ReactComponent as CopyIcon } from '../../assets/copy.svg';
+import { ReactComponent as FormatIcon } from '../../assets/format.svg';
+import { ReactComponent as PlayIcon } from '../../assets/play.svg';
+import { editorStore } from '../../store';
 
 const GraphQLEditor = observer(() => {
   const { t } = useTranslation();
@@ -47,8 +47,8 @@ const GraphQLEditor = observer(() => {
   }, [schema]);
 
   return (
-    <div className="shadow-lg flex flex-col mx-5 flex-auto mt-10">
-      <section className="p-2 flex justify-between border-b-2 border-[#ECF3FA]">
+    <div className="shadow-lg flex flex-col flex-auto min-w-0 ml-5">
+      <section className="p-2 flex justify-end border-b-2 border-[#ECF3FA]">
         <div className="flex gap-3">
           <EditorButton
             onClick={sendRequest}
@@ -62,7 +62,7 @@ const GraphQLEditor = observer(() => {
             tooltip={t('editor.tooltips.format')}
             name={TooltipNames.format}
           >
-            <PrettifyIcon />
+            <FormatIcon />
           </EditorButton>
           <EditorButton
             onClick={copyQuery}

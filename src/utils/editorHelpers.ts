@@ -2,18 +2,18 @@ import { Uri, editor } from 'monaco-editor/esm/vs/editor/editor.api';
 import { AxiosError, AxiosResponse } from 'axios';
 import { Files } from '../constants/editor';
 import { getQueryResult } from '../api/queryApi';
-import { TEditor, TEditorModel, TEditorOptions } from '../types/editor';
-import { TParsedJson } from '../types/api';
+import { Editor, EditorModel, EditorOptions } from '../types/editor';
+import { ParsedJson } from '../types/api';
 
-const getEditorModel = (uri: string, value: string, language: string): TEditorModel => {
+const getEditorModel = (uri: string, value: string, language: string): EditorModel => {
   return editor.getModel(Uri.file(uri)) ?? editor.createModel(value, language, Uri.file(uri));
 };
 
 const createEditor = (
   element: HTMLDivElement,
-  model: TEditorModel,
-  options: TEditorOptions
-): TEditor => {
+  model: EditorModel,
+  options: EditorOptions
+): Editor => {
   return editor.create(element, {
     model,
     ...options,
@@ -35,9 +35,9 @@ const copyQuery = (): void => {
   }
 };
 
-const parseJSONtoObject = (json: string): TParsedJson | string => {
+const parseJSONtoObject = (json: string): ParsedJson | string => {
   try {
-    const parsed: TParsedJson = JSON.parse(json);
+    const parsed: ParsedJson = JSON.parse(json);
     return parsed;
   } catch (err) {
     return (err as Error).message;
@@ -50,8 +50,8 @@ const handleRequest = async (): Promise<void> => {
   const headersModelValue = editor.getModel(Uri.file(Files.headers))?.getValue();
   const resultModel = editor.getModel(Uri.file(`${Files.result}`));
 
-  let variables: TParsedJson | string | undefined;
-  let headers: TParsedJson | string | undefined;
+  let variables: ParsedJson | string | undefined;
+  let headers: ParsedJson | string | undefined;
 
   if (varModelValue) {
     variables = parseJSONtoObject(varModelValue);

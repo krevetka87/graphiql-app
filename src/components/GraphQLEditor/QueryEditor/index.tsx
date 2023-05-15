@@ -4,13 +4,13 @@ import { initializeMode } from 'monaco-graphql/esm/initializeMode';
 import { Uri } from 'monaco-editor';
 import { buildClientSchema } from 'graphql';
 import { Files, queryEditorOptions } from '../../../constants/editor';
-import { TEditor } from '../../../types/editor';
-import editorStore from '../../../store/editorStore';
+import { Editor } from '../../../types/editor';
+import { editorStore } from '../../../store/index';
 import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
 
 const QueryEditor = observer(() => {
   const editorRef = useRef<HTMLDivElement>(null);
-  const [editorInstance, setEditorInstance] = useState<TEditor | null>(null);
+  const [editorInstance, setEditorInstance] = useState<Editor | null>(null);
   const { values, schema } = editorStore;
 
   useEffect(() => {

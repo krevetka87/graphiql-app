@@ -1,13 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import { MouseEventHandler } from 'react';
-import editorStore from '../../../../store/editorStore';
+import { editorStore } from '../../../../store';
 
-interface ITabButtonProps {
+interface TabButtonProps {
   name: string;
   onClick: MouseEventHandler<HTMLButtonElement>;
   isOpen: boolean;
 }
-const TabButton = observer(({ name, onClick, isOpen }: ITabButtonProps) => {
+const TabButton = observer(({ name, onClick, isOpen }: TabButtonProps) => {
   const { activeTab } = editorStore;
 
   return (

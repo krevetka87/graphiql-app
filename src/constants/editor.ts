@@ -1,6 +1,6 @@
-import { IEditorTypes, TEditorOptions } from '../types/editor';
+import { EditorTypes, EditorOptions } from '../types/editor';
 
-const editorOptions: TEditorOptions = {
+const editorOptions: EditorOptions = {
   formatOnPaste: true,
   formatOnType: true,
   theme: 'vs-light',
@@ -26,12 +26,12 @@ const editorOptions: TEditorOptions = {
   renderLineHighlight: 'none',
 };
 
-const queryEditorOptions: TEditorOptions = {
+const queryEditorOptions: EditorOptions = {
   ...editorOptions,
   hover: { enabled: false },
 };
 
-const resultEditorOptions: TEditorOptions = {
+const resultEditorOptions: EditorOptions = {
   ...editorOptions,
   readOnly: true,
   lineNumbers: 'off',
@@ -40,7 +40,7 @@ const resultEditorOptions: TEditorOptions = {
   },
 };
 
-const initValues: IEditorTypes = {
+const initValues: EditorTypes = {
   query: `# Query example:
 #
 query($id: ID!) {
