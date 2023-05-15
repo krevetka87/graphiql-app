@@ -1,9 +1,12 @@
 import { Outlet } from 'react-router-dom';
+import BurgerMenu from 'src/components/BurgerMenu';
+import Header from '../components/Header';
 
 export default function Layout() {
   return (
     <>
-      <header />
+      <BurgerMenu />
+      <Header />
       <main className="flex-auto w-full">
         <Outlet />
       </main>
