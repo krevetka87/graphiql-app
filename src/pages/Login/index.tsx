@@ -1,5 +1,11 @@
+import Forms from 'src/components/Forms';
+
 const Login = () => {
-  return <h2>Login</h2>;
+  return (
+    <div className="flex min-h-full bg-login bg-cover">
+      <Forms />
+    </div>
+  );
 };
 
 export default Login;

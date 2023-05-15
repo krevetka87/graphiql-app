@@ -1,15 +1,30 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { RoutePath } from 'src/constants/common';
+import { auth } from 'src/firebase';
+import { ReactComponent as SpinnerIcon } from 'src/assets/spinner.svg';
 
 const Welcome = () => {
+  const { t } = useTranslation();
+
+  const [user, loading] = useAuthState(auth);
+  const navigation = useNavigate();
+
+  const handleClickMain = () => navigation(RoutePath.main);
+
+  if (loading) {
+    return <SpinnerIcon />;
+  }
+
   return (
-    <div className="flex flex-col gap-4 items-start justify-start">
-      <h2>Welcome</h2>
-      <Link to="/main" className="px-4 py-2 border border-purple-500 rounded-xl">
-        To Main
-      </Link>
-      <Link to="/login" className="px-4 py-2 border border-purple-500 rounded-xl">
-        To Login
-      </Link>
+    <div className="px-6">
+      <h1>{t('welcome.title')}</h1>
+      {!loading && user && (
+        <button type="button" onClick={handleClickMain}>
+          {t('welcome.buttons.main')}
+        </button>
+      )}
     </div>
   );
 };

@@ -1,10 +1,13 @@
 import { Outlet } from 'react-router-dom';
+import BurgerMenu from 'src/components/BurgerMenu';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const Layout = () => {
   return (
     <>
-      <header className="flex-initial" />
+      <BurgerMenu />
+      <Header className="flex-initial" />
       <main className="flex-auto flex">
         <Outlet />
       </main>

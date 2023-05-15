@@ -17,6 +17,7 @@
   "dependencies": {
     "@mobx-devtools/tools": "^0.0.4",
     "axios": "^1.4.0",
+    "firebase": "^9.21.0",
     "graphql": "^16.6.0",
     "i18next": "^22.4.15",
     "i18next-browser-languagedetector": "^7.0.1",
@@ -26,11 +27,12 @@
     "monaco-graphql": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.43.9",
     "react-i18next": "^12.2.2",
     "react-router-dom": "^6.10.0",
-    "react-toastify": "^9.1.2",
-    "vite-plugin-svgr": "^3.2.0"
+    "vite-plugin-svgr": "^3.2.0",
+    "react-toastify": "^9.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

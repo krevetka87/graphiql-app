@@ -15,6 +15,55 @@
       "headers": "headers"
     }
   },
+  "forms": {
+    "errors": {
+      "email": {
+        "required": "Email is required",
+        "pattern": "Please enter correct email"
+      },
+      "password": {
+        "required": "Password is required",
+        "minLength": "Password must have at least 8 characters",
+        "validation": {
+          "letter": "Password at least one letter",
+          "digit": "Password at least one digit",
+          "special": "Password at least one special character",
+          "notCyrillic": "Password mustn't contain Cyrillic"
+        }
+      },
+      "common": "Error"
+    },
+    "buttons": {
+      "login": "Sign In",
+      "register": "Sign Up"
+    },
+    "fields": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "label": {
+      "noAccount": "Don't have an account?",
+      "haveAccount": "Already have an account?"
+    },
+    "title": {
+      "login": "Login",
+      "register": "Register"
+    }
+  },
+  "header": {
+    "buttons": {
+      "logout": "Logout",
+      "language": "Change language",
+      "login": "Login",
+      "register": "Register"
+    }
+  },
+  "welcome": {
+    "title": "GraphiQL is a playground/IDE for graphQL requests",
+    "buttons": {
+      "main": "Main"
+    }
+  },
   "docs": {
     "title": "Docs",
     "tools": {

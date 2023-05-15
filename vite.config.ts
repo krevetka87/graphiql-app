@@ -14,4 +14,9 @@ export default defineConfig({
       customWorkers: [{ label: 'graphql', entry: 'monaco-graphql/esm/graphql.worker' }],
     }),
   ],
+  resolve: {
+    alias: {
+      src: '/src',
+    },
+  },
 });

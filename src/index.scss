@@ -2,10 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
 body {
-  @apply h-full w-full;
+  @apply min-h-full;
+  @apply flex;
+}
+
+body,
+#root {
+  flex: 1;
 }
 
 #root {
-  @apply flex flex-col min-h-screen h-full;
+  @apply flex;
+  @apply flex-col;
+}
+
+h1 {
+  @apply text-3xl;
+}
+
+h2 {
+  @apply text-2xl;
+}
+
+h3 {
+  @apply text-xl;
 }
