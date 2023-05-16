@@ -9,7 +9,7 @@ const RequestSection = observer(() => {
   const { activeTab } = editorStore;
 
   return (
-    <section className="flex-1 border-r-4 border-[#ECF3FA] min-w-0 min-h-0 flex flex-col">
+    <section className="flex-1 border-b-4 md:border-b-0 md:border-r-4 border-[#ECF3FA] min-w-0 min-h-0 flex flex-col">
       <div className="flex-1 min-h-0 min-w-0">
         <QueryEditor />
       </div>

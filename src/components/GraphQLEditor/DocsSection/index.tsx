@@ -12,8 +12,10 @@ const DocsSection = observer(() => {
       {isDocsVisible && (
         <Suspense
           fallback={
-            <div className="[&>*:first-child]:w-20 [&>*:first-child]:h-20">
-              <Spinner />
+            <div className="border-l border-gray-700 p-4">
+              <div className="[&>*:first-child]:w-20 [&>*:first-child]:h-20">
+                <Spinner />
+              </div>
             </div>
           }
         >

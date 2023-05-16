@@ -4,22 +4,17 @@
 
 html,
 body {
-  @apply flex;
+  @apply flex h-full;
 }
 
 body,
 #root {
   flex: 1;
+  @apply min-w-0;
 }
 
 #root {
   @apply flex flex-col;
-}
-
-html,
-body,
-#root {
-  @apply min-w-0 min-h-full;
 }
 
 h1 {

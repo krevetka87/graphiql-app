@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef, useState } from 'react';
-import { EditorTypes, Editor, EditorOptions } from '../../../types/editor';
+import { EditorTypes, EditorOptions, Editor } from '../../../types/editor';
 import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
 import { Files } from '../../../constants/editor';
 import { editorStore } from '../../../store';
@@ -18,9 +18,8 @@ const JsonEditor = observer(({ type, fileName, options, className }: JsonEditorP
   const { values } = editorStore;
 
   useEffect(() => {
-    if (editorRef.current && !editorInstance) {
+    if (!editorInstance && editorRef.current) {
       const model = getEditorModel(fileName, values[type], 'json');
-
       const editor = createEditor(editorRef.current, model, options);
       setEditorInstance(editor);
 
@@ -28,6 +27,7 @@ const JsonEditor = observer(({ type, fileName, options, className }: JsonEditorP
         editorStore.setValue(editor.getValue(), type);
       };
     }
+
     return () => {};
   }, [editorInstance, fileName, type, options, values]);
 

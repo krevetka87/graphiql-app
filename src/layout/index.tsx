@@ -8,7 +8,7 @@ const Layout = () => {
     <>
       <BurgerMenu />
       <Header />
-      <main className="flex-auto w-full">
+      <main className="flex-auto w-full min-h-0">
         <Outlet />
       </main>
       <Footer />

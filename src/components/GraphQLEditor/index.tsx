@@ -26,7 +26,7 @@ const GraphQLEditor = observer(() => {
   return (
     <div className="shadow-lg flex flex-col flex-auto min-w-0 h-full mx-6">
       <EditorHeader />
-      <div className="flex flex-1 min-w-0 min-h-0">
+      <div className="flex flex-1 min-w-0 min-h-0 flex-col md:flex-row">
         <RequestSection />
         <ResponseSection />
         <DocsSection />

@@ -20,8 +20,18 @@ const createEditor = (
   });
 };
 
+const disposeEditors = (): void => {
+  const editors = editor.getEditors();
+
+  editors.forEach((currentEditor) => {
+    currentEditor.dispose();
+  });
+};
+
 const prettifyQuery = (): void => {
-  editor.getEditors().forEach((currentEditor) => {
+  const editors = editor.getEditors();
+
+  editors.forEach((currentEditor) => {
     const action = currentEditor.getAction('editor.action.formatDocument');
     action?.run();
   });
@@ -88,4 +98,4 @@ const handleRequest = async (): Promise<void> => {
     });
 };
 
-export { getEditorModel, createEditor, handleRequest, prettifyQuery, copyQuery };
+export { getEditorModel, createEditor, handleRequest, prettifyQuery, copyQuery, disposeEditors };

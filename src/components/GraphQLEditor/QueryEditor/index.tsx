@@ -4,9 +4,9 @@ import { initializeMode } from 'monaco-graphql/esm/initializeMode';
 import { Uri } from 'monaco-editor';
 import { buildClientSchema } from 'graphql';
 import { Files, queryEditorOptions } from '../../../constants/editor';
-import { Editor } from '../../../types/editor';
 import { editorStore } from '../../../store/index';
 import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
+import { Editor } from '../../../types/editor';
 
 const QueryEditor = observer(() => {
   const editorRef = useRef<HTMLDivElement>(null);
@@ -46,7 +46,6 @@ const QueryEditor = observer(() => {
   useEffect(() => {
     if (!editorInstance && editorRef.current) {
       const model = getEditorModel(Files.query, values.query, 'graphql');
-
       const editor = createEditor(editorRef.current, model, queryEditorOptions);
       setEditorInstance(editor);
 
@@ -54,6 +53,7 @@ const QueryEditor = observer(() => {
         editorStore.setValue(editor.getValue(), 'query');
       };
     }
+
     return () => {};
   }, [editorInstance, values]);
 
