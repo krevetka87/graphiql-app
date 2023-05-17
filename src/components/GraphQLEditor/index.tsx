@@ -1,38 +1,19 @@
-import { useEffect } from 'react';
-import { observer } from 'mobx-react-lite';
-import { toast } from 'react-toastify';
-import getApiSchema from '../../api/schemaApi';
-import { editorStore } from '../../store';
 import EditorHeader from './EditorHeader';
 import RequestSection from './RequestSection';
 import ResponseSection from './ResponseSection';
 import DocsSection from './DocsSection';
 
-const GraphQLEditor = observer(() => {
-  const { schema } = editorStore;
-
-  useEffect(() => {
-    if (schema) {
-      return;
-    }
-
-    getApiSchema()
-      .then((data) => {
-        editorStore.setSchema(data);
-      })
-      .catch((err: Error) => toast.error(err.message));
-  }, [schema]);
-
+const GraphQLEditor = () => {
   return (
-    <div className="shadow-lg flex flex-col flex-auto min-w-0 h-full mx-6">
+    <div className="shadow-lg flex flex-col flex-auto min-w-0 h-auto lg:h-full mx-6">
       <EditorHeader />
-      <div className="flex flex-1 min-w-0 min-h-0 flex-col md:flex-row">
+      <div className="flex flex-1 min-w-0 min-h-0 flex-col lg:flex-row lg:h-auto ml-[57px] lg:ml-0 border-l border-[#ECF3FA] lg:border-l-0">
         <RequestSection />
         <ResponseSection />
         <DocsSection />
       </div>
     </div>
   );
-});
+};
 
 export default GraphQLEditor;

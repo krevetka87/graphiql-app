@@ -6,7 +6,8 @@ import {
   GraphQLSchema,
 } from 'graphql';
 
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
+import { toast } from 'react-toastify';
 import { getGraphQLSchema } from '../api/api';
 
 interface HistoryState {
@@ -29,6 +30,8 @@ interface OpenState {
 
 class SchemaStore {
   schema: GraphQLSchema | null = null;
+
+  isSchemaLoading = false;
 
   defaultOpened: OpenState = {
     query: false,
@@ -57,6 +60,7 @@ class SchemaStore {
   constructor() {
     makeObservable(this, {
       schema: observable,
+      isSchemaLoading: observable,
       defaultOpened: observable,
       queryFields: observable,
       queryField: observable,
@@ -82,8 +86,27 @@ class SchemaStore {
   }
 
   async loadSchema() {
-    const schema = await getGraphQLSchema();
-    this.schema = schema || null;
+    runInAction(() => {
+      this.setSchemaLoading(true);
+    });
+
+    try {
+      const schema = await getGraphQLSchema();
+
+      runInAction(() => {
+        this.schema = schema || null;
+      });
+    } catch (err) {
+      toast.error((err as Error).message);
+    } finally {
+      runInAction(() => {
+        this.setSchemaLoading(false);
+      });
+    }
+  }
+
+  setSchemaLoading(value: boolean) {
+    this.isSchemaLoading = value;
   }
 
   loadPreviousState(lastAction: HistoryState) {

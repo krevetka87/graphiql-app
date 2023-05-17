@@ -8,16 +8,16 @@ const ResponseSection = observer(() => {
   const { isDataLoading } = editorStore;
 
   return (
-    <section className="flex-1 min-w-0 min-h-0 py-3 px-3">
+    <section className="flex-1 min-w-0 min-h-[300px] h-auto lg:min-h-0 py-3 px-3 order-3 lg:order-2">
       {!isDataLoading ? (
         <JsonEditor
           type="result"
           options={resultEditorOptions}
           fileName={Files.result}
-          className="h-[98%]"
+          className="h-[300px] lg:h-[98%]"
         />
       ) : (
-        <div className="h-full flex items-center justify-center [&>*:first-child]:w-20 [&>*:first-child]:h-20">
+        <div className="h-[300px] lg:h-full flex items-center justify-center [&>*:first-child]:w-24 [&>*:first-child]:h-24">
           <Spinner />
         </div>
       )}

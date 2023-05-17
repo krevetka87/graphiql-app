@@ -21,8 +21,8 @@ const EditorHeader = () => {
   };
 
   return (
-    <div className="p-2 flex justify-between items-center border-b-2 border-[#ECF3FA]">
-      <div className="flex gap-3">
+    <div className="px-2 py-4 lg:py-2 flex flex-col lg:flex-row justify-between items-center lg:border-b-2 border-[#ECF3FA] fixed z-10 lg:static">
+      <div className="flex gap-3 flex-col lg:flex-row order-2 lg:order-1">
         <ActionButton
           onClick={sendRequest}
           tooltip={t('editor.tooltips.execute')}

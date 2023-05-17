@@ -71,6 +71,7 @@
       "fields": "Fields",
       "arguments": "Arguments",
       "type": "Type"
-    }
+    },
+    "loadError": "Schema load error"
   }
 }

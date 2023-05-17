@@ -13,7 +13,7 @@ const DocsButton = observer(() => {
   };
 
   return (
-    <div className="group relative">
+    <div className="group relative order-1 lg:order-2 mb-12 lg:mb-0">
       <button
         type="button"
         onClick={showDocs}
@@ -21,7 +21,7 @@ const DocsButton = observer(() => {
       >
         {isDocsVisible ? <DocActiveIcon /> : <DocIcon />}
       </button>
-      <div className="text-xs capitalize invisible opacity-0 duration-500 group-hover:visible group-hover:opacity-100 absolute -bottom-7 right-0 bg-white rounded-sm py-1 px-2 shadow-sm z-10 whitespace-nowrap">
+      <div className="text-xs capitalize invisible opacity-0 duration-500 group-hover:visible group-hover:opacity-100 absolute -bottom-7 left-0 lg:right-0 lg:left-auto bg-white rounded-sm py-1 px-2 shadow-sm z-10 whitespace-nowrap">
         {isDocsVisible ? t('editor.tooltips.docs.hide') : t('editor.tooltips.docs.show')}
       </div>
     </div>

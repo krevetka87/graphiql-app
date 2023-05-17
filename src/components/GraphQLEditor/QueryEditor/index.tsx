@@ -2,16 +2,16 @@ import { observer } from 'mobx-react-lite';
 import { useEffect, useRef, useState } from 'react';
 import { initializeMode } from 'monaco-graphql/esm/initializeMode';
 import { Uri } from 'monaco-editor';
-import { buildClientSchema } from 'graphql';
 import { Files, queryEditorOptions } from '../../../constants/editor';
-import { editorStore } from '../../../store/index';
+import { editorStore, schemaStore } from '../../../store/index';
 import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
 import { Editor } from '../../../types/editor';
 
 const QueryEditor = observer(() => {
   const editorRef = useRef<HTMLDivElement>(null);
   const [editorInstance, setEditorInstance] = useState<Editor | null>(null);
-  const { values, schema } = editorStore;
+  const { values } = editorStore;
+  const { schema } = schemaStore;
 
   useEffect(() => {
     if (schema) {
@@ -31,7 +31,7 @@ const QueryEditor = observer(() => {
 
       api.setSchemaConfig([
         {
-          schema: buildClientSchema(schema),
+          schema,
           uri: 'schema.graphql',
           fileMatch: [Files.query],
         },
@@ -57,7 +57,7 @@ const QueryEditor = observer(() => {
     return () => {};
   }, [editorInstance, values]);
 
-  return <div ref={editorRef} className="h-[98%] py-3" />;
+  return <div ref={editorRef} className="h-[300px] lg:h-[98%] py-3" />;
 });
 
 export default QueryEditor;

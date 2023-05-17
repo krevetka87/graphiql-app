@@ -16,7 +16,7 @@ const TabButton = observer(({ name, onClick, isOpen, title }: TabButtonProps) =>
       type="button"
       data-name={name}
       onClick={onClick}
-      className={`p-2 font-semibold rounded-md transition-all duration-500 ease-in-out mr-2 ${
+      className={`p-2 text-sm md:text-base font-semibold rounded-md transition-all duration-500 ease-in-out ${
         isOpen && activeTab === name ? 'bg-[#ECF3FA] cursor-default text-[#4A3A8A]' : ''
       }`}
     >
