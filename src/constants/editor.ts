@@ -1,4 +1,4 @@
-import { EditorTypes, EditorOptions } from '../types/editor';
+import { EditorTypes, EditorOptions } from '../types/editor.types';
 
 const editorOptions: EditorOptions = {
   formatOnPaste: true,
@@ -42,7 +42,6 @@ const resultEditorOptions: EditorOptions = {
 
 const initValues: EditorTypes = {
   query: `# Query example:
-#
 query($id: ID!) {
   character(id: $id){
     name
@@ -66,6 +65,7 @@ enum TooltipNames {
   execute = 'execute',
   format = 'format',
   copy = 'copy',
+  refetch = 'refetch',
 }
 
 enum Tabs {

@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-import { Endpoints, baseURL } from '../constants/url';
-import { GraphQLRequest } from '../types/api';
+import { URL } from '../constants/common';
+import { GraphQLRequest } from '../types/api.types';
 
 const getQueryResult = async (requestData: GraphQLRequest): Promise<AxiosResponse> => {
   const { query, variables } = requestData;
@@ -11,7 +11,7 @@ const getQueryResult = async (requestData: GraphQLRequest): Promise<AxiosRespons
   }
 
   return axios.post(
-    `${baseURL}${Endpoints.graphql}`,
+    URL,
     {
       query,
       variables,

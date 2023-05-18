@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef, useState } from 'react';
-import { EditorTypes, EditorOptions, Editor } from '../../../types/editor';
+import { EditorTypes, EditorOptions, Editor } from '../../../types/editor.types';
 import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
 import { Files } from '../../../constants/editor';
 import { editorStore } from '../../../store';

@@ -12,7 +12,7 @@ const Types = lazy(() => import('./Types'));
 
 const Docs = observer(() => {
   const { t } = useTranslation();
-  const { opened, schema, isSchemaLoading } = schemaStore;
+  const { opened, isSchemaLoading, isSchemaError } = schemaStore;
 
   if (isSchemaLoading) {
     return (
@@ -22,7 +22,7 @@ const Docs = observer(() => {
     );
   }
 
-  if (!isSchemaLoading && !schema) {
+  if (!isSchemaLoading && isSchemaError) {
     return (
       <div className="h-[300px] lg:h-full w-full flex justify-center items-center">
         <h3 className="text-center">{t('docs.loadError')}</h3>
@@ -31,7 +31,7 @@ const Docs = observer(() => {
   }
 
   return (
-    <div className="p-4 overflow-auto max-h-full w-full">
+    <div className="text-sm whitespace-nowrap md:whitespace-normal md:text-base p-2 overflow-auto max-h-full w-full scrollbar scrollbar-thumb-gray-300 scrollbar-w-1 scrollbar-h-1">
       {opened.query && <Root />}
       {opened.queryFields && <Queries />}
       {opened.queryField && <QueryTools />}

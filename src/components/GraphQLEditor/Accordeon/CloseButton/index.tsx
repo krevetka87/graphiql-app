@@ -9,7 +9,11 @@ interface CloseButtonProps {
 
 const CloseButton = ({ isOpen, onClick }: CloseButtonProps) => {
   return (
-    <button type="button" onClick={onClick} className="[&>*:first-child]:w-6 [&>*:first-child]:h-6">
+    <button
+      type="button"
+      onClick={onClick}
+      className="[&>*:first-child]:w-4 [&>*:first-child]:h-4 md:[&>*:first-child]:w-6 md:[&>*:first-child]:h-6"
+    >
       {isOpen ? <ArrowDownIcon /> : <ArrowUpIcon />}
     </button>
   );

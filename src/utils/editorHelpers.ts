@@ -2,8 +2,9 @@ import { Uri, editor } from 'monaco-editor/esm/vs/editor/editor.api';
 import { AxiosError, AxiosResponse } from 'axios';
 import { Files } from '../constants/editor';
 import { getQueryResult } from '../api/queryApi';
-import { Editor, EditorModel, EditorOptions } from '../types/editor';
-import { ParsedJson } from '../types/api';
+import { Editor, EditorModel, EditorOptions } from '../types/editor.types';
+import { ParsedJson } from '../types/api.types';
+import { schemaStore } from '../store';
 
 const getEditorModel = (uri: string, value: string, language: string): EditorModel => {
   return editor.getModel(Uri.file(uri)) ?? editor.createModel(value, language, Uri.file(uri));
@@ -43,6 +44,10 @@ const copyQuery = (): void => {
   if (queryModelValue) {
     navigator.clipboard.writeText(queryModelValue);
   }
+};
+
+const refetchSchema = (): void => {
+  schemaStore.loadSchema();
 };
 
 const parseJSONtoObject = (json: string): ParsedJson | string => {
@@ -98,4 +103,12 @@ const handleRequest = async (): Promise<void> => {
     });
 };
 
-export { getEditorModel, createEditor, handleRequest, prettifyQuery, copyQuery, disposeEditors };
+export {
+  getEditorModel,
+  createEditor,
+  handleRequest,
+  prettifyQuery,
+  copyQuery,
+  disposeEditors,
+  refetchSchema,
+};

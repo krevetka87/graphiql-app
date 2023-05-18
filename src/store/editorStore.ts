@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { EditorTypes } from '../types/editor';
+import { EditorTypes } from '../types/editor.types';
 import { initValues } from '../constants/editor';
 
 class EditorStore {

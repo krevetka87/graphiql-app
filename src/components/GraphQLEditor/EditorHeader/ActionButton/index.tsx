@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TooltipNames } from '../../../constants/editor';
+import { TooltipNames } from '../../../../constants/editor';
 
 interface EditorButtonProps {
   onClick: () => void;
@@ -28,7 +28,7 @@ const ActionButton = ({ onClick, children, tooltip, name }: EditorButtonProps) =
     <div className="group relative" data-name={name}>
       <button
         type="button"
-        className="p-2 rounded-lg bg-gray-100 hover:bg-gray-400 duration-500 ease-in-out [&>*:first-child]:w-6 [&>*:first-child]:h-6"
+        className="p-2 rounded-lg bg-gray-100 hover:bg-gray-400 transition-all duration-500 ease-in-out [&>*:first-child]:w-6 [&>*:first-child]:h-6"
         onClick={handleClick}
       >
         {children}

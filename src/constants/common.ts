@@ -1,3 +1,5 @@
+const URL = 'https://rickandmortyapi.com/graphql';
+
 const profiles = [
   {
     id: 1,
@@ -31,4 +33,4 @@ enum Languages {
   ru = 'ru',
 }
 
-export { RoutePath, Languages, profiles };
+export { RoutePath, Languages, profiles, URL };

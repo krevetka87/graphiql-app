@@ -8,7 +8,7 @@ import {
 
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { toast } from 'react-toastify';
-import { getGraphQLSchema } from '../api/api';
+import { getGraphQLSchema } from '../api/schemaApi';
 
 interface HistoryState {
   queryFields: GraphQLFieldMap<unknown, unknown> | GraphQLInputFieldMap | null;
@@ -32,6 +32,8 @@ class SchemaStore {
   schema: GraphQLSchema | null = null;
 
   isSchemaLoading = false;
+
+  isSchemaError = false;
 
   defaultOpened: OpenState = {
     query: false,
@@ -88,6 +90,7 @@ class SchemaStore {
   async loadSchema() {
     runInAction(() => {
       this.setSchemaLoading(true);
+      this.setSchemaError(false);
     });
 
     try {
@@ -97,6 +100,10 @@ class SchemaStore {
         this.schema = schema || null;
       });
     } catch (err) {
+      runInAction(() => {
+        this.setSchemaError(true);
+      });
+
       toast.error((err as Error).message);
     } finally {
       runInAction(() => {
@@ -107,6 +114,10 @@ class SchemaStore {
 
   setSchemaLoading(value: boolean) {
     this.isSchemaLoading = value;
+  }
+
+  setSchemaError(value: boolean) {
+    this.isSchemaError = value;
   }
 
   loadPreviousState(lastAction: HistoryState) {

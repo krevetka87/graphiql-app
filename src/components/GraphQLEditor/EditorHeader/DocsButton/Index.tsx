@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as DocActiveIcon } from '../../../assets/doc-active.svg';
-import { ReactComponent as DocIcon } from '../../../assets/doc.svg';
-import { editorStore } from '../../../store';
+import { ReactComponent as DocActiveIcon } from '../../../../assets/doc-active.svg';
+import { ReactComponent as DocIcon } from '../../../../assets/doc.svg';
+import { editorStore } from '../../../../store';
 
 const DocsButton = observer(() => {
   const { t } = useTranslation();
@@ -17,7 +17,7 @@ const DocsButton = observer(() => {
       <button
         type="button"
         onClick={showDocs}
-        className=" hover:bg-gray-300 font-bold rounded-lg p-2 [&>*:first-child]:w-6 [&>*:first-child]:h-6 flex justify-center"
+        className=" hover:bg-gray-300 font-bold rounded-lg p-2 transition-all duration-500 [&>*:first-child]:w-6 [&>*:first-child]:h-6 flex justify-center"
       >
         {isDocsVisible ? <DocActiveIcon /> : <DocIcon />}
       </button>

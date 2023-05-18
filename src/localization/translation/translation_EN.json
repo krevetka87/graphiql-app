@@ -5,6 +5,7 @@
       "format": "format query",
       "execute": "execute query",
       "copied": "copied",
+      "refetch": "Re-fetch GraphQL schema",
       "docs": {
         "hide": "hide documentation",
         "show": "show documentation"

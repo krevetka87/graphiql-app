@@ -5,7 +5,7 @@ import { Uri } from 'monaco-editor';
 import { Files, queryEditorOptions } from '../../../constants/editor';
 import { editorStore, schemaStore } from '../../../store/index';
 import { createEditor, getEditorModel } from '../../../utils/editorHelpers';
-import { Editor } from '../../../types/editor';
+import { Editor } from '../../../types/editor.types';
 
 const QueryEditor = observer(() => {
   const editorRef = useRef<HTMLDivElement>(null);

@@ -1,25 +1,16 @@
-import { getIntrospectionQuery, IntrospectionQuery } from 'graphql';
-import axios, { AxiosResponse } from 'axios';
-import { Endpoints, baseURL } from '../constants/url';
+import axios from 'axios';
+import { parse, print } from 'graphql';
+import { buildClientSchema, getIntrospectionQuery } from 'graphql/utilities';
+import { URL } from '../constants/common';
 
-const getApiSchema = async (): Promise<IntrospectionQuery> => {
+export async function getGraphQLSchema() {
   try {
-    const res: AxiosResponse = await axios.post(
-      `${baseURL}${Endpoints.graphql}`,
-      {
-        query: getIntrospectionQuery(),
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-    const { data } = res.data;
-    return data;
-  } catch (err) {
-    throw new Error((err as Error).message);
+    const response = await axios.post(URL, {
+      query: print(parse(getIntrospectionQuery())),
+    });
+    const schema = buildClientSchema(response.data.data);
+    return schema;
+  } catch (error) {
+    throw new Error((error as Error).message);
   }
-};
-
-export default getApiSchema;
+}
