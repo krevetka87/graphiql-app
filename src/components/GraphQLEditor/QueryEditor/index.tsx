@@ -33,9 +33,13 @@ const QueryEditor = observer(() => {
         {
           schema,
           uri: 'schema.graphql',
-          fileMatch: [Files.query],
+          fileMatch: [Uri.file(`${Files.query}`).toString()],
         },
       ]);
+
+      api.setCompletionSettings({
+        __experimental__fillLeafsOnComplete: true,
+      });
 
       api.setFormattingOptions({
         prettierConfig: { useTabs: true, tabWidth: 2, bracketSameLine: false },

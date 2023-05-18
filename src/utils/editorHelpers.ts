@@ -34,7 +34,7 @@ const prettifyQuery = (): void => {
 
   editors.forEach((currentEditor) => {
     const action = currentEditor.getAction('editor.action.formatDocument');
-    action?.run().catch((err) => err);
+    action?.run().catch((err: Error) => err);
   });
 };
 
