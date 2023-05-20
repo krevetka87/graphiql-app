@@ -17,7 +17,7 @@ const TabButton = observer(({ name, onClick, isOpen, title }: TabButtonProps) =>
       data-name={name}
       onClick={onClick}
       className={`p-1 md:p-2 text-[12px] md:text-base font-semibold rounded-md transition-all duration-500 ease-in-out ${
-        isOpen && activeTab === name ? 'bg-[#ECF3FA] cursor-default text-[#4A3A8A]' : ''
+        isOpen && activeTab === name ? 'bg-[#ECF3FA] cursor-default text-[#fe718d]' : ''
       }`}
     >
       <span className="capitalize">{title}</span>

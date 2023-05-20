@@ -35,7 +35,7 @@ const ActionButton = ({ onClick, children, tooltip, name }: EditorButtonProps) =
       </button>
       <div className="text-xs invisible opacity-0 duration-500 group-hover:visible group-hover:opacity-100 absolute -bottom-7 left-0 bg-white rounded-sm py-1 px-2 shadow-sm z-10 whitespace-nowrap">
         {name === 'copy' && copied ? (
-          <span className="text-[#40327A] capitalize">{t('editor.tooltips.copied')}</span>
+          <span className="text-[#fe718d] capitalize">{t('editor.tooltips.copied')}</span>
         ) : (
           <span className="capitalize">{tooltip}</span>
         )}

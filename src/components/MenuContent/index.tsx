@@ -54,7 +54,11 @@ const MenuContent = observer(({ type }: MenuContentProps) => {
           type === 'burger' && 'flex-col'
         }`}
       >
-        <LinkWithBorder to={RoutePath.welcome} onClick={handleClickWelcome}>
+        <LinkWithBorder
+          to={RoutePath.welcome}
+          onClick={handleClickWelcome}
+          className="after:border-b-[#fe718d] text-[#fe718d]"
+        >
           GraphiQL
         </LinkWithBorder>
       </ul>
