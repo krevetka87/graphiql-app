@@ -7,7 +7,7 @@ const BurgerMenu = observer(() => {
 
   return (
     <nav
-      className={`w-full absolute top-0 left-0 bg-white h-full transition-all duration-300 z-20 flex flex-col gap-6 justify-center items-start px-6 shadow-lg ${
+      className={`w-full fixed top-0 left-0 bg-white h-full transition-all duration-300 z-20 flex flex-col gap-6 justify-center items-start px-6 shadow-lg ${
         !isOpenBurgerMenu ? '-translate-x-full' : 'translate-x-0'
       }`}
     >
