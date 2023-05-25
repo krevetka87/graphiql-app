@@ -54,7 +54,11 @@ const MenuContent = observer(({ type }: MenuContentProps) => {
           type === 'burger' && 'flex-col'
         }`}
       >
-        <LinkWithBorder to={RoutePath.welcome} onClick={handleClickWelcome}>
+        <LinkWithBorder
+          to={RoutePath.welcome}
+          onClick={handleClickWelcome}
+          className="after:border-b-[#fe718d] text-[#fe718d]"
+        >
           GraphiQL
         </LinkWithBorder>
       </ul>
@@ -66,10 +70,18 @@ const MenuContent = observer(({ type }: MenuContentProps) => {
       >
         {!loading && !user && (
           <>
-            <LinkWithBorder to={RoutePath.login} onClick={handleClickLogin}>
+            <LinkWithBorder
+              to={RoutePath.login}
+              onClick={handleClickLogin}
+              className="after:border-b-black"
+            >
               {t('header.buttons.login')}
             </LinkWithBorder>
-            <LinkWithBorder to={RoutePath.login} onClick={handleClickRegister}>
+            <LinkWithBorder
+              to={RoutePath.login}
+              onClick={handleClickRegister}
+              className="after:border-b-black"
+            >
               {t('header.buttons.register')}
             </LinkWithBorder>
           </>

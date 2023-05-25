@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { parse, print } from 'graphql';
 import { buildClientSchema, getIntrospectionQuery } from 'graphql/utilities';
-import { URL } from '../constants/docs';
+import { URL } from '../constants/common';
 
 export async function getGraphQLSchema() {
   try {
@@ -13,19 +13,4 @@ export async function getGraphQLSchema() {
   } catch (error) {
     throw new Error((error as Error).message);
   }
-}
-
-export async function sendGraphQLQuery(query: string) {
-  const response = await fetch('https://rickandmortyapi.com/graphql', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ query }),
-    credentials: 'same-origin',
-  });
-
-  const data = await response.json();
-  return data;
 }

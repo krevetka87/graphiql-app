@@ -11,7 +11,7 @@ i18n
   .init({
     fallbackLng: Languages.en,
     returnEmptyString: false,
-    debug: true,
+    debug: false,
     detection: {
       order: ['localStorage'],
       caches: ['localStorage'],
