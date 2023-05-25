@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { RoutePath } from 'src/constants/common';
+import { RoutePath, profiles } from 'src/constants/common';
 import { auth } from 'src/firebase';
 import { ReactComponent as SpinnerIcon } from 'src/assets/spinner.svg';
 import Accordion from 'src/components/Accordion';
 import { useState } from 'react';
 import Banner from 'src/components/Banner';
-import { TextState } from 'src/types/text.types';
+import { TeamState, TextState } from 'src/types/text.types';
+import Team from 'src/components/Team';
 
 const Welcome = () => {
   const [user, loading] = useAuthState(auth);
@@ -18,6 +19,7 @@ const Welcome = () => {
   const { t } = useTranslation();
   const textAccordions = t('welcome.accordions.text', { returnObjects: true }) as TextState[];
   const textBanners = t('welcome.banners.text', { returnObjects: true }) as TextState[];
+  const team = t('welcome.developers.team', { returnObjects: true }) as TeamState[];
 
   const handleClickMain = () => navigation(RoutePath.main);
 
@@ -37,7 +39,7 @@ const Welcome = () => {
       {!loading && user && (
         <button
           type="button"
-          className="border-4 rounded-md px-4 py-2 transition-all bg-white hover:bg-gray-200 text-xl font-semibold w-min mb-7"
+          className="border-4 rounded-md px-4 py-2 transition-all bg-white hover:bg-[#fe718d] hover:border-[#fe718d] text-xl font-semibold w-min mb-7"
           onClick={handleClickMain}
         >
           {t('welcome.buttons.main')}
@@ -58,7 +60,7 @@ const Welcome = () => {
         </div>
       </div>
 
-      <div>
+      <div className="mb-12 w-full">
         <div className="flex items-center gap-5 text-2xl mb-6">
           <div className="w-full h-1 bg-gray-100" />
           <h5 className="whitespace-nowrap">{t('welcome.banners.title')}</h5>
@@ -75,6 +77,20 @@ const Welcome = () => {
             />
           ))}
         </div>
+      </div>
+
+      <div className="w-full">
+        <div className="flex items-center gap-5 text-2xl mb-6">
+          <div className="w-full h-1 bg-gray-100" />
+          <h5 className="whitespace-nowrap">{t('welcome.developers.title')}</h5>
+          <div className="w-full h-1 bg-gray-100" />
+        </div>
+
+        <ul className="flex flex-wrap gap-10 items-center justify-around">
+          {team.map((developer) => (
+            <Team key={developer.id} developer={developer} />
+          ))}
+        </ul>
       </div>
     </div>
   );

@@ -114,6 +114,35 @@
           "description": "Создание удобного интерфейса с возможностью выбора нескольких языков."
         }
       ]
+    },
+    "developers": {
+      "title": "Наша команда",
+      "team": [
+        {
+          "id": 1,
+          "name": "Анастасия Бондаренко",
+          "nickName": "krevetka87",
+          "position": "Team Lead",
+          "link": "https://github.com/krevetka87",
+          "avatar": "https://avatars.githubusercontent.com/u/77237102?v=4"
+        },
+        {
+          "id": 2,
+          "name": "Дмитрий Иванов",
+          "nickName": "metalknock",
+          "position": "Front-End Developer",
+          "link": "https://github.com/MetalKnock",
+          "avatar": "https://avatars.githubusercontent.com/u/102481723?v=4"
+        },
+        {
+          "id": 3,
+          "name": "Сергей Федоров",
+          "position": "Front-End Developer",
+          "nickName": "dazmond-ru",
+          "link": "https://github.com/Dazmond-ru",
+          "avatar": "https://avatars.githubusercontent.com/u/60709379?v=4"
+        }
+      ]
     }
   },
   "docs": {

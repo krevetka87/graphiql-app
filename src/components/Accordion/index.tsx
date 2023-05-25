@@ -11,9 +11,9 @@ interface AccordionProps {
 const Accordion = ({ text, index, isOpen, toggleAccordion }: AccordionProps) => {
   return (
     <div
-      className={`bg-gray-100 rounded-md ${isOpen ? 'my-3' : ''} ${index === 0 && 'mt-0'} ${
-        index === 3 && 'mb-0'
-      }`}
+      className={`rounded-md hover:bg-[#fe718d] transition-all ${
+        isOpen ? 'my-3 bg-[#fe718d]' : 'bg-gray-100'
+      } ${index === 0 && 'mt-0'} ${index === 3 && 'mb-0'}`}
     >
       <div
         className="flex items-center justify-between px-4 py-2 cursor-pointer"
