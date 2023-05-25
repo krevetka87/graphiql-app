@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { RoutePath, profiles } from 'src/constants/common';
+import { RoutePath } from 'src/constants/common';
 import { auth } from 'src/firebase';
 import { ReactComponent as SpinnerIcon } from 'src/assets/spinner.svg';
 import Accordion from 'src/components/Accordion';
@@ -34,19 +34,19 @@ const Welcome = () => {
   return (
     <div className="flex flex-col items-center px-6">
       <h1 className="text-center mb-2">{t('welcome.title')}</h1>
-      <h3 className="text-center mb-8">{t('welcome.description')}</h3>
+      <h3 className="text-center mb-6">{t('welcome.description')}</h3>
 
       {!loading && user && (
         <button
           type="button"
-          className="border-4 rounded-md px-4 py-2 transition-all bg-white hover:bg-[#fe718d] hover:border-[#fe718d] text-xl font-semibold w-min mb-7"
+          className="border-4 rounded-md px-4 py-2 transition-all bg-white hover:bg-[#fe718d] hover:border-[#fe718d] text-xl font-semibold w-min mb-5"
           onClick={handleClickMain}
         >
           {t('welcome.buttons.main')}
         </button>
       )}
 
-      <div className="mb-12 w-full">
+      <div className="mb-6 w-full">
         <div className="flex items-center gap-5 text-2xl mb-6">
           <div className="w-full h-1 bg-gray-100" />
           <h5 className="whitespace-nowrap">{t('welcome.accordions.title')}</h5>
@@ -60,7 +60,7 @@ const Welcome = () => {
         </div>
       </div>
 
-      <div className="mb-12 w-full">
+      <div className="mb-6 w-full">
         <div className="flex items-center gap-5 text-2xl mb-6">
           <div className="w-full h-1 bg-gray-100" />
           <h5 className="whitespace-nowrap">{t('welcome.banners.title')}</h5>
@@ -79,7 +79,7 @@ const Welcome = () => {
         </div>
       </div>
 
-      <div className="w-full">
+      <div className="w-full mb-6">
         <div className="flex items-center gap-5 text-2xl mb-6">
           <div className="w-full h-1 bg-gray-100" />
           <h5 className="whitespace-nowrap">{t('welcome.developers.title')}</h5>

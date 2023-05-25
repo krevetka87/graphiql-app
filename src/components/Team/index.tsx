@@ -12,18 +12,20 @@ const Team = ({ developer }: TeamProps) => {
   };
 
   return (
-    <li>
+    <li className="group hover:text-[#fe718d]">
       <a href={developer.link} target="_blank" rel="noreferrer">
         <div className="flex items-center gap-4">
           <img
             src={developer.avatar}
             alt={developer.name}
-            className="block rounded-full sm:w-20 w-10"
+            className="block rounded-full w-10"
             onError={handleImgError}
           />
           <div>
-            <h4 className="whitespace-nowrap text-lg font-medium">{developer.name}</h4>
-            <p className="whitespace-nowrap">{developer.position}</p>
+            <h4 className="whitespace-nowrap text-lg font-medium group-hover:[#fe718d]">
+              {developer.name}
+            </h4>
+            <p className="whitespace-nowrap group-hover:text-black">{developer.position}</p>
           </div>
         </div>
       </a>

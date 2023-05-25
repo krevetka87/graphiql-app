@@ -71,7 +71,7 @@
         {
           "id": 1,
           "title": "What is GraphQL?",
-          "description": "GraphQL is a query language and runtime that allows you to define the structure of the data you need and fetch it from your API in a single request. It provides a more efficient and flexible way to interact with APIs compared to traditional REST APIs. With GraphQL, clients can specify exactly the data they need, reducing redundancy and missing data. It also allows the server to evolve its API over time without breaking existing clients."
+          "description": "GraphQL is a query language and runtime that allows you to define the structure of the data you need and fetch it from your API in a single request. It provides a more efficient and flexible way to interact with APIs compared to traditional REST APIs. With GraphQL, clients can specify exactly the data they need, reducing redundancy and missing data."
         },
         {
           "id": 2,
