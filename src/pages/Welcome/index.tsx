@@ -32,14 +32,12 @@ const Welcome = () => {
   return (
     <div className="flex flex-col items-center px-6">
       <h1 className="text-center mb-2">{t('welcome.title')}</h1>
-      <h3 className={`text-center ${!loading && user ? 'mb-8' : 'mb-28'}`}>
-        {t('welcome.description')}
-      </h3>
+      <h3 className="text-center mb-8">{t('welcome.description')}</h3>
 
       {!loading && user && (
         <button
           type="button"
-          className="border-4 rounded-md px-4 py-2 transition-all hover:bg-gray-200 text-xl font-semibold w-min mb-7"
+          className="border-4 rounded-md px-4 py-2 transition-all bg-white hover:bg-gray-200 text-xl font-semibold w-min mb-7"
           onClick={handleClickMain}
         >
           {t('welcome.buttons.main')}
@@ -53,7 +51,7 @@ const Welcome = () => {
           <div className="w-full h-1 bg-gray-100" />
         </div>
 
-        <div className="grid w-full 2xl:grid-cols-4 gap-x-10 gap-y-4 lg:grid-cols-2 sm:grid-cols-1">
+        <div className="grid w-full lg:grid-cols-4 gap-x-10 gap-y-4 sm:grid-cols-2 grid-cols-1">
           {textBanners.map((text) => (
             <Banner key={text.id} text={text} />
           ))}
