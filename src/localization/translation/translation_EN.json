@@ -1,4 +1,21 @@
 {
+  "editor": {
+    "tooltips": {
+      "copy": "copy query",
+      "format": "format query",
+      "execute": "execute query",
+      "copied": "copied!",
+      "refetch": "Re-fetch GraphQL schema",
+      "docs": {
+        "hide": "hide documentation",
+        "show": "show documentation"
+      }
+    },
+    "tabs": {
+      "variables": "variables",
+      "headers": "headers"
+    }
+  },
   "forms": {
     "errors": {
       "email": {
@@ -55,6 +72,7 @@
       "fields": "Fields",
       "arguments": "Arguments",
       "type": "Type"
-    }
+    },
+    "loadError": "Schema load error"
   }
 }

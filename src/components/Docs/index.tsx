@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react-lite';
-import { lazy, useEffect } from 'react';
+import { lazy } from 'react';
+import { useTranslation } from 'react-i18next';
 import { schemaStore } from '../../store';
-import Spinner from './Spinner';
+import { ReactComponent as Spinner } from '../../assets/spinner.svg';
 
 const Root = lazy(() => import('./Root'));
 const ScalarType = lazy(() => import('./ScalarType'));
@@ -10,22 +11,27 @@ const QueryTools = lazy(() => import('./QueryTools'));
 const Types = lazy(() => import('./Types'));
 
 const Docs = observer(() => {
-  const { opened, schema } = schemaStore;
+  const { t } = useTranslation();
+  const { opened, isSchemaLoading, isSchemaError } = schemaStore;
 
-  useEffect(() => {
-    schemaStore.loadSchema();
-  }, []);
-
-  if (!schema) {
+  if (isSchemaLoading) {
     return (
-      <div className="border-l border-gray-700 p-4">
+      <div className="[&>*:first-child]:w-24 [&>*:first-child]:h-24 p-4 w-full h-[300px] lg:h-full flex justify-center items-center">
         <Spinner />
       </div>
     );
   }
 
+  if (!isSchemaLoading && isSchemaError) {
+    return (
+      <div className="h-[300px] lg:h-full w-full flex justify-center items-center">
+        <h3 className="text-center">{t('docs.loadError')}</h3>
+      </div>
+    );
+  }
+
   return (
-    <div className="border-l border-gray-700 p-4 overflow-auto">
+    <div className="text-sm whitespace-nowrap md:whitespace-normal md:text-base p-2 overflow-auto max-h-full w-full scrollbar scrollbar-thumb-gray-300 scrollbar-w-1 scrollbar-h-1">
       {opened.query && <Root />}
       {opened.queryFields && <Queries />}
       {opened.queryField && <QueryTools />}
