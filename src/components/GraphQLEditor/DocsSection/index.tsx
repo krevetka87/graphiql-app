@@ -11,7 +11,7 @@ const DocsSection = observer(() => {
     <section
       className={`flex font-medium order-1 lg:order-3 text-base ${
         isDocsVisible
-          ? 'lg:flex-1 border-b lg:border-l lg:border-b-0 border-gray-700 h-[300px] lg:h-full p-2'
+          ? 'lg:flex-1 border-b lg:border-l lg:border-b-0 border-gray-700 h-[300px] lg:h-full lg:max-h-[817px] p-2'
           : ''
       }`}
     >

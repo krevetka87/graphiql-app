@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { schemaStore } from '../../../store';
 
 import { ReactComponent as ArgumentsIcon } from '../../../assets/arguments.svg';
@@ -8,6 +9,8 @@ import BackLink from '../BackLink';
 
 const QueryTools = () => {
   const { queryField, headerText } = schemaStore;
+
+  const { t } = useTranslation();
 
   const handleBackHistory = () => {
     const { history } = schemaStore;
@@ -30,7 +33,7 @@ const QueryTools = () => {
             <>
               <div className="flex items-center mt-5">
                 <ArgumentsIcon className="mr-2" />
-                <p className="text-sm">Arguments</p>
+                <p className="text-sm">{t('docs.tools.arguments')}</p>
               </div>
               <div className="mt-3 ml-2">
                 <Arguments args={queryField.args} />
@@ -42,7 +45,7 @@ const QueryTools = () => {
 
           <div className="flex items-center mt-5">
             <TypeIcon className="mr-2" />
-            <p className="text-sm">Type</p>
+            <p className="text-sm">{t('docs.tools.type')}</p>
           </div>
           <div className="ml-2 mt-3">
             <TypeFormat arg={String(queryField.type)} />
