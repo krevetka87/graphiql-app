@@ -43,9 +43,60 @@
     }
   },
   "welcome": {
-    "title": "GraphiQL is a playground/IDE for graphQL requests",
+    "title": "Welcome to GraphiQL!",
+    "description": "Application for writing, validating and testing GraphQL queries.",
     "buttons": {
       "main": "Main"
+    },
+    "accordions": {
+      "title": "Features of GraphiQL",
+      "text": [
+        {
+          "id": 1,
+          "title": "What is GraphQL?",
+          "description": "GraphQL is a query language and runtime that allows you to define the structure of the data you need and fetch it from your API in a single request. It provides a more efficient and flexible way to interact with APIs compared to traditional REST APIs. With GraphQL, clients can specify exactly the data they need, reducing redundancy and missing data. It also allows the server to evolve its API over time without breaking existing clients."
+        },
+        {
+          "id": 2,
+          "title": "Why do you need a GraphiQL?",
+          "description": "GraphiQL is a web-based interactive development environment (IDE) for exploring GraphQL APIs. It allows you to write and test GraphQL queries and mutations, view results, and explore the API schema. This can be particularly useful during development as it can help you iterate quickly on your API and debug issues."
+        },
+        {
+          "id": 3,
+          "title": "How is it built?",
+          "description": "GraphiQL is built using React and TypeScript. React is a popular JavaScript library for building user interfaces, and TypeScript is a typed superset of JavaScript that provides better tooling support and error checking."
+        },
+        {
+          "id": 4,
+          "title": "Where to begin?",
+          "description": "To start using GraphiQL, you will need to register or log in. Once logged in and connected to the API, you can explore the documentation. The documentation describes all possible API requests and required parameters, which you can use to request and test the data you need for further use."
+        }
+      ]
+    },
+    "banners": {
+      "title": "How it work?",
+      "text": [
+        {
+          "id": 1,
+          "title": "Query Generation",
+          "description": "Automatic query generation based on GraphQL schema for faster development."
+        },
+        {
+          "id": 2,
+          "title": "Support variables and headers",
+          "description": "Use of variables and headers in GraphQL queries for more flexibility."
+        },
+        {
+          "id": 3,
+          "title": "Schema documentation",
+          "description": "Automatic documentation generation for the GraphQL schema for improved code understanding."
+        },
+        {
+          "id": 4,
+          "title": "User friendly interface",
+          "description": "Creating a user-friendly interface with the ability to select multiple languages."
+        }
+      ]
     }
   },
   "docs": {
