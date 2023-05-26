@@ -22,10 +22,7 @@ const Accordion = ({ text, index, isOpen, toggleAccordion }: AccordionProps) => 
         <span className="font-bold">{text.title}</span>
         <ArrowIcon className={`w-8 h-8 ${isOpen ? 'transform rotate-180' : ''}`} />
       </div>
-      <div
-        className="overflow-hidden duration-300 ease-in-out"
-        style={{ height: isOpen ? 'auto' : 0 }}
-      >
+      <div className={`overflow-hidden duration-300 ease-in-out ${isOpen ? 'h-auto' : 'h-0'}`}>
         <div className="pb-4 px-4">{text.description}</div>
       </div>
     </div>
