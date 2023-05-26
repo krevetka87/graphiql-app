@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { ReactComponent as FieldsIcon } from '../../../assets/fields.svg';
 import { schemaStore } from '../../../store';
 import BackLink from '../BackLink';
@@ -5,6 +6,8 @@ import Query from '../Query';
 
 const Queries = () => {
   const { queryFields, headerText } = schemaStore;
+
+  const { t } = useTranslation();
 
   const fieldElements = queryFields
     ? Object.entries(queryFields).map(([fieldName, field]) => (
@@ -29,7 +32,7 @@ const Queries = () => {
       <h3 className="text-2xl mt-3">{headerText}</h3>
       <div className="flex items-center mt-5">
         <FieldsIcon className="mr-2" />
-        <h6 className="text-sm">Fields</h6>
+        <h6 className="text-sm">{t('docs.tools.fields')}</h6>
       </div>
       {fieldElements}
     </div>

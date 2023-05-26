@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next';
 import { ReactComponent as RootIcon } from '../../../assets/root.svg';
 import { schemaStore } from '../../../store';
 import { OpenState } from '../../../constants/docs';
 
 const Root = () => {
   const { schema, headerText } = schemaStore;
+
+  const { t } = useTranslation();
 
   const queryType = schema ? schema.getQueryType() : null;
 
@@ -28,7 +31,7 @@ const Root = () => {
       <p className="mt-4">A GraphQL schema provides a root type for each kind of operation.</p>
       <div className="flex items-center mt-4">
         <RootIcon className="mr-2" />
-        <p className="text-sm">Root Types</p>
+        <p className="text-sm">{t('docs.tools.root')}</p>
       </div>
       <strong className="mt-4 text-blue-500">
         query:{' '}
