@@ -152,6 +152,7 @@
       "arguments": "Arguments",
       "type": "Type"
     },
+    "description": "A GraphQL schema provides a root type for each kind of operation.",
     "loadError": "Schema load error"
   },
   "notFound": {

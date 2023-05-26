@@ -28,8 +28,8 @@ const Root = () => {
   return (
     <div className="max-w-md">
       <h3 className="text-3xl">{headerText}</h3>
-      <p className="mt-4">A GraphQL schema provides a root type for each kind of operation.</p>
-      <div className="flex items-center mt-4">
+      <p className="mt-4">{t('docs.description')}</p>
+      <div className="flex items-center my-4">
         <RootIcon className="mr-2" />
         <p className="text-sm">{t('docs.tools.root')}</p>
       </div>
