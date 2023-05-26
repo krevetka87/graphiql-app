@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import notFoundImage from '../../assets/404.png';
 
 const NotFound = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="relative w-full h-full flex items-center justify-center">
       <img
@@ -13,10 +16,10 @@ const NotFound = () => {
         <div className="sm:py-8 sm:px-16 text-center bg-white opacity-80 border-8 border-gray-200 rounded-xl py-4 px-8">
           <h2 className="sm:text-9xl font-bold mb-4 tracking-widest text-7xl">404</h2>
 
-          <p className="text-3xl mb-4 max-sm:text-xl">The page not found.</p>
+          <p className="text-3xl mb-4 max-sm:text-xl">{t('notFound.message')}</p>
           <p>
             <Link to="/" className="text-blue-500 hover:text-blue-700 sm:text-2xl text-lg">
-              Return to main
+              {t('notFound.link')}
             </Link>
           </p>
         </div>

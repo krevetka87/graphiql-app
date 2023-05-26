@@ -153,5 +153,9 @@
       "type": "Type"
     },
     "loadError": "Schema load error"
+  },
+  "notFound": {
+    "message": "The page not found",
+    "link": "Return to Main"
   }
 }
