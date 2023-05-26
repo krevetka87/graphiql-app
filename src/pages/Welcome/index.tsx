@@ -9,6 +9,7 @@ import { useState } from 'react';
 import Banner from 'src/components/Banner';
 import { TeamState, TextState } from 'src/types/text.types';
 import Team from 'src/components/Team';
+import AccordionTitle from 'src/components/Accordion/AccordionTitle';
 
 const Welcome = () => {
   const [user, loading] = useAuthState(auth);
@@ -47,11 +48,7 @@ const Welcome = () => {
       )}
 
       <div className="mb-6 w-full">
-        <div className="flex items-center gap-5 text-2xl mb-6">
-          <div className="w-full h-1 bg-gray-100" />
-          <h5 className="whitespace-nowrap">{t('welcome.accordions.title')}</h5>
-          <div className="w-full h-1 bg-gray-100" />
-        </div>
+        <AccordionTitle title={t('welcome.accordions.title')} />
 
         <div className="grid w-full lg:grid-cols-4 gap-x-10 gap-y-4 sm:grid-cols-2 grid-cols-1">
           {textBanners.map((text) => (
@@ -61,11 +58,7 @@ const Welcome = () => {
       </div>
 
       <div className="mb-6 w-full">
-        <div className="flex items-center gap-5 text-2xl mb-6">
-          <div className="w-full h-1 bg-gray-100" />
-          <h5 className="whitespace-nowrap">{t('welcome.banners.title')}</h5>
-          <div className="w-full h-1 bg-gray-100" />
-        </div>
+        <AccordionTitle title={t('welcome.banners.title')} />
         <div className="w-full flex flex-col gap-2">
           {textAccordions.map((text, index) => (
             <Accordion
@@ -80,11 +73,7 @@ const Welcome = () => {
       </div>
 
       <div className="w-full mb-6">
-        <div className="flex items-center gap-5 text-2xl mb-6">
-          <div className="w-full h-1 bg-gray-100" />
-          <h5 className="whitespace-nowrap">{t('welcome.developers.title')}</h5>
-          <div className="w-full h-1 bg-gray-100" />
-        </div>
+        <AccordionTitle title={t('welcome.developers.title')} />
 
         <ul className="flex flex-wrap gap-10 items-center justify-around">
           {team.map((developer) => (
