@@ -31,12 +31,14 @@ const Docs = observer(() => {
   }
 
   return (
-    <div className="text-sm whitespace-nowrap md:whitespace-normal md:text-base p-2 overflow-auto max-h-full w-full scrollbar scrollbar-thumb-gray-300 scrollbar-w-1 scrollbar-h-1">
-      {opened.query && <Root />}
-      {opened.queryFields && <Queries />}
-      {opened.queryField && <QueryTools />}
-      {opened.scalarType && <ScalarType />}
-      {opened.typeName && <Types />}
+    <div className="text-sm md:text-base p-2 overflow-auto max-h-full h-auto w-full scrollbar scrollbar-thumb-gray-300 scrollbar-w-1 scrollbar-h-1 relative">
+      <div className="absolute top-0 left-0 pr-2">
+        {opened.query && <Root />}
+        {opened.queryFields && <Queries />}
+        {opened.queryField && <QueryTools />}
+        {opened.scalarType && <ScalarType />}
+        {opened.typeName && <Types />}
+      </div>
     </div>
   );
 });
