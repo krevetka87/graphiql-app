@@ -12,7 +12,11 @@ const Main = () => {
     };
   });
 
-  return <GraphQLEditor />;
+  return (
+    <main className="flex-auto w-full lg:min-h-0">
+      <GraphQLEditor />
+    </main>
+  );
 };
 
 export default Main;
