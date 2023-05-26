@@ -6,8 +6,9 @@ import {
   GraphQLSchema,
 } from 'graphql';
 
-import { action, makeObservable, observable } from 'mobx';
-import { getGraphQLSchema } from '../api/api';
+import { action, makeObservable, observable, runInAction } from 'mobx';
+import { toast } from 'react-toastify';
+import { getGraphQLSchema } from '../api/schemaApi';
 
 interface HistoryState {
   queryFields: GraphQLFieldMap<unknown, unknown> | GraphQLInputFieldMap | null;
@@ -29,6 +30,10 @@ interface OpenState {
 
 class SchemaStore {
   schema: GraphQLSchema | null = null;
+
+  isSchemaLoading = false;
+
+  isSchemaError = false;
 
   defaultOpened: OpenState = {
     query: false,
@@ -57,6 +62,7 @@ class SchemaStore {
   constructor() {
     makeObservable(this, {
       schema: observable,
+      isSchemaLoading: observable,
       defaultOpened: observable,
       queryFields: observable,
       queryField: observable,
@@ -82,8 +88,36 @@ class SchemaStore {
   }
 
   async loadSchema() {
-    const schema = await getGraphQLSchema();
-    this.schema = schema || null;
+    runInAction(() => {
+      this.setSchemaLoading(true);
+      this.setSchemaError(false);
+    });
+
+    try {
+      const schema = await getGraphQLSchema();
+
+      runInAction(() => {
+        this.schema = schema || null;
+      });
+    } catch (err) {
+      runInAction(() => {
+        this.setSchemaError(true);
+      });
+
+      toast.error((err as Error).message);
+    } finally {
+      runInAction(() => {
+        this.setSchemaLoading(false);
+      });
+    }
+  }
+
+  setSchemaLoading(value: boolean) {
+    this.isSchemaLoading = value;
+  }
+
+  setSchemaError(value: boolean) {
+    this.isSchemaError = value;
   }
 
   loadPreviousState(lastAction: HistoryState) {

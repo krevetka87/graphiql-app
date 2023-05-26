@@ -25,14 +25,16 @@ module.exports = {
   },
   plugins: ['react-refresh', '@typescript-eslint', 'react', 'prettier', 'react-hooks'],
   rules: {
+    'global-require': 0,
+    '@typescript-eslint/no-var-requires': 0,
+    'react/function-component-definition': 0,
     'react-refresh/only-export-components': 1,
     'react/react-in-jsx-scope': 0,
     '@typescript-eslint/no-explicit-any': 2,
     'import/prefer-default-export': 0,
-    'jsx-a11y/click-events-have-key-events': 'off',
-    'jsx-a11y/no-static-element-interactions': 'off',
-    'jsx-a11y/no-noninteractive-element-interactions': 'off',
-    'react/function-component-definition': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/no-static-element-interactions': 0,
+    'jsx-a11y/no-noninteractive-element-interactions': 0,
     'import/no-extraneous-dependencies': [
       2,
       {
@@ -47,9 +49,8 @@ module.exports = {
         },
       },
     ],
+    'react/jsx-props-no-spreading': 0,
     'prettier/prettier': 2,
-    'react/jsx-props-no-spreading': 'off',
-    'react/function-component-definition': 0,
   },
   settings: {
     react: {
