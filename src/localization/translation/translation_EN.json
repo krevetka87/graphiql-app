@@ -1,0 +1,162 @@
+{
+  "editor": {
+    "tooltips": {
+      "copy": "copy query",
+      "format": "format query",
+      "execute": "execute query",
+      "copied": "copied!",
+      "refetch": "Re-fetch GraphQL schema",
+      "docs": {
+        "hide": "hide documentation",
+        "show": "show documentation"
+      }
+    },
+    "tabs": {
+      "variables": "variables",
+      "headers": "headers"
+    }
+  },
+  "forms": {
+    "errors": {
+      "email": {
+        "required": "Email is required",
+        "pattern": "Please enter correct email"
+      },
+      "password": {
+        "required": "Password is required",
+        "minLength": "Password must have at least 8 characters",
+        "validation": {
+          "letter": "Password at least one letter",
+          "digit": "Password at least one digit",
+          "special": "Password at least one special character",
+          "notCyrillic": "Password mustn't contain Cyrillic"
+        }
+      },
+      "common": "Error"
+    },
+    "buttons": {
+      "login": "Sign In",
+      "register": "Sign Up"
+    },
+    "fields": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "label": {
+      "noAccount": "Don't have an account?",
+      "haveAccount": "Already have an account?"
+    },
+    "title": {
+      "login": "Login",
+      "register": "Register"
+    }
+  },
+  "header": {
+    "buttons": {
+      "logout": "Logout",
+      "language": "Change language",
+      "login": "Login",
+      "register": "Register"
+    }
+  },
+  "welcome": {
+    "title": "Welcome to GraphiQL!",
+    "description": "Application for writing, validating and testing GraphQL queries.",
+    "buttons": {
+      "main": "Main"
+    },
+    "accordions": {
+      "title": "Features of GraphiQL",
+      "text": [
+        {
+          "id": 1,
+          "title": "What is GraphQL?",
+          "description": "GraphQL is a query language and runtime that allows you to define the structure of the data you need and fetch it from your API in a single request. It provides a more efficient and flexible way to interact with APIs compared to traditional REST APIs. With GraphQL, clients can specify exactly the data they need, reducing redundancy and missing data."
+        },
+        {
+          "id": 2,
+          "title": "Why do you need a GraphiQL?",
+          "description": "GraphiQL is a web-based interactive development environment (IDE) for exploring GraphQL APIs. It allows you to write and test GraphQL queries and mutations, view results, and explore the API schema. This can be particularly useful during development as it can help you iterate quickly on your API and debug issues."
+        },
+        {
+          "id": 3,
+          "title": "How is it built?",
+          "description": "GraphiQL is built using React and TypeScript. React is a popular JavaScript library for building user interfaces, and TypeScript is a typed superset of JavaScript that provides better tooling support and error checking."
+        },
+        {
+          "id": 4,
+          "title": "Where to begin?",
+          "description": "To start using GraphiQL, you will need to register or log in. Once logged in and connected to the API, you can explore the documentation. The documentation describes all possible API requests and required parameters, which you can use to request and test the data you need for further use."
+        }
+      ]
+    },
+    "banners": {
+      "title": "How it work?",
+      "text": [
+        {
+          "id": 1,
+          "title": "Query Generation",
+          "description": "Automatic query generation based on GraphQL schema for faster development."
+        },
+        {
+          "id": 2,
+          "title": "Support variables and headers",
+          "description": "Use of variables and headers in GraphQL queries for more flexibility."
+        },
+        {
+          "id": 3,
+          "title": "Schema documentation",
+          "description": "Automatic documentation generation for the GraphQL schema for improved code understanding."
+        },
+        {
+          "id": 4,
+          "title": "User friendly interface",
+          "description": "Creating a user-friendly interface with the ability to select multiple languages."
+        }
+      ]
+    },
+    "developers": {
+      "title": "Our Team",
+      "team": [
+        {
+          "id": 1,
+          "name": "Anastasia Bondarenko",
+          "nickName": "krevetka87",
+          "position": "Team Lead",
+          "link": "https://github.com/krevetka87",
+          "avatar": "https://avatars.githubusercontent.com/u/77237102?v=4"
+        },
+        {
+          "id": 2,
+          "name": "Dmitry Ivanov",
+          "nickName": "metalknock",
+          "position": "Front-End Developer",
+          "link": "https://github.com/MetalKnock",
+          "avatar": "https://avatars.githubusercontent.com/u/102481723?v=4"
+        },
+        {
+          "id": 3,
+          "name": "Sergey Fedorov",
+          "nickName": "dazmond-ru",
+          "position": "Front-End Developer",
+          "link": "https://github.com/Dazmond-ru",
+          "avatar": "https://avatars.githubusercontent.com/u/60709379?v=4"
+        }
+      ]
+    }
+  },
+  "docs": {
+    "tools": {
+      "root": "Root Types",
+      "fields": "Fields",
+      "arguments": "Arguments",
+      "type": "Type"
+    },
+    "description": "A GraphQL schema provides a root type for each kind of operation.",
+    "loadError": "Schema load error"
+  },
+  "notFound": {
+    "message": "The page not found",
+    "link": "Return to Welcome page"
+  }
+}
